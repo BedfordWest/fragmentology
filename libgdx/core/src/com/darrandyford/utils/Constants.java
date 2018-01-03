@@ -1,5 +1,8 @@
 package com.darrandyford.utils;
 
+/**
+ * Constants necessary for or helpful for the game will be housed here
+ */
 public class Constants {
 	/** Desktop Client Constants **/
 	public static final int DESKTOP_HEIGHT = 600;
