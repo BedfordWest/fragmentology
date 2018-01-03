@@ -1,6 +1,8 @@
 package com.darrandyford.world;
 
 
+import com.darrandyford.utils.CameraHelper;
+
 /**
  * Controls the primary loop of the game world. This includes initialization, updates, and destruction.
  * The primary groupings of control are:
@@ -13,6 +15,8 @@ public class WorldController {
 
 	// Set the TAG for logging purposes
 	private static final String TAG = WorldController.class.getName();
+
+	private CameraHelper cameraHelper;
 
 	private float accumulator = 0; // keeps track of physics accumulated time between steps
 	private boolean initRenderState = false;
@@ -80,6 +84,7 @@ public class WorldController {
 
 	// Getters
 	public boolean getInitRenderState() { return this.initRenderState; }
+	public CameraHelper getCameraHelper() { return this.cameraHelper; }
 
 	// Setters
 	public void setInitRenderState(boolean state) {
