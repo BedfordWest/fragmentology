@@ -1,6 +1,7 @@
 package com.darrandyford.world;
 
 
+import com.darrandyford.input.InputController;
 import com.darrandyford.utils.CameraHelper;
 
 /**
@@ -17,6 +18,7 @@ public class WorldController {
 	private static final String TAG = WorldController.class.getName();
 
 	private CameraHelper cameraHelper;
+	private InputController inputController;
 
 	private float accumulator = 0; // keeps track of physics accumulated time between steps
 	private boolean initRenderState = false;
@@ -40,6 +42,7 @@ public class WorldController {
 		cameraHelper = new CameraHelper();
 		initLevel();
 		initPhysics();
+		inputController = new InputController(this);
 	}
 
 	/**
