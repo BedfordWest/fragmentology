@@ -37,6 +37,7 @@ public class WorldController {
 	 * 	completely deleting and re-instantiating it.
 	 */
 	private void init () {
+		cameraHelper = new CameraHelper();
 		initLevel();
 		initPhysics();
 	}

@@ -14,7 +14,6 @@ import com.darrandyford.utils.Constants;
 public class WorldRenderer implements Disposable {
 	private OrthographicCamera camera;
 	private OrthographicCamera cameraGUI;
-	private OrthogonalTiledMapRenderer renderer;
 	private WorldController worldController;
 
 	// Rendering constants/switches
@@ -63,7 +62,6 @@ public class WorldRenderer implements Disposable {
 	public void renderWorld() {
 		camera.update();
 		worldController.getCameraHelper().applyTo(camera);
-		renderer.setView(camera);
 		renderLevel();
 		if(DEBUG_DRAW_BOX2D_WORLD) { renderPhysicsDebugLines(); }
 		renderPlayer();
@@ -98,7 +96,6 @@ public class WorldRenderer implements Disposable {
 	 * Force some necessary garbage collection
 	 */
 	@Override public void dispose () {
-		renderer.dispose();
 	}
 
 	/**
