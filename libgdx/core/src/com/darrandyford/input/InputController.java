@@ -1,22 +1,32 @@
 package com.darrandyford.input;
 
-import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import com.darrandyford.utils.CameraHelper;
 import com.darrandyford.world.WorldController;
 
+/**
+ * Handles user input
+ */
 public class InputController extends InputAdapter {
 	private WorldController worldController;
 	private static final String TAG = InputController.class.getName();
 
+	/**
+	 * Constructor
+	 * @param worldController the world controller
+	 */
 	public InputController(WorldController worldController)
 	{
 		Gdx.input.setInputProcessor(this);
 		this.worldController = worldController;
 	}
 
+	/**
+	 * Handles key release events
+	 * @param keycode passed from client
+	 * @return boolean
+	 */
 	@Override
 	public boolean keyUp (int keycode) {
 		// Reset game world
@@ -39,6 +49,11 @@ public class InputController extends InputAdapter {
 		return true;
 	}
 
+	/**
+	 * Handles key press events
+	 * @param keycode passed from client
+	 * @return boolean
+	 */
 	@Override
 	public boolean keyDown (int keycode) {
 		switch(keycode)
