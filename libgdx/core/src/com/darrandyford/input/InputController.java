@@ -29,23 +29,30 @@ public class InputController extends InputAdapter {
 	 */
 	@Override
 	public boolean keyUp (int keycode) {
-		// Reset game world
-		if (keycode == Input.Keys.R) {
-			worldController.reset();
-			worldController.setInitRenderState(true);
-			Gdx.app.debug(TAG, "Game world reset");
+		switch (keycode) {
+			// Reset game world
+			case Input.Keys.R:
+				worldController.reset();
+				worldController.setInitRenderState(true);
+				Gdx.app.debug(TAG, "Game world reset");
+				break;
+
+			// Toggle camera follow
+			case Input.Keys.ENTER:
+				Gdx.app.debug(TAG, "Enter released");
+				break;
+
+			case Input.Keys.D:
+				Gdx.app.debug(TAG, "D released");
+				break;
+
+			case Input.Keys.A:
+				Gdx.app.debug(TAG, "A released");
+				break;
+
+			default:
 		}
 
-		// Toggle camera follow
-		else if (keycode == Input.Keys.ENTER) {
-			Gdx.app.debug(TAG, "Enter released");
-		}
-		else if(keycode == Input.Keys.D)  {
-			Gdx.app.debug(TAG, "D released");
-		}
-		else if (keycode == Input.Keys.A) {
-			Gdx.app.debug(TAG, "A released");
-			}
 		return true;
 	}
 
