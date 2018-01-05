@@ -37,7 +37,11 @@ public class Constants {
 
 	/** Asset Constants **/
 
-	/** Level Tile Constants **/
+	/** Tile Constants **/
+	// Width and Height of level tiles
+	public static final int TILE_WIDTH = 32;
+	public static final int TILE_HEIGHT = 32;
+	public enum TileType { FLOOR, WALL, OBJECT }
 
 	/** Player Constants **/
 
