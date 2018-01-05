@@ -6,6 +6,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.darrandyford.entities.AbstractGameEntity;
 import com.darrandyford.utils.Constants;
 
+/**
+ * Represents a tile of terrain - floor, ground, wall, etc.
+ */
 public class TerrainTile extends AbstractGameEntity {
 	private boolean isSolid;
 	private Constants.TileType tileType;
