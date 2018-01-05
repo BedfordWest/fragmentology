@@ -8,6 +8,9 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Transform;
 import com.darrandyford.utils.Constants;
 
+/**
+ * Abstract game entity - all game entities should inherit from this.
+ */
 public abstract class AbstractGameEntity {
 
 	protected Vector2 position;
@@ -20,6 +23,9 @@ public abstract class AbstractGameEntity {
 	public enum MoveState { MS_LEFT, MS_RIGHT, MS_UP, MS_DOWN, MS_NONE }
 	MoveState moveState;
 
+	/**
+	 * Constructor - we'll want to default these values for all subclasses
+	 */
 	public AbstractGameEntity () {
 		position = new Vector2();
 		dimension = new Vector2(1, 1);
@@ -29,9 +35,17 @@ public abstract class AbstractGameEntity {
 		direction = Constants.DIRECTION_RIGHT;
 	}
 
+	/**
+	 * Things we expect every game entity to do during a game cycle
+	 * @param deltaTime time between cycles
+	 */
 	public void update (float deltaTime) {
 	}
 
+	/**
+	 * All game entities need to be able to render, when required
+	 * @param batch the Sprite Batch used to render the entity
+	 */
 	public abstract void render (SpriteBatch batch);
 
 	// Getters
