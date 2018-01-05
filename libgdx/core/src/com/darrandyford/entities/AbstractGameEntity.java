@@ -20,7 +20,7 @@ public abstract class AbstractGameEntity {
 	public enum MoveState { MS_LEFT, MS_RIGHT, MS_UP, MS_DOWN, MS_NONE }
 	MoveState moveState;
 
-	public void AbstractGameObject () {
+	public AbstractGameEntity () {
 		position = new Vector2();
 		dimension = new Vector2(1, 1);
 		origin = new Vector2();
