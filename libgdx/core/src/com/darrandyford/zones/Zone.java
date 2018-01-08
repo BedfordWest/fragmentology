@@ -12,24 +12,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Represents a zone the player is currently active within. A zone is a generic term for an area of the world
+ * that is currently being shown.
+ */
 public class Zone {
 	public static final String TAG = Zone.class.getName();
 	private TiledMap map;
 	private List<TerrainTile> zoneTiles = new ArrayList<TerrainTile>();
 
 	public Zone () {
-		Gdx.app.debug(TAG, "Seeding the level (no provided seed)...");
-		Random rand = new Random();
-		init(rand.nextLong());
+		Gdx.app.debug(TAG, "Initializing the zone");
+		init();
 	}
 
-	public Zone (long seed) {
-		Gdx.app.debug(TAG, "Seeding the level with seed: " + seed);
-		init(seed);
-	}
-
-	private void createTileObjects(long seed) {
-
+	/**
+	 * Create the tile objects that the currently existing zone consists of.
+	 */
+	private void createTileObjects() {
 		for (int x = 0; x < Constants.ZONE_X_TILES; x++) {
 			for (int y = 0; y < Constants.ZONE_Y_TILES; y++) {
 				TerrainTile ttile = new TerrainTile();
@@ -46,8 +46,11 @@ public class Zone {
 		}
 	}
 
-	private void init (long seed) {
-		this.createTileObjects(seed);
+	/**
+	 * Initialize the zone, splitting it out into necessary map layers.
+	 */
+	private void init () {
+		this.createTileObjects();
 		map = new TiledMap();
 		map.getLayers().add(new TiledMapTileLayer(
 			Constants.ZONE_X_TILES,
@@ -64,7 +67,9 @@ public class Zone {
 		updateZoneState();
 	}
 
-	// Add a map layer to only represent what can be seen in a radius of sight
+	/**
+	 * Update the zone state as necessary. This will later contain logic for player line-of-sight, etc.
+	 */
 	public void updateZoneState() {
 		TiledMapTileLayer losLayer = (TiledMapTileLayer)map.getLayers().get(0);
 
