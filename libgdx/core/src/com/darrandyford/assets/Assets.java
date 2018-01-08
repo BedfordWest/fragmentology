@@ -9,12 +9,14 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Disposable;
 import com.darrandyford.utils.Constants;
 
-
+/**
+ * Handles asset management. In particular, creates the asset manager and handles unpacking the atlas into
+ * defined assets with textures for loading during render.
+ */
 public class Assets implements Disposable, AssetErrorListener {
 
 	// Set the TAG constant for logging
 	public static final String TAG = Assets.class.getName();
-	public static final Assets instance = new Assets();
 	private AssetManager assetManager;
 
 	public AssetPlayer player;
@@ -26,7 +28,10 @@ public class Assets implements Disposable, AssetErrorListener {
 	private Assets () {}
 
 
-
+	/**
+	 * Initialization will handle creation of the asset manager and loading of particular assets from the atlas
+	 * @param assetManager will be passed from the main game class
+	 */
 	public void init (AssetManager assetManager) {
 		this.assetManager = assetManager;
 		// set asset manager error handler
@@ -57,11 +62,19 @@ public class Assets implements Disposable, AssetErrorListener {
 		wall = new AssetWall(atlas);
 	}
 
+	/**
+	 * Since these are disposable, we need to make sure we properly dispose of them
+	 */
 	@Override
 	public void dispose () {
 		assetManager.dispose();
 	}
 
+	/**
+	 * Error handling
+	 * @param asset handle to the asset that threw the error
+	 * @param throwable handle to the exception we received
+	 */
 	@Override
 	public void error (AssetDescriptor asset, Throwable throwable) {
 		Gdx.app.error(TAG, "Couldn't load asset '" + asset.fileName + "'",
@@ -71,7 +84,9 @@ public class Assets implements Disposable, AssetErrorListener {
 	/* The following code contains the inner asset classes for Assets */
 	/* -------------------------------------------------------------- */
 
-	// Asset inner class for the player assets
+	/**
+	 * 	Asset inner class for the player assets
+ 	 */
 	public class AssetPlayer {
 		public final TextureAtlas.AtlasRegion left, up, down;
 
@@ -82,7 +97,9 @@ public class Assets implements Disposable, AssetErrorListener {
 		}
 	}
 
-	// Asset inner class for the enemy assets
+	/**
+	 * Asset inner class for the enemy assets
+ 	 */
 	public class AssetEnemy {
 		public final TextureAtlas.AtlasRegion left, up, down;
 
@@ -94,7 +111,9 @@ public class Assets implements Disposable, AssetErrorListener {
 		}
 	}
 
-	// Asset inner class for a darkness tile
+	/**
+	 * Asset inner class for a ground tile
+	 */
 	public class AssetGround {
 		public final TextureAtlas.AtlasRegion terrain;
 
@@ -103,7 +122,9 @@ public class Assets implements Disposable, AssetErrorListener {
 		}
 	}
 
-	// Asset inner class for a wall tile
+	/**
+	 * Asset inner class for a wall tile
+ 	 */
 	public class AssetWall {
 		public final TextureAtlas.AtlasRegion wall;
 
@@ -111,5 +132,7 @@ public class Assets implements Disposable, AssetErrorListener {
 			wall = atlas.findRegion("HO_PLACEHOLDER_01_X_32");
 		}
 	}
+
+	/*******************************************************************/
 
 }
