@@ -36,6 +36,8 @@ public class Constants {
 	/** Collision masks **/
 
 	/** Asset Constants **/
+	// Location of descriptor file for texture atlas
+	public static final String TEXTURE_ATLAS_OBJECTS = "android/assets/atlas/worldtextures.atlas";
 
 	/** Tile Constants **/
 	// Width and Height of level tiles
