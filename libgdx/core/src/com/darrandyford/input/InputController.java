@@ -4,6 +4,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.darrandyford.entities.living.characters.Player;
 import com.darrandyford.utils.CameraHelper;
 import com.darrandyford.world.WorldController;
 
@@ -14,6 +15,7 @@ public class InputController extends InputAdapter {
 	private WorldController worldController;
 	private static final String TAG = InputController.class.getName();
 	private CameraHelper cameraHelper;
+	private Player player;
 
 	/**
 	 * Constructor
@@ -24,6 +26,7 @@ public class InputController extends InputAdapter {
 		Gdx.input.setInputProcessor(this);
 		this.worldController = worldController;
 		this.cameraHelper = worldController.getCameraHelper();
+		this.player = worldController.getPlayer();
 	}
 
 	/**
@@ -43,7 +46,10 @@ public class InputController extends InputAdapter {
 
 			// Toggle camera follow
 			case Input.Keys.ENTER:
-				Gdx.app.debug(TAG, "Enter released");
+				worldController.getCameraHelper().setTarget(
+					cameraHelper.hasTarget() ? null : player);
+				Gdx.app.debug(TAG, "Camera follow is enabled: " +
+					cameraHelper.hasTarget());
 				break;
 
 			case Input.Keys.D:

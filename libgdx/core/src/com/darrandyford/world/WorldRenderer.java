@@ -1,6 +1,7 @@
 package com.darrandyford.world;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.Disposable;
 import com.darrandyford.utils.Constants;
@@ -16,6 +17,7 @@ public class WorldRenderer implements Disposable {
 	private OrthographicCamera cameraGUI;
 	private WorldController worldController;
 	private OrthogonalTiledMapRenderer renderer;
+	private SpriteBatch batch;
 
 	// Rendering constants/switches
 	private static final boolean DEBUG_DRAW_BOX2D_WORLD = true;
@@ -33,6 +35,7 @@ public class WorldRenderer implements Disposable {
 	 * Initialize the renderer. This will set up the camera, perspective, etc.
 	 */
 	private void init () {
+		batch = new SpriteBatch();
 		camera = new OrthographicCamera(Constants.VIEWPORT_WIDTH,
 			Constants.VIEWPORT_HEIGHT);
 		camera.position.set(0, 0, 0);
@@ -76,8 +79,11 @@ public class WorldRenderer implements Disposable {
 		renderer.setView(camera);
 		renderZone();
 		if(DEBUG_DRAW_BOX2D_WORLD) { renderPhysicsDebugLines(); }
+		batch.setProjectionMatrix(camera.combined);
+		batch.begin();
 		renderPlayer();
 		renderEnemies();
+		batch.end();
 	}
 
 	/**
@@ -116,6 +122,7 @@ public class WorldRenderer implements Disposable {
 	 */
 	private void renderPlayer()
 	{
+		worldController.getPlayer().render(batch);
 	}
 
 	/**

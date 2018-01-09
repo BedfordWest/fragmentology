@@ -1,6 +1,7 @@
 package com.darrandyford.world;
 
 
+import com.darrandyford.entities.living.characters.Player;
 import com.darrandyford.input.InputController;
 import com.darrandyford.utils.CameraHelper;
 import com.darrandyford.zones.Zone;
@@ -21,6 +22,7 @@ public class WorldController {
 	private CameraHelper cameraHelper;
 	private InputController inputController;
 	private Zone zone;
+	private Player player;
 
 	private float accumulator = 0; // keeps track of physics accumulated time between steps
 	private boolean initRenderState = false;
@@ -45,6 +47,8 @@ public class WorldController {
 		initLevel();
 		initPhysics();
 		inputController = new InputController(this);
+		player = new Player();
+		cameraHelper.setTarget(player);
 	}
 
 	/**
@@ -55,6 +59,7 @@ public class WorldController {
 		inputController.handleDebugInput(deltaTime);
 		updatePhysics(deltaTime);
 		doPhysicsStep(deltaTime);
+		cameraHelper.update(deltaTime);
 	}
 
 	/**
@@ -96,6 +101,7 @@ public class WorldController {
 	public Zone getZone() {
 		return this.zone;
 	}
+	public Player getPlayer() { return this.player; }
 
 	// Setters
 	public void setInitRenderState(boolean state) {
