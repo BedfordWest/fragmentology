@@ -18,6 +18,7 @@ public class Assets implements Disposable, AssetErrorListener {
 	// Set the TAG constant for logging
 	public static final String TAG = Assets.class.getName();
 	private AssetManager assetManager;
+	public static final Assets instance = new Assets();
 
 	public AssetPlayer player;
 	public AssetEnemy enemy;
@@ -91,9 +92,9 @@ public class Assets implements Disposable, AssetErrorListener {
 		public final TextureAtlas.AtlasRegion left, up, down;
 
 		public AssetPlayer (TextureAtlas atlas) {
-			left = atlas.findRegion("CH_PLACEHOLDER_01_SL_32");
-			up = atlas.findRegion("CH_PLACEHOLDER_01_SU_32");
-			down = atlas.findRegion("CH_PLACEHOLDER_01_SD_32");
+			left = atlas.findRegion("CH_PLACEHOLDER_01_32_SL");
+			up = atlas.findRegion("CH_PLACEHOLDER_01_32_SU");
+			down = atlas.findRegion("CH_PLACEHOLDER_01_32_SD");
 		}
 	}
 
@@ -104,9 +105,9 @@ public class Assets implements Disposable, AssetErrorListener {
 		public final TextureAtlas.AtlasRegion left, up, down;
 
 		public AssetEnemy (TextureAtlas atlas) {
-			left = atlas.findRegion("EN_PLACEHOLDER_01_SL_32");
-			up = atlas.findRegion("EN_PLACEHOLDER_01_SU_32");
-			down = atlas.findRegion("EN_PLACEHOLDER_01_SD_32");
+			left = atlas.findRegion("EN_PLACEHOLDER_01_32_SL");
+			up = atlas.findRegion("EN_PLACEHOLDER_01_32_SU");
+			down = atlas.findRegion("EN_PLACEHOLDER_01_32_SD");
 
 		}
 	}
@@ -118,7 +119,7 @@ public class Assets implements Disposable, AssetErrorListener {
 		public final TextureAtlas.AtlasRegion terrain;
 
 		public AssetGround(TextureAtlas atlas) {
-			terrain = atlas.findRegion("TR_PLACEHOLDER_01_X_32");
+			terrain = atlas.findRegion("TR_PLACEHOLDER_01_32_X");
 		}
 	}
 
@@ -129,7 +130,7 @@ public class Assets implements Disposable, AssetErrorListener {
 		public final TextureAtlas.AtlasRegion wall;
 
 		public AssetWall (TextureAtlas atlas) {
-			wall = atlas.findRegion("HO_PLACEHOLDER_01_X_32");
+			wall = atlas.findRegion("HO_PLACEHOLDER_01_32_X");
 		}
 	}
 

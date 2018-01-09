@@ -15,6 +15,7 @@ public class WorldRenderer implements Disposable {
 	private OrthographicCamera camera;
 	private OrthographicCamera cameraGUI;
 	private WorldController worldController;
+	private OrthogonalTiledMapRenderer renderer;
 
 	// Rendering constants/switches
 	private static final boolean DEBUG_DRAW_BOX2D_WORLD = true;
@@ -42,6 +43,11 @@ public class WorldRenderer implements Disposable {
 		cameraGUI.position.set(0, 0, 0);
 		cameraGUI.setToOrtho(false);
 		cameraGUI.update();
+		renderer = new OrthogonalTiledMapRenderer(worldController.
+			getZone().
+			getTiledMap(),
+			1/Constants.WORLD_SCALE
+		);
 	}
 
 	/**
@@ -51,6 +57,11 @@ public class WorldRenderer implements Disposable {
 		if(worldController.getInitRenderState())
 		{
 			worldController.setInitRenderState(false);
+			renderer = new OrthogonalTiledMapRenderer(worldController.
+				getZone().
+				getTiledMap(),
+				1/Constants.WORLD_SCALE
+			);
 		}
 		renderWorld();
 		renderGUI();
@@ -62,7 +73,8 @@ public class WorldRenderer implements Disposable {
 	public void renderWorld() {
 		camera.update();
 		worldController.getCameraHelper().applyTo(camera);
-		renderLevel();
+		renderer.setView(camera);
+		renderZone();
 		if(DEBUG_DRAW_BOX2D_WORLD) { renderPhysicsDebugLines(); }
 		renderPlayer();
 		renderEnemies();
@@ -96,6 +108,7 @@ public class WorldRenderer implements Disposable {
 	 * Force some necessary garbage collection
 	 */
 	@Override public void dispose () {
+		renderer.dispose();
 	}
 
 	/**
@@ -115,8 +128,10 @@ public class WorldRenderer implements Disposable {
 	/**
 	 * Render the level
 	 */
-	private void renderLevel()
+	private void renderZone()
 	{
+		this.worldController.getZone().updateZoneState();
+		renderer.render();
 	}
 
 	/**
