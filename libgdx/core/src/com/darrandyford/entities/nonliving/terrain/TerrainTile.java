@@ -1,4 +1,4 @@
-package com.darrandyford.entities.terrain;
+package com.darrandyford.entities.nonliving.terrain;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;

@@ -10,9 +10,9 @@ public class Constants {
 
 	/** World Constants **/
 	// Visible game world is 40 meters wide
-	public static final float VIEWPORT_WIDTH = 40.0f;
+	public static final float VIEWPORT_WIDTH = 50.0f;
 	// Visible game world is 30 meters tall
-	public static final float VIEWPORT_HEIGHT = 30.0f;
+	public static final float VIEWPORT_HEIGHT = 40.0f;
 	// GUI Width
 	public static final float VIEWPORT_GUI_WIDTH = 800.0f;
 	// GUI Height

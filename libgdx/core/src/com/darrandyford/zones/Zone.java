@@ -6,7 +6,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.math.Vector2;
 import com.darrandyford.assets.Assets;
-import com.darrandyford.entities.terrain.TerrainTile;
+import com.darrandyford.entities.nonliving.terrain.TerrainTile;
 import com.darrandyford.utils.Constants;
 
 import java.util.ArrayList;

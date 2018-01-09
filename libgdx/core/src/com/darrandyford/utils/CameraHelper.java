@@ -23,7 +23,7 @@ public class CameraHelper
 
 	public CameraHelper () {
 		position = new Vector2();
-		zoom = 5.0f;
+		zoom = 1.0f;
 	}
 
 	public void update (float deltaTime) {
