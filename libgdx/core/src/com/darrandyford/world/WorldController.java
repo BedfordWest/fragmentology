@@ -50,6 +50,7 @@ public class WorldController {
 	 * @param deltaTime the amount of time passed between loop cycles in ms
 	 */
 	public void update (float deltaTime) {
+		inputController.handleDebugInput(deltaTime);
 		updatePhysics(deltaTime);
 		doPhysicsStep(deltaTime);
 	}
