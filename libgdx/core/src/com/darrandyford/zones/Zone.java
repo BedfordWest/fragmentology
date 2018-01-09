@@ -5,12 +5,12 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.math.Vector2;
+import com.darrandyford.assets.Assets;
 import com.darrandyford.entities.terrain.TerrainTile;
 import com.darrandyford.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Represents a zone the player is currently active within. A zone is a generic term for an area of the world
@@ -80,7 +80,11 @@ public class Zone {
 				TiledMapTileLayer.Cell cell = new TiledMapTileLayer.Cell();
 				if (!tile.isSolid())
 				{
+					cell.setTile(new StaticTiledMapTile
+						(Assets.instance.ground.terrain));
 				} else if (tile.isSolid())
+					cell.setTile(new StaticTiledMapTile
+						(Assets.instance.wall.wall));
 				{
 				}
 				losLayer.setCell(

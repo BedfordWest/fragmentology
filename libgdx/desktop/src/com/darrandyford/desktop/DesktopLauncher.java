@@ -18,6 +18,7 @@ public class DesktopLauncher {
 			settings.duplicatePadding = true;
 			settings.debug = drawDebugOutline;
 			settings.combineSubdirectories = true;
+			settings.flattenPaths = true;
 			TexturePacker.process(settings, "./",
 				"atlas", "worldtextures");
 		}

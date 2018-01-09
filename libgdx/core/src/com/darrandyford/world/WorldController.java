@@ -3,6 +3,7 @@ package com.darrandyford.world;
 
 import com.darrandyford.input.InputController;
 import com.darrandyford.utils.CameraHelper;
+import com.darrandyford.zones.Zone;
 
 /**
  * Controls the primary loop of the game world. This includes initialization, updates, and destruction.
@@ -19,6 +20,7 @@ public class WorldController {
 
 	private CameraHelper cameraHelper;
 	private InputController inputController;
+	private Zone zone;
 
 	private float accumulator = 0; // keeps track of physics accumulated time between steps
 	private boolean initRenderState = false;
@@ -58,6 +60,7 @@ public class WorldController {
 	 * Initialize the game level - what we consider a level to be is TBD
 	 */
 	private void initLevel() {
+		this.zone = new Zone();
 	}
 
 	/**
@@ -89,6 +92,9 @@ public class WorldController {
 	// Getters
 	public boolean getInitRenderState() { return this.initRenderState; }
 	public CameraHelper getCameraHelper() { return this.cameraHelper; }
+	public Zone getZone() {
+		return this.zone;
+	}
 
 	// Setters
 	public void setInitRenderState(boolean state) {

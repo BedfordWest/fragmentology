@@ -8,6 +8,7 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.darrandyford.assets.Assets;
 import com.darrandyford.world.WorldController;
 import com.darrandyford.world.WorldRenderer;
 
@@ -29,6 +30,7 @@ public class DarrAndyFord implements ApplicationListener {
 		// Set Libgdx log level to DEBUG
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 		// Load assets
+		Assets.instance.init(new AssetManager());
 		// Initialize controller and renderer
 		worldController = new WorldController();
 		worldRenderer = new WorldRenderer(worldController);
@@ -64,10 +66,12 @@ public class DarrAndyFord implements ApplicationListener {
 		paused = true;
 	}
 	@Override public void resume () {
+		Assets.instance.init(new AssetManager());
 		paused = false;
 	}
 	@Override public void dispose () {
 		// Disposal is a render event, therefore we want WorldRenderer to handle it
 		worldRenderer.dispose();
+		Assets.instance.dispose();
 	}
 }
