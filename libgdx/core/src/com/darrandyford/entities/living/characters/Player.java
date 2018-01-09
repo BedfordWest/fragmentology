@@ -5,6 +5,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.darrandyford.entities.AbstractGameEntity;
 import com.darrandyford.utils.Constants;
 
+/**
+ * Class to represent a player in the game. Will be living and have any player-specific attributes necessary.
+ */
 public class Player extends AbstractGameEntity {
 
 	// Set the TAG for logging purposes
@@ -14,6 +17,9 @@ public class Player extends AbstractGameEntity {
 		init();
 	}
 
+	/**
+	 * Initialize the player. Should be facing right by default. The origin should be in the middle of the player.
+	 */
 	private void init () {
 		this.dimension.set(1.0f, 1.75f);
 		this.rotation = 0.0f;
@@ -21,6 +27,10 @@ public class Player extends AbstractGameEntity {
 		this.origin.set(dimension.x/2, dimension.y/2);
 	}
 
+	/**
+	 * Render the player.
+	 * @param batch the Sprite Batch used to render the entity
+	 */
 	@Override
 	public void render (SpriteBatch batch) {
 
