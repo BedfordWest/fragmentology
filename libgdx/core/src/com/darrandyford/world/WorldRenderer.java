@@ -4,7 +4,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.Disposable;
+import com.darrandyford.entities.living.LivingEntity;
 import com.darrandyford.utils.Constants;
+
+import java.util.ArrayList;
 
 /**
  * Handle rendering of the world. This primarily involves:
@@ -130,6 +133,10 @@ public class WorldRenderer implements Disposable {
 	 */
 	private void renderEnemies()
 	{
+		ArrayList<LivingEntity> zoneEnemies = worldController.getZone().getEnemies();
+		for(LivingEntity enemy:zoneEnemies){
+			enemy.render(batch);
+		}
 	}
 
 	/**
