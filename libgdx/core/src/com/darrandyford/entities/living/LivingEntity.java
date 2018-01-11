@@ -36,8 +36,8 @@ public class LivingEntity extends AbstractGameEntity {
 			sideSprite.setPosition(position.x, position.y);
 			sideSprite.setCenter(position.x, position.y);
 			sideSprite.setOriginCenter();
-			sideSprite.flip(false, true);
-			sideSprite.setFlip(false, true);
+			sideSprite.flip(true, false);
+			sideSprite.setFlip(true, false);
 			sideSprite.draw(batch);
 		}
 
