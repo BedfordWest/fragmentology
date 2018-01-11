@@ -22,7 +22,7 @@ public class Player extends LivingEntity {
 	 * Initialize the player. Should be facing right by default. The origin should be in the middle of the player.
 	 */
 	private void init () {
-		this.setPosition((Constants.ZONE_X_TILES * Constants.TILE_WIDTH)/2,
+		setPosition((Constants.ZONE_X_TILES * Constants.TILE_WIDTH)/2,
 			(Constants.ZONE_Y_TILES * Constants.TILE_HEIGHT)/2);
 		setSideSprite(Assets.instance.player.left);
 		setBackSprite(Assets.instance.player.up);

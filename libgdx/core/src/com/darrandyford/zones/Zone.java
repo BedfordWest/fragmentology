@@ -43,9 +43,9 @@ public class Zone {
 				TerrainTile ttile = new TerrainTile();
 				ttile.setCellPosition(x,y);
 				ttile.setPosition(
-					(x * Constants.TILE_WIDTH) +
+					(x * Constants.TILE_WIDTH) -
 						ttile.getDimension().x/2,
-					(y * Constants.TILE_HEIGHT) +
+					(y * Constants.TILE_HEIGHT) -
 						ttile.getDimension().y/2);
 				ttile.setSolid(false);
 				zoneTiles.add(ttile);
@@ -123,25 +123,31 @@ public class Zone {
 		for(int i = 0; i < numEnemies; i++) {
 			boolean enemyOverlap = false;
 			float newX = rand.nextInt((Constants.ZONE_X_TILES * (int)Constants.TILE_WIDTH) -
-				(int)Constants.TILE_WIDTH) + Constants.TILE_WIDTH/2;
+				(int)Constants.TILE_WIDTH/2) + Constants.TILE_WIDTH/2;
 			float newY = rand.nextInt((Constants.ZONE_Y_TILES * (int)Constants.TILE_HEIGHT) -
-				(int)Constants.TILE_HEIGHT) + Constants.TILE_HEIGHT/2;
-			Rectangle enemyRect = new Rectangle(newX, newY, 2, 2);
+				(int)Constants.TILE_HEIGHT/2) + Constants.TILE_HEIGHT/2;
+			Rectangle enemyRect = new Rectangle(newX - Constants.TILE_WIDTH/2, newY - Constants.TILE_HEIGHT/2,
+				2, 2);
 
-			for(LivingEntity anotherEnemy:enemies) {
-				if(enemyRect.overlaps(anotherEnemy.getBounds()) ||
-					enemyRect.overlaps(worldController.getPlayer().getBounds())) {
-					i--;
-					enemyOverlap = true;
-					break;
+			if(enemyRect.overlaps(worldController.getPlayer().getBounds())) {
+				i--;
+				enemyOverlap = true;
+			}
+			else {
+				for(LivingEntity anotherEnemy:enemies) {
+					if(enemyRect.overlaps(anotherEnemy.getBounds())) {
+						i--;
+						enemyOverlap = true;
+						break;
+					}
 				}
 			}
 			if(!enemyOverlap) {
 				LivingEntity enemy = new LivingEntity();
+				enemy.setPosition(newX, newY);
 				enemy.setSideSprite(Assets.instance.enemy.left);
 				enemy.setFrontSprite(Assets.instance.enemy.down);
 				enemy.setBackSprite(Assets.instance.enemy.up);
-				enemy.setPosition(newX, newY);
 				enemies.add(enemy);
 			}
 		}
