@@ -4,11 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
 import com.darrandyford.assets.Assets;
 import com.darrandyford.entities.living.LivingEntity;
 import com.darrandyford.entities.nonliving.terrain.TerrainTile;
 import com.darrandyford.utils.Constants;
+import com.darrandyford.world.WorldController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +27,11 @@ public class Zone {
 	private List<TerrainTile> zoneTiles = new ArrayList<TerrainTile>();
 	private static final int ENEMY_TOTAL = 4;
 	private ArrayList<LivingEntity> enemies = new ArrayList<LivingEntity>();
+	private WorldController worldController;
 
-	public Zone () {
+	public Zone (WorldController newWorldController) {
 		Gdx.app.debug(TAG, "Initializing the zone");
-		init();
+		init(newWorldController);
 	}
 
 	/**
@@ -52,7 +56,8 @@ public class Zone {
 	/**
 	 * Initialize the zone, splitting it out into necessary map layers.
 	 */
-	private void init () {
+	private void init (WorldController newWorldController) {
+		this.worldController = newWorldController;
 		createTileObjects();
 		map = new TiledMap();
 		map.getLayers().add(new TiledMapTileLayer(
@@ -121,24 +126,11 @@ public class Zone {
 				(int)Constants.TILE_WIDTH) + Constants.TILE_WIDTH/2;
 			float newY = rand.nextInt((Constants.ZONE_Y_TILES * (int)Constants.TILE_HEIGHT) -
 				(int)Constants.TILE_HEIGHT) + Constants.TILE_HEIGHT/2;
+			Rectangle enemyRect = new Rectangle(newX, newY, 2, 2);
 
-			float newXmin = newX - Constants.TILE_WIDTH/2;
-			float newXmax = newX + Constants.TILE_WIDTH/2;
-			float newYmin = newY - Constants.TILE_HEIGHT/2;
-			float newYmax = newY + Constants.TILE_HEIGHT/2;
 			for(LivingEntity anotherEnemy:enemies) {
-				float anotherEnemyXMax = anotherEnemy.getPosition().x +
-					Constants.TILE_WIDTH/2;
-				float anotherEnemyXMin = anotherEnemy.getPosition().x -
-					Constants.TILE_WIDTH/2;
-				float anotherEnemyYMax = anotherEnemy.getPosition().y +
-					Constants.TILE_HEIGHT/2;
-				float anotherEnemyYMin = anotherEnemy.getPosition().y -
-					Constants.TILE_HEIGHT/2;
-				if( ((newXmin < anotherEnemyXMax) &&  (newXmin > anotherEnemyXMin)) ||
-					((newXmax > anotherEnemyXMin) && (newXmax < anotherEnemyXMax)) ||
-					((newYmin < anotherEnemyYMax) &&  (newYmin > anotherEnemyYMin)) ||
-					((newYmax > anotherEnemyYMin) && (newXmax < anotherEnemyYMax))  ) {
+				if(enemyRect.overlaps(anotherEnemy.getBounds()) ||
+					enemyRect.overlaps(worldController.getPlayer().getBounds())) {
 					i--;
 					enemyOverlap = true;
 					break;
