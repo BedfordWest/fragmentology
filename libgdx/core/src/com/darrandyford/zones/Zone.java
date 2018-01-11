@@ -39,11 +39,10 @@ public class Zone {
 				TerrainTile ttile = new TerrainTile();
 				ttile.setCellPosition(x,y);
 				ttile.setPosition(
-					(x * Constants.TILE_WIDTH/Constants.WORLD_SCALE) +
+					(x * Constants.TILE_WIDTH) +
 						ttile.getDimension().x/2,
-					y * Constants.TILE_HEIGHT/Constants.WORLD_SCALE +
-						ttile.getDimension().y/2
-				);
+					(y * Constants.TILE_HEIGHT) +
+						ttile.getDimension().y/2);
 				ttile.setSolid(false);
 				zoneTiles.add(ttile);
 			}
@@ -59,8 +58,8 @@ public class Zone {
 		map.getLayers().add(new TiledMapTileLayer(
 			Constants.ZONE_X_TILES,
 			Constants.ZONE_Y_TILES,
-			Constants.TILE_WIDTH,
-			Constants.TILE_HEIGHT));
+			(int) Constants.TILE_WIDTH * (int) Constants.WORLD_SCALE,
+			(int) Constants.TILE_HEIGHT * (int) Constants.WORLD_SCALE));
 
 		for ( TerrainTile tile : zoneTiles) {
 			if (!tile.isSolid()) {
@@ -118,24 +117,24 @@ public class Zone {
 		Random rand = new Random();
 		for(int i = 0; i < numEnemies; i++) {
 			boolean enemyOverlap = false;
-			float newX = (rand.nextInt((Constants.ZONE_X_TILES * Constants.TILE_WIDTH) - Constants.TILE_WIDTH)
-				+ Constants.TILE_WIDTH/2)/Constants.WORLD_SCALE;
-			float newY = (rand.nextInt(Constants.ZONE_Y_TILES * Constants.TILE_HEIGHT - Constants.TILE_HEIGHT)
-				+ Constants.TILE_HEIGHT/2)/Constants.WORLD_SCALE;
+			float newX = rand.nextInt((Constants.ZONE_X_TILES * (int)Constants.TILE_WIDTH) -
+				(int)Constants.TILE_WIDTH) + Constants.TILE_WIDTH/2;
+			float newY = rand.nextInt((Constants.ZONE_Y_TILES * (int)Constants.TILE_HEIGHT) -
+				(int)Constants.TILE_HEIGHT) + Constants.TILE_HEIGHT/2;
 
-			float newXmin = newX - Constants.TILE_WIDTH/(2 * Constants.WORLD_SCALE);
-			float newXmax = newX + Constants.TILE_WIDTH/(2 * Constants.WORLD_SCALE);
-			float newYmin = newY - Constants.TILE_HEIGHT/(2 * Constants.WORLD_SCALE);
-			float newYmax = newY + Constants.TILE_HEIGHT/(2 * Constants.WORLD_SCALE);
+			float newXmin = newX - Constants.TILE_WIDTH/2;
+			float newXmax = newX + Constants.TILE_WIDTH/2;
+			float newYmin = newY - Constants.TILE_HEIGHT/2;
+			float newYmax = newY + Constants.TILE_HEIGHT/2;
 			for(LivingEntity anotherEnemy:enemies) {
 				float anotherEnemyXMax = anotherEnemy.getPosition().x +
-					Constants.TILE_WIDTH/(2 * Constants.WORLD_SCALE);
+					Constants.TILE_WIDTH/2;
 				float anotherEnemyXMin = anotherEnemy.getPosition().x -
-					Constants.TILE_WIDTH/(2 * Constants.WORLD_SCALE);
+					Constants.TILE_WIDTH/2;
 				float anotherEnemyYMax = anotherEnemy.getPosition().y +
-					Constants.TILE_HEIGHT/(2 * Constants.WORLD_SCALE);
+					Constants.TILE_HEIGHT/2;
 				float anotherEnemyYMin = anotherEnemy.getPosition().y -
-					Constants.TILE_HEIGHT/(2 * Constants.WORLD_SCALE);
+					Constants.TILE_HEIGHT/2;
 				if( ((newXmin < anotherEnemyXMax) &&  (newXmin > anotherEnemyXMin)) ||
 					((newXmax > anotherEnemyXMin) && (newXmax < anotherEnemyXMax)) ||
 					((newYmin < anotherEnemyYMax) &&  (newYmin > anotherEnemyYMin)) ||
@@ -147,9 +146,9 @@ public class Zone {
 			}
 			if(!enemyOverlap) {
 				LivingEntity enemy = new LivingEntity();
-				enemy.setSideTexture(Assets.instance.enemy.left);
-				enemy.setFrontTexture(Assets.instance.enemy.down);
-				enemy.setBackTexture(Assets.instance.enemy.up);
+				enemy.setSideSprite(Assets.instance.enemy.left);
+				enemy.setFrontSprite(Assets.instance.enemy.down);
+				enemy.setBackSprite(Assets.instance.enemy.up);
 				enemy.setPosition(newX, newY);
 				enemies.add(enemy);
 			}

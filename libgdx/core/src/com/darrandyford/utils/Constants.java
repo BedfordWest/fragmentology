@@ -9,6 +9,8 @@ public class Constants {
 	public static final int DESKTOP_WIDTH = 800;
 
 	/** World Constants **/
+	// This corresponds to how many pixels are in a meter
+	public static final float WORLD_SCALE = 16.0f;
 	// Visible game world is 40 meters wide
 	public static final float VIEWPORT_WIDTH = 50.0f;
 	// Visible game world is 30 meters tall
@@ -17,8 +19,6 @@ public class Constants {
 	public static final float VIEWPORT_GUI_WIDTH = 800.0f;
 	// GUI Height
 	public static final float VIEWPORT_GUI_HEIGHT = 480.0f;
-	// This corresponds to how many pixels are in a meter
-	public static final float WORLD_SCALE = 16.0f;
 
 	/** Physics Constants **/
 	// Gravity for the world
@@ -40,9 +40,9 @@ public class Constants {
 	public static final String TEXTURE_ATLAS_OBJECTS = "atlas/worldtextures.atlas";
 
 	/** Tile Constants **/
-	// Width and Height of level tiles
-	public static final int TILE_WIDTH = 32;
-	public static final int TILE_HEIGHT = 32;
+	// Width and Height of level tiles in meters
+	public static final float TILE_WIDTH = 2.0f;
+	public static final float TILE_HEIGHT = 2.0f;
 	public enum TileType { FLOOR, WALL, OBJECT }
 
 	/** Player Constants **/

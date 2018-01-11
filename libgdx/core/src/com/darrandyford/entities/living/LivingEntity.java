@@ -1,18 +1,18 @@
 package com.darrandyford.entities.living;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.darrandyford.assets.Assets;
 import com.darrandyford.entities.AbstractGameEntity;
-import com.darrandyford.entities.living.characters.Player;
 import com.darrandyford.utils.Constants;
 
 public class LivingEntity extends AbstractGameEntity {
 
 	// Set the TAG for logging purposes
 	private static final String TAG = LivingEntity.class.getName();
-	protected TextureRegion regSide, regBack, regFront;
+	protected Sprite sideSprite, frontSprite, backSprite;
+
 
 	public LivingEntity() {
 		init();
@@ -22,7 +22,6 @@ public class LivingEntity extends AbstractGameEntity {
 	 * Initialize the player. Should be facing right by default. The origin should be in the middle of the player.
 	 */
 	private void init () {
-		this.dimension.set(1.0f, 1.0f);
 		this.rotation = 0.0f;
 		this.direction = Constants.DIRECTION_LEFT;
 		this.origin.set(dimension.x/2, dimension.y/2);
@@ -35,40 +34,43 @@ public class LivingEntity extends AbstractGameEntity {
 	 */
 	@Override
 	public void render (SpriteBatch batch) {
-		TextureRegion reg;
 
 		if (this.direction == Constants.DIRECTION_RIGHT)
 		{
-			reg = regSide;
-			batch.draw(reg.getTexture(), position.x, position.y,
-				origin.x, origin.y, dimension.x, dimension.y, scale.x,
-				scale.y, rotation, reg.getRegionX(), reg.getRegionY(),
-				reg.getRegionWidth(), reg.getRegionHeight(), true, false);
+			sideSprite.setPosition(position.x, position.y);
+			sideSprite.setCenter(position.x, position.y);
+			sideSprite.setOriginCenter();
+			sideSprite.flip(false, true);
+			sideSprite.setFlip(false, true);
+			sideSprite.setScale(1/Constants.WORLD_SCALE);
+			sideSprite.draw(batch);
 		}
 
 		else if (this.direction == Constants.DIRECTION_LEFT)
 		{
-			reg = regSide;
-			batch.draw(reg.getTexture(), position.x, position.y,
-				origin.x, origin.y, dimension.x, dimension.y, scale.x,
-				scale.y, rotation, reg.getRegionX(), reg.getRegionY(),
-				reg.getRegionWidth(), reg.getRegionHeight(), false, false);
+			sideSprite.setPosition(position.x, position.y);
+			sideSprite.setCenter(position.x, position.y);
+			sideSprite.setOriginCenter();
+			sideSprite.flip(false, false);
+			sideSprite.setFlip(false, false);
+			sideSprite.setScale(1/Constants.WORLD_SCALE);
+			sideSprite.draw(batch);
 		}
 
 		else if (this.direction == Constants.DIRECTION_UP) {
-			reg = regBack;
-			batch.draw(reg.getTexture(), position.x, position.y,
-				origin.x, origin.y, dimension.x, dimension.y, scale.x,
-				scale.y, rotation, reg.getRegionX(), reg.getRegionY(),
-				reg.getRegionWidth(), reg.getRegionHeight(), false, false);
+			backSprite.setPosition(position.x, position.y);
+			backSprite.setCenter(position.x, position.y);
+			backSprite.setOriginCenter();
+			backSprite.setScale(1/Constants.WORLD_SCALE);
+			backSprite.draw(batch);
 		}
 
 		else if (this.direction == Constants.DIRECTION_DOWN) {
-			reg = regFront;
-			batch.draw(reg.getTexture(), position.x, position.y,
-				origin.x, origin.y, dimension.x, dimension.y, scale.x,
-				scale.y, rotation, reg.getRegionX(), reg.getRegionY(),
-				reg.getRegionWidth(), reg.getRegionHeight(), false, false);
+			frontSprite.setPosition(position.x, position.y);
+			frontSprite.setCenter(position.x, position.y);
+			frontSprite.setOriginCenter();
+			frontSprite.setScale(1/Constants.WORLD_SCALE);
+			frontSprite.draw(batch);
 		}
 
 		else {
@@ -77,28 +79,17 @@ public class LivingEntity extends AbstractGameEntity {
 	}
 
 	// Setters
-	public void setSideTexture(TextureRegion reg) {
-		this.regSide = reg;
+	public void setSideSprite(TextureRegion reg) {
+		this.sideSprite = new Sprite(reg);
 	}
 
-	public void setFrontTexture(TextureRegion reg) {
-		this.regFront = reg;
+	public void setFrontSprite(TextureRegion reg) {
+		this.frontSprite = new Sprite(reg);
 	}
 
-	public void setBackTexture(TextureRegion reg) {
-		this.regBack = reg;
+	public void setBackSprite(TextureRegion reg) {
+		this.backSprite = new Sprite(reg);
 	}
 
 	// Getters
-	public TextureRegion getRegSide() {
-		return regSide;
-	}
-
-	public TextureRegion getRegFront() {
-		return regFront;
-	}
-
-	public TextureRegion getRegBack() {
-		return regBack;
-	}
 }

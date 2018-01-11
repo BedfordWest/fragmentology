@@ -1,5 +1,6 @@
 package com.darrandyford.entities.living.characters;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.darrandyford.assets.Assets;
 import com.darrandyford.entities.living.LivingEntity;
@@ -21,11 +22,11 @@ public class Player extends LivingEntity {
 	 * Initialize the player. Should be facing right by default. The origin should be in the middle of the player.
 	 */
 	private void init () {
-		this.regSide = Assets.instance.player.left;
-		this.regBack = Assets.instance.player.up;
-		this.regFront = Assets.instance.player.down;
-		this.setPosition((Constants.ZONE_X_TILES * Constants.TILE_WIDTH)/(2 * Constants.WORLD_SCALE),
-			(Constants.ZONE_Y_TILES * Constants.TILE_HEIGHT)/(2 * Constants.WORLD_SCALE));
+		sideSprite = new Sprite(Assets.instance.player.left);
+		backSprite = new Sprite(Assets.instance.player.up);
+		frontSprite = new Sprite(Assets.instance.player.down);
+		this.setPosition((Constants.ZONE_X_TILES * Constants.TILE_WIDTH)/2,
+			(Constants.ZONE_Y_TILES * Constants.TILE_HEIGHT)/2);
 	}
 
 	/**
