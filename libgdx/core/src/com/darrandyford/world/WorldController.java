@@ -1,6 +1,7 @@
 package com.darrandyford.world;
 
 
+import com.darrandyford.entities.living.LivingEntity;
 import com.darrandyford.entities.living.characters.Player;
 import com.darrandyford.input.InputController;
 import com.darrandyford.utils.CameraHelper;
@@ -60,6 +61,11 @@ public class WorldController {
 		updatePhysics(deltaTime);
 		doPhysicsStep(deltaTime);
 		cameraHelper.update(deltaTime);
+		player.update(deltaTime);
+		for(LivingEntity enemy: zone.getEnemies())
+		{
+			enemy.update(deltaTime);
+		}
 	}
 
 	/**

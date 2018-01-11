@@ -29,9 +29,9 @@ public class Zone {
 	private ArrayList<LivingEntity> enemies = new ArrayList<LivingEntity>();
 	private WorldController worldController;
 
-	public Zone (WorldController worldController) {
+	public Zone (WorldController newWorldController) {
 		Gdx.app.debug(TAG, "Initializing the zone");
-		init(worldController);
+		init(newWorldController);
 	}
 
 	/**
@@ -56,8 +56,8 @@ public class Zone {
 	/**
 	 * Initialize the zone, splitting it out into necessary map layers.
 	 */
-	private void init (WorldController worldControllern) {
-		this.worldController = worldController;
+	private void init (WorldController newWorldController) {
+		this.worldController = newWorldController;
 		createTileObjects();
 		map = new TiledMap();
 		map.getLayers().add(new TiledMapTileLayer(
