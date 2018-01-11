@@ -42,7 +42,6 @@ public class LivingEntity extends AbstractGameEntity {
 			sideSprite.setOriginCenter();
 			sideSprite.flip(false, true);
 			sideSprite.setFlip(false, true);
-			//sideSprite.setScale(1/Constants.WORLD_SCALE);
 			sideSprite.draw(batch);
 		}
 
@@ -53,7 +52,6 @@ public class LivingEntity extends AbstractGameEntity {
 			sideSprite.setOriginCenter();
 			sideSprite.flip(false, false);
 			sideSprite.setFlip(false, false);
-			//sideSprite.setScale(1/Constants.WORLD_SCALE);
 			sideSprite.draw(batch);
 		}
 
@@ -61,7 +59,6 @@ public class LivingEntity extends AbstractGameEntity {
 			backSprite.setPosition(position.x, position.y);
 			backSprite.setCenter(position.x, position.y);
 			backSprite.setOriginCenter();
-			//backSprite.setScale(1/Constants.WORLD_SCALE);
 			backSprite.draw(batch);
 		}
 
@@ -69,7 +66,6 @@ public class LivingEntity extends AbstractGameEntity {
 			frontSprite.setPosition(position.x, position.y);
 			frontSprite.setCenter(position.x, position.y);
 			frontSprite.setOriginCenter();
-			//frontSprite.setScale(1/Constants.WORLD_SCALE);
 			frontSprite.draw(batch);
 		}
 
