@@ -52,14 +52,25 @@ public class InputController extends InputAdapter {
 					cameraHelper.hasTarget());
 				break;
 
-			case Input.Keys.D:
-				Gdx.app.debug(TAG, "D released");
+			//Player control released
+			case Input.Keys.SPACE:
+				Gdx.app.debug(TAG, "SPACE released");
 				break;
-
 			case Input.Keys.A:
 				Gdx.app.debug(TAG, "A released");
 				break;
-
+			case Input.Keys.D:
+				Gdx.app.debug(TAG, "D released");
+				break;
+			case Input.Keys.S:
+				Gdx.app.debug(TAG, "S released");
+				break;
+			case Input.Keys.W:
+				Gdx.app.debug(TAG, "W released");
+				break;
+			case Input.Keys.I:
+				Gdx.app.debug(TAG, "I released");
+				break;
 			default:
 		}
 
@@ -75,14 +86,29 @@ public class InputController extends InputAdapter {
 	public boolean keyDown (int keycode) {
 		switch(keycode)
 		{
+			//Player control pressed
 			case Input.Keys.SPACE:
-				Gdx.app.debug(TAG, "Space key pressed");
+				Gdx.app.debug(TAG, "SPACE pressed");
+				//player attacks
 				break;
 			case Input.Keys.A:
 				Gdx.app.debug(TAG, "A pressed");
 				break;
 			case Input.Keys.D:
 				Gdx.app.debug(TAG, "D pressed");
+				// player walks right
+				break;
+			case Input.Keys.S:
+				Gdx.app.debug(TAG, "S pressed");
+				// player walks down
+				break;
+			case Input.Keys.W:
+				Gdx.app.debug(TAG, "W pressed");
+				// player walks up
+				break;
+			case Input.Keys.I:
+				Gdx.app.debug(TAG, "I pressed");
+				// player opens inventory
 				break;
 			default:
 		}
