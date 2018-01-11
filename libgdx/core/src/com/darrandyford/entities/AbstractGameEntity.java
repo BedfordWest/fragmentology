@@ -1,5 +1,6 @@
 package com.darrandyford.entities;
 
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
@@ -28,7 +29,7 @@ public abstract class AbstractGameEntity {
 	 */
 	public AbstractGameEntity () {
 		position = new Vector2();
-		dimension = new Vector2(1, 1);
+		dimension = new Vector2(2, 2);
 		origin = new Vector2();
 		scale = new Vector2(1,1);
 		rotation = 0;

@@ -19,7 +19,6 @@ public class TerrainTile extends AbstractGameEntity {
 		dimension = new Vector2(Constants.TILE_WIDTH/Constants.WORLD_SCALE,
 			Constants.TILE_HEIGHT/Constants.WORLD_SCALE);
 		origin = new Vector2();
-		scale = new Vector2(1,1);
 		rotation = 0;
 		isSolid = false;
 		bounds.set(0, 0, dimension.x, dimension.y);
