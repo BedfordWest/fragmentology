@@ -34,7 +34,7 @@ public class LivingEntity extends AbstractGameEntity {
 		if (this.direction == Constants.DIRECTION_RIGHT)
 		{
 			sideSprite.setPosition(position.x, position.y);
-			sideSprite.setCenter(position.x + dimension.x/2, position.y + dimension.y/2);
+			sideSprite.setCenter(position.x, position.y);
 			sideSprite.setOriginCenter();
 			sideSprite.flip(true, false);
 			sideSprite.setFlip(true, false);
