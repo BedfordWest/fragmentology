@@ -7,6 +7,7 @@ import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.math.Vector2;
 import com.darrandyford.entities.living.characters.Player;
 import com.darrandyford.utils.CameraHelper;
+import com.darrandyford.utils.Constants;
 import com.darrandyford.world.WorldController;
 
 /**
@@ -100,21 +101,25 @@ public class InputController extends InputAdapter {
 				// TODO: MOVE LEFT
 				Gdx.app.debug(TAG, "A pressed");
 				player.setVelocity(-1.0f,0.0f);
+				player.setDirection(Constants.DIRECTION_LEFT);
 				break;
 			case Input.Keys.D:
 				// TODO: MOVE RIGHT
 				Gdx.app.debug(TAG, "D pressed");
 				player.setVelocity(1.0f,0.0f);
+				player.setDirection(Constants.DIRECTION_RIGHT);
 				break;
 			case Input.Keys.S:
 				// TODO: MOVE DOWN
 				Gdx.app.debug(TAG, "S pressed");
 				player.setVelocity(0.0f,-1.0f);
+				player.setDirection(Constants.DIRECTION_DOWN);
 				break;
 			case Input.Keys.W:
 				// TODO: MOVE UP
 				Gdx.app.debug(TAG, "W pressed");
 				player.setVelocity(0.0f,1.0f);
+				player.setDirection(Constants.DIRECTION_UP);
 				break;
 			case Input.Keys.I:
 				Gdx.app.debug(TAG, "I pressed");
