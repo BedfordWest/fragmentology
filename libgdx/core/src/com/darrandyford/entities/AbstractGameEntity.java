@@ -73,6 +73,7 @@ public abstract class AbstractGameEntity {
 	public float getRotation() { return this.rotation; }
 	public float getDirection() { return this.direction; }
 	public MoveState getMoveState() { return this.moveState; }
+	public Rectangle getBounds() { return bounds; }
 
 	// Setters
 	public void setPosition(float x, float y) {

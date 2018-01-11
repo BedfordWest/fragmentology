@@ -66,7 +66,7 @@ public class WorldController {
 	 * Initialize the game level - what we consider a level to be is TBD
 	 */
 	private void initLevel() {
-		this.zone = new Zone();
+		this.zone = new Zone(this);
 	}
 
 	/**
