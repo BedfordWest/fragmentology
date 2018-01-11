@@ -43,11 +43,11 @@ public class WorldController {
 	 * 	completely deleting and re-instantiating it.
 	 */
 	private void init () {
+		player = new Player();
 		cameraHelper = new CameraHelper();
 		initLevel();
 		initPhysics();
 		inputController = new InputController(this);
-		player = new Player();
 		cameraHelper.setTarget(player);
 	}
 
