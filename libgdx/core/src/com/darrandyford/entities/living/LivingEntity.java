@@ -22,10 +22,6 @@ public class LivingEntity extends AbstractGameEntity {
 	 * Initialize the player. Should be facing right by default. The origin should be in the middle of the player.
 	 */
 	private void init () {
-		this.rotation = 0.0f;
-		this.direction = Constants.DIRECTION_LEFT;
-		this.origin.set(dimension.x/2, dimension.y/2);
-		this.setPosition(0,0);
 	}
 
 	/**

@@ -19,8 +19,8 @@ public abstract class AbstractGameEntity {
 	protected Vector2 origin;
 	protected Vector2 scale;
 	protected float rotation, direction;
-	protected Vector2 acceleration;
-	protected Rectangle bounds = new Rectangle();
+	protected Vector2 velocity, acceleration;
+	protected Rectangle bounds;
 	public enum MoveState { MS_LEFT, MS_RIGHT, MS_UP, MS_DOWN, MS_NONE }
 	MoveState moveState;
 
@@ -28,12 +28,16 @@ public abstract class AbstractGameEntity {
 	 * Constructor - we'll want to default these values for all subclasses
 	 */
 	public AbstractGameEntity () {
-		position = new Vector2();
-		dimension = new Vector2(2, 2);
-		origin = new Vector2();
-		scale = new Vector2(1,1);
-		rotation = 0;
-		direction = Constants.DIRECTION_RIGHT;
+		position = new Vector2(0f,0f);
+		dimension = new Vector2(2f, 2f);
+		origin = new Vector2(this.position.x + this.dimension.x, this.position.y + this.dimension.y);
+		scale = new Vector2(1f,1f);
+		bounds = new Rectangle(this.position.x, this.position.y, this.dimension.x, this.dimension.y);
+		rotation = 0f;
+		direction = Constants.DIRECTION_LEFT;
+		acceleration = new Vector2(0,0);
+		velocity = new Vector2(0,0);
+
 	}
 
 	/**
@@ -41,6 +45,19 @@ public abstract class AbstractGameEntity {
 	 * @param deltaTime time between cycles
 	 */
 	public void update (float deltaTime) {
+		velocity.x += acceleration.x * deltaTime;
+		velocity.y += acceleration.y * deltaTime;
+		setPosition(position.x + (velocity.x * deltaTime), position.y + (velocity.y * deltaTime));
+	}
+
+	public void updateOrigin() {
+		origin.x = position.x + dimension.x;
+		origin.y = position.y + dimension.y;
+	}
+
+	public void updateBounds() {
+		bounds.x = position.x;
+		bounds.y = position.y;
 	}
 
 	/**
@@ -61,9 +78,13 @@ public abstract class AbstractGameEntity {
 	public void setPosition(float x, float y) {
 		this.position.x = x;
 		this.position.y = y;
+		updateOrigin();
+		updateBounds();
 	}
 	public void setRotation(float r) { this.rotation = r; }
 	public void setDirection(float d) { this.direction = d; }
 	public void setMoveState(MoveState move) { this.moveState = move; }
+	public void setAcceleration(Vector2 newAcceleration) { this.acceleration = newAcceleration; }
+	public void setVelocity(Vector2 newVelocity) { this.velocity = newVelocity; }
 
 }
