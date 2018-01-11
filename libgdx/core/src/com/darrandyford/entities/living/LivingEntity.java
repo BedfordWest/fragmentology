@@ -42,7 +42,6 @@ public class LivingEntity extends AbstractGameEntity {
 			sideSprite.setOriginCenter();
 			sideSprite.flip(false, true);
 			sideSprite.setFlip(false, true);
-			sideSprite.setScale(1/Constants.WORLD_SCALE);
 			sideSprite.draw(batch);
 		}
 
@@ -53,7 +52,6 @@ public class LivingEntity extends AbstractGameEntity {
 			sideSprite.setOriginCenter();
 			sideSprite.flip(false, false);
 			sideSprite.setFlip(false, false);
-			sideSprite.setScale(1/Constants.WORLD_SCALE);
 			sideSprite.draw(batch);
 		}
 
@@ -61,7 +59,6 @@ public class LivingEntity extends AbstractGameEntity {
 			backSprite.setPosition(position.x, position.y);
 			backSprite.setCenter(position.x, position.y);
 			backSprite.setOriginCenter();
-			backSprite.setScale(1/Constants.WORLD_SCALE);
 			backSprite.draw(batch);
 		}
 
@@ -69,7 +66,6 @@ public class LivingEntity extends AbstractGameEntity {
 			frontSprite.setPosition(position.x, position.y);
 			frontSprite.setCenter(position.x, position.y);
 			frontSprite.setOriginCenter();
-			frontSprite.setScale(1/Constants.WORLD_SCALE);
 			frontSprite.draw(batch);
 		}
 
@@ -80,15 +76,18 @@ public class LivingEntity extends AbstractGameEntity {
 
 	// Setters
 	public void setSideSprite(TextureRegion reg) {
-		this.sideSprite = new Sprite(reg);
+		sideSprite = new Sprite(reg);
+		sideSprite.setScale(1/Constants.WORLD_SCALE);
 	}
 
 	public void setFrontSprite(TextureRegion reg) {
-		this.frontSprite = new Sprite(reg);
+		frontSprite = new Sprite(reg);
+		frontSprite.setScale(1/Constants.WORLD_SCALE);
 	}
 
 	public void setBackSprite(TextureRegion reg) {
-		this.backSprite = new Sprite(reg);
+		backSprite = new Sprite(reg);
+		backSprite.setScale(1/Constants.WORLD_SCALE);
 	}
 
 	// Getters
