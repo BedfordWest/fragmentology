@@ -4,6 +4,7 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
+import com.badlogic.gdx.math.Vector2;
 import com.darrandyford.entities.living.characters.Player;
 import com.darrandyford.utils.CameraHelper;
 import com.darrandyford.world.WorldController;
@@ -52,14 +53,29 @@ public class InputController extends InputAdapter {
 					cameraHelper.hasTarget());
 				break;
 
-			case Input.Keys.D:
-				Gdx.app.debug(TAG, "D released");
+			//Player control released
+			case Input.Keys.SPACE:
+				Gdx.app.debug(TAG, "SPACE released");
 				break;
-
 			case Input.Keys.A:
 				Gdx.app.debug(TAG, "A released");
+				player.setVelocity(0.0f,0.0f);
 				break;
-
+			case Input.Keys.D:
+				Gdx.app.debug(TAG, "D released");
+				player.setVelocity(0.0f,0.0f);
+				break;
+			case Input.Keys.S:
+				Gdx.app.debug(TAG, "S released");
+				player.setVelocity(0.0f,0.0f);
+				break;
+			case Input.Keys.W:
+				Gdx.app.debug(TAG, "W released");
+				player.setVelocity(0.0f,0.0f);
+				break;
+			case Input.Keys.I:
+				Gdx.app.debug(TAG, "I released");
+				break;
 			default:
 		}
 
@@ -75,14 +91,34 @@ public class InputController extends InputAdapter {
 	public boolean keyDown (int keycode) {
 		switch(keycode)
 		{
+			//Player control pressed
 			case Input.Keys.SPACE:
-				Gdx.app.debug(TAG, "Space key pressed");
+				Gdx.app.debug(TAG, "SPACE pressed");
+				//player attacks
 				break;
 			case Input.Keys.A:
+				// TODO: MOVE LEFT
 				Gdx.app.debug(TAG, "A pressed");
+				player.setVelocity(-1.0f,0.0f);
 				break;
 			case Input.Keys.D:
+				// TODO: MOVE RIGHT
 				Gdx.app.debug(TAG, "D pressed");
+				player.setVelocity(1.0f,0.0f);
+				break;
+			case Input.Keys.S:
+				// TODO: MOVE DOWN
+				Gdx.app.debug(TAG, "S pressed");
+				player.setVelocity(0.0f,-1.0f);
+				break;
+			case Input.Keys.W:
+				// TODO: MOVE UP
+				Gdx.app.debug(TAG, "W pressed");
+				player.setVelocity(0.0f,1.0f);
+				break;
+			case Input.Keys.I:
+				Gdx.app.debug(TAG, "I pressed");
+				// player opens inventory
 				break;
 			default:
 		}

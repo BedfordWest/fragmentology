@@ -86,5 +86,9 @@ public abstract class AbstractGameEntity {
 	public void setMoveState(MoveState move) { this.moveState = move; }
 	public void setAcceleration(Vector2 newAcceleration) { this.acceleration = newAcceleration; }
 	public void setVelocity(Vector2 newVelocity) { this.velocity = newVelocity; }
+	public void setVelocity(float x, float y){
+		this.velocity.x = x;
+		this.velocity.y = y;
+	}
 
 }
