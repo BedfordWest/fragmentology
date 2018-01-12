@@ -1,10 +1,14 @@
 package com.darrandyford.world;
 
 
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.utils.Array;
+import com.darrandyford.entities.AbstractGameEntity;
 import com.darrandyford.entities.living.LivingEntity;
 import com.darrandyford.entities.living.characters.Player;
 import com.darrandyford.input.InputController;
 import com.darrandyford.utils.CameraHelper;
+import com.darrandyford.utils.Constants;
 import com.darrandyford.zones.Zone;
 
 /**
@@ -24,6 +28,8 @@ public class WorldController {
 	private InputController inputController;
 	private Zone zone;
 	private Player player;
+	private PhysicsController physicsController;
+	private Array<Body> bodies = new Array<Body>();
 
 	private float accumulator = 0; // keeps track of physics accumulated time between steps
 	private boolean initRenderState = false;
@@ -79,6 +85,7 @@ public class WorldController {
 	 * Initialize the physics system
 	 */
 	private void initPhysics() {
+		this.physicsController = new PhysicsController(this);
 	}
 
 	/**
@@ -86,6 +93,7 @@ public class WorldController {
 	 * @param deltaTime time passed in ms between cycles
 	 */
 	private void updatePhysics(float deltaTime) {
+		physicsController.updatePhysics(deltaTime);
 	}
 
 	/**
@@ -99,7 +107,36 @@ public class WorldController {
 		double frameTime = Math.min(deltaTime, 0.25f);
 		accumulator += frameTime;
 
+		this.getPhysicsController().getB2World().getBodies(bodies);
+
+		while (accumulator >= Constants.TIME_STEP) {
+			this.physicsController.getB2World().step(
+				Constants.TIME_STEP,
+				Constants.VELOCITY_ITERATIONS,
+				Constants.POSITION_ITERATIONS
+			);
+			accumulator -= Constants.TIME_STEP;
+
+			for (Body b : bodies) {
+				// Get the body's user data - in this example, our user data
+				//   is an instance of the Entity class
+				AbstractGameEntity e = (AbstractGameEntity) b.getUserData();
+
+				if (e != null) { e.update(Constants.TIME_STEP); }
+			}
+		}
+
+		for (Body b : bodies) {
+			// Get the body's user data - in this example, our user data
+			//   is an instance of the Entity class
+			AbstractGameEntity e = (AbstractGameEntity) b.getUserData();
+
+			if (e != null) {
+				//e.interpolate(accumulator / Constants.TIME_STEP);
+			}
+		}
 	}
+
 
 	// Getters
 	public boolean getInitRenderState() { return this.initRenderState; }
@@ -108,6 +145,9 @@ public class WorldController {
 		return this.zone;
 	}
 	public Player getPlayer() { return this.player; }
+	public PhysicsController getPhysicsController() {
+		return this.physicsController;
+	}
 
 	// Setters
 	public void setInitRenderState(boolean state) {
