@@ -30,9 +30,10 @@ public abstract class AbstractGameEntity {
 	public AbstractGameEntity () {
 		position = new Vector2(0f,0f);
 		dimension = new Vector2(2f, 2f);
-		origin = new Vector2(this.position.x + this.dimension.x, this.position.y + this.dimension.y);
+		origin = new Vector2(this.position.x, this.position.y);
 		scale = new Vector2(1f,1f);
-		bounds = new Rectangle(this.position.x, this.position.y, this.dimension.x, this.dimension.y);
+		bounds = new Rectangle(this.position.x - this.dimension.x/2, this.position.y - this.dimension.y/2,
+			this.dimension.x, this.dimension.y);
 		rotation = 0f;
 		direction = Constants.DIRECTION_LEFT;
 		acceleration = new Vector2(0,0);
@@ -51,13 +52,13 @@ public abstract class AbstractGameEntity {
 	}
 
 	public void updateOrigin() {
-		origin.x = position.x + dimension.x;
-		origin.y = position.y + dimension.y;
+		origin.x = position.x;
+		origin.y = position.y;
 	}
 
 	public void updateBounds() {
-		bounds.x = position.x;
-		bounds.y = position.y;
+		bounds.x = position.x - dimension.x/2;
+		bounds.y = position.y - dimension.y/2;
 	}
 
 	/**

@@ -73,17 +73,17 @@ public class LivingEntity extends AbstractGameEntity {
 	// Setters
 	public void setSideSprite(TextureRegion reg) {
 		sideSprite = new Sprite(reg);
-		sideSprite.setScale(1/Constants.WORLD_SCALE);
+		sideSprite.setSize(dimension.x, dimension.y);
 	}
 
 	public void setFrontSprite(TextureRegion reg) {
 		frontSprite = new Sprite(reg);
-		frontSprite.setScale(1/Constants.WORLD_SCALE);
+		frontSprite.setSize(dimension.x, dimension.y);
 	}
 
 	public void setBackSprite(TextureRegion reg) {
 		backSprite = new Sprite(reg);
-		backSprite.setScale(1/Constants.WORLD_SCALE);
+		backSprite.setSize(dimension.x, dimension.y);
 	}
 
 	// Getters
