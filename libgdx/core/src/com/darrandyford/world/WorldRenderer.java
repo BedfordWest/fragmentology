@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.utils.Disposable;
 import com.darrandyford.entities.living.LivingEntity;
+import com.darrandyford.entities.nonliving.NonlivingEntity;
 import com.darrandyford.utils.Constants;
 
 import java.util.ArrayList;
@@ -86,6 +87,7 @@ public class WorldRenderer implements Disposable {
 		batch.begin();
 		renderPlayer();
 		renderEnemies();
+		renderWalls();
 		batch.end();
 	}
 
@@ -136,6 +138,17 @@ public class WorldRenderer implements Disposable {
 		ArrayList<LivingEntity> zoneEnemies = worldController.getZone().getEnemies();
 		for(LivingEntity enemy:zoneEnemies){
 			enemy.render(batch);
+		}
+	}
+
+	/**
+	 * Render the walls
+	 */
+	private void renderWalls()
+	{
+		ArrayList<NonlivingEntity> zoneWalls = worldController.getZone().getWalls();
+		for(NonlivingEntity wall:zoneWalls){
+			wall.render(batch);
 		}
 	}
 
