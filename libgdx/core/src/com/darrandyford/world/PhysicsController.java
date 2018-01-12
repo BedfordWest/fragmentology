@@ -73,6 +73,13 @@ public class PhysicsController {
 	 * @param deltaTime time elapsed since last cycle (in ms)
 	 */
 	public void updatePlayerPhysics(float deltaTime) {
+		Vector2 moveSpeed = player.getMoveSpeed();
+		player.getBody()
+			.setLinearVelocity(moveSpeed);
+		if(!(moveSpeed.x == 0.0f && moveSpeed.y == 0.0f)) {
+			player.setMoving(true);
+		}
+		else player.setMoving(false);
 	}
 
 	// Getters

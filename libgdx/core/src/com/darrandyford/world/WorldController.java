@@ -52,7 +52,7 @@ public class WorldController {
 	private void init () {
 		player = new Player();
 		cameraHelper = new CameraHelper();
-		initLevel();
+		initZone();
 		initPhysics();
 		inputController = new InputController(this);
 		cameraHelper.setTarget(player);
@@ -67,17 +67,12 @@ public class WorldController {
 		updatePhysics(deltaTime);
 		doPhysicsStep(deltaTime);
 		cameraHelper.update(deltaTime);
-		player.update(deltaTime);
-		for(LivingEntity enemy: zone.getEnemies())
-		{
-			enemy.update(deltaTime);
-		}
 	}
 
 	/**
 	 * Initialize the game level - what we consider a level to be is TBD
 	 */
-	private void initLevel() {
+	private void initZone() {
 		this.zone = new Zone(this);
 	}
 
@@ -132,7 +127,7 @@ public class WorldController {
 			AbstractGameEntity e = (AbstractGameEntity) b.getUserData();
 
 			if (e != null) {
-				//e.interpolate(accumulator / Constants.TIME_STEP);
+				e.interpolate(accumulator / Constants.TIME_STEP);
 			}
 		}
 	}

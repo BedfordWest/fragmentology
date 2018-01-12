@@ -61,93 +61,93 @@ public class InputController extends InputAdapter {
 			case Input.Keys.A:
 				if(Gdx.input.isKeyPressed(Input.Keys.D)){
 					Gdx.app.debug(TAG, "A released, D pressed");
-					player.setVelocity(1.0f,0.0f);
+					player.setMoveSpeed(1.0f,0.0f);
 					player.setDirection(Constants.DIRECTION_RIGHT);
 					break;
 				} else if(Gdx.input.isKeyPressed(Input.Keys.W)){
 					Gdx.app.debug(TAG, "A released, W pressed");
-					player.setVelocity(0.0f,1.0f);
+					player.setMoveSpeed(0.0f,1.0f);
 					player.setDirection(Constants.DIRECTION_UP);
 					break;
 				} else if(Gdx.input.isKeyPressed(Input.Keys.S)){
 					Gdx.app.debug(TAG, "A released, S pressed");
-					player.setVelocity(0.0f,-1.0f);
+					player.setMoveSpeed(0.0f,-1.0f);
 					player.setDirection(Constants.DIRECTION_DOWN);
 					break;
 				}
 
 				// normal key release
 				Gdx.app.debug(TAG, "A released");
-				player.setVelocity(0.0f,0.0f);
+				player.setMoveSpeed(0.0f,0.0f);
 				break;
 
 			case Input.Keys.D:
 				if(Gdx.input.isKeyPressed(Input.Keys.A)){
 					Gdx.app.debug(TAG, "D released, A pressed");
-					player.setVelocity(-1.0f,0.0f);
+					player.setMoveSpeed(-1.0f,0.0f);
 					player.setDirection(Constants.DIRECTION_LEFT);
 					break;
 				} else if (Gdx.input.isKeyPressed(Input.Keys.W)){
 					Gdx.app.debug(TAG, "D released, W pressed");
-					player.setVelocity(0.0f,1.0f);
+					player.setMoveSpeed(0.0f,1.0f);
 					player.setDirection(Constants.DIRECTION_UP);
 					break;
 				} else if (Gdx.input.isKeyPressed(Input.Keys.S)){
 					Gdx.app.debug(TAG, "D released, S pressed");
-					player.setVelocity(0.0f, -1.0f);
+					player.setMoveSpeed(0.0f, -1.0f);
 					player.setDirection(Constants.DIRECTION_DOWN);
 					break;
 				}
 
 				// normal key release
 				Gdx.app.debug(TAG, "D released");
-				player.setVelocity(0.0f,0.0f);
+				player.setMoveSpeed(0.0f,0.0f);
 				break;
 
 			case Input.Keys.S:
 				if(Gdx.input.isKeyPressed(Input.Keys.W)){
 					Gdx.app.debug(TAG, "S released, W pressed");
-					player.setVelocity(0.0f,1.0f);
+					player.setMoveSpeed(0.0f,1.0f);
 					player.setDirection(Constants.DIRECTION_UP);
 					break;
 				} else if(Gdx.input.isKeyPressed(Input.Keys.D)){
 					Gdx.app.debug(TAG, "S released, D pressed");
-					player.setVelocity(1.0f,0.0f);
+					player.setMoveSpeed(1.0f,0.0f);
 					player.setDirection(Constants.DIRECTION_RIGHT);
 					break;
 				} else if(Gdx.input.isKeyPressed(Input.Keys.A)){
 					Gdx.app.debug(TAG, "S released, A pressed");
-					player.setVelocity(-1.0f,0.0f);
+					player.setMoveSpeed(-1.0f,0.0f);
 					player.setDirection(Constants.DIRECTION_LEFT);
 					break;
 				}
 
 				// normal key release
 				Gdx.app.debug(TAG, "S released");
-				player.setVelocity(0.0f,0.0f);
+				player.setMoveSpeed(0.0f,0.0f);
 				break;
 
 			case Input.Keys.W:
 				if(Gdx.input.isKeyPressed(Input.Keys.S)){
 					Gdx.app.debug(TAG, "W released, S pressed");
-					player.setVelocity(0.0f,-1.0f);
+					player.setMoveSpeed(0.0f,-1.0f);
 					player.setDirection(Constants.DIRECTION_DOWN);
 					break;
 				}else if(Gdx.input.isKeyPressed(Input.Keys.D)){
 					Gdx.app.debug(TAG, "W released, D pressed");
-					player.setVelocity(1.0f,0.0f);
+					player.setMoveSpeed(1.0f,0.0f);
 					player.setDirection(Constants.DIRECTION_RIGHT);
 					break;
 				} else if(Gdx.input.isKeyPressed(Input.Keys.A)){
 					Gdx.app.debug(TAG, "W released, A pressed");
-					player.setVelocity(-1.0f,0.0f);
+					player.setMoveSpeed(-1.0f,0.0f);
 					player.setDirection(Constants.DIRECTION_LEFT);
 					break;
 				}
 
 				// normal key release
 				Gdx.app.debug(TAG, "W released");
-				player.setVelocity(0.0f,0.0f);
+				player.setMoveSpeed(0.0f,0.0f);
 				break;
 
 			case Input.Keys.I:
@@ -178,24 +178,24 @@ public class InputController extends InputAdapter {
 				if(Gdx.input.isKeyPressed(Input.Keys.D)){
 					//player can't move if pressing opposite directions
 					Gdx.app.debug(TAG, "A pressed with D");
-					player.setVelocity(0.0f,0.0f);
+					player.setMoveSpeed(0.0f,0.0f);
 					player.setDirection(Constants.DIRECTION_LEFT);
 					break;
 				} else if(Gdx.input.isKeyPressed(Input.Keys.S)){
 					Gdx.app.debug(TAG, "A pressed with S");
-					player.setVelocity(-1.0f,-1.0f);
+					player.setMoveSpeed(-1.0f,-1.0f);
 					player.setDirection(Constants.DIRECTION_LEFT);
 					break;
 				} else if(Gdx.input.isKeyPressed(Input.Keys.W)){
 					Gdx.app.debug(TAG, "A pressed with W");
-					player.setVelocity(-1.0f,1.0f);
+					player.setMoveSpeed(-1.0f,1.0f);
 					player.setDirection(Constants.DIRECTION_LEFT);
 					break;
 				}
 
 				//normal single key pressed
 				Gdx.app.debug(TAG, "A pressed");
-				player.setVelocity(-1.0f,0.0f);
+				player.setMoveSpeed(-1.0f,0.0f);
 				player.setDirection(Constants.DIRECTION_LEFT);
 				break;
 
@@ -203,24 +203,24 @@ public class InputController extends InputAdapter {
 				if(Gdx.input.isKeyPressed(Input.Keys.A)){
 					//player can't move if pressing opposite directions
 					Gdx.app.debug(TAG, "D pressed with A");
-					player.setVelocity(0.0f,0.0f);
+					player.setMoveSpeed(0.0f,0.0f);
 					player.setDirection(Constants.DIRECTION_RIGHT);
 					break;
 				} else if(Gdx.input.isKeyPressed(Input.Keys.S)){
 					Gdx.app.debug(TAG, "D pressed with S");
-					player.setVelocity(1.0f,-1.0f);
+					player.setMoveSpeed(1.0f,-1.0f);
 					player.setDirection(Constants.DIRECTION_RIGHT);
 					break;
 				} else if(Gdx.input.isKeyPressed(Input.Keys.W)){
 					Gdx.app.debug(TAG, "D pressed with W");
-					player.setVelocity(1.0f,1.0f);
+					player.setMoveSpeed(1.0f,1.0f);
 					player.setDirection(Constants.DIRECTION_RIGHT);
 					break;
 				}
 
 				//normal single key pressed
 				Gdx.app.debug(TAG, "D pressed");
-				player.setVelocity(1.0f,0.0f);
+				player.setMoveSpeed(1.0f,0.0f);
 				player.setDirection(Constants.DIRECTION_RIGHT);
 				break;
 
@@ -228,24 +228,24 @@ public class InputController extends InputAdapter {
 				if(Gdx.input.isKeyPressed(Input.Keys.W)){
 					//player can't move if pressing opposite directions
 					Gdx.app.debug(TAG, "S pressed with W");
-					player.setVelocity(0.0f,0.0f);
+					player.setMoveSpeed(0.0f,0.0f);
 					player.setDirection(Constants.DIRECTION_DOWN);
 					break;
 				} else if(Gdx.input.isKeyPressed(Input.Keys.D)){
 					Gdx.app.debug(TAG, "S pressed with D");
-					player.setVelocity(1.0f,-1.0f);
+					player.setMoveSpeed(1.0f,-1.0f);
 					player.setDirection(Constants.DIRECTION_DOWN);
 					break;
 				} else if(Gdx.input.isKeyPressed(Input.Keys.A)){
 					Gdx.app.debug(TAG, "S pressed with A");
-					player.setVelocity(-1.0f,-1.0f);
+					player.setMoveSpeed(-1.0f,-1.0f);
 					player.setDirection(Constants.DIRECTION_DOWN);
 					break;
 				}
 
 				//normal single key pressed
 				Gdx.app.debug(TAG, "S pressed");
-				player.setVelocity(0.0f,-1.0f);
+				player.setMoveSpeed(0.0f,-1.0f);
 				player.setDirection(Constants.DIRECTION_DOWN);
 				break;
 
@@ -253,24 +253,24 @@ public class InputController extends InputAdapter {
 				if(Gdx.input.isKeyPressed(Input.Keys.S)){
 					//player can't move if pressing opposite directions
 					Gdx.app.debug(TAG, "W pressed with S");
-					player.setVelocity(0.0f,0.0f);
+					player.setMoveSpeed(0.0f,0.0f);
 					player.setDirection(Constants.DIRECTION_UP);
 					break;
 				} else if (Gdx.input.isKeyPressed(Input.Keys.D)){
 					Gdx.app.debug(TAG, "W pressed with D");
-					player.setVelocity(1.0f,1.0f);
+					player.setMoveSpeed(1.0f,1.0f);
 					player.setDirection(Constants.DIRECTION_UP);
 					break;
 				} else if (Gdx.input.isKeyPressed(Input.Keys.A)){
 					Gdx.app.debug(TAG, "W pressed with A");
-					player.setVelocity(-1.0f,1.0f);
+					player.setMoveSpeed(-1.0f,1.0f);
 					player.setDirection(Constants.DIRECTION_UP);
 					break;
 				}
 
 				//normal single key pressed
 				Gdx.app.debug(TAG, "W pressed");
-				player.setVelocity(0.0f,1.0f);
+				player.setMoveSpeed(0.0f,1.0f);
 				player.setDirection(Constants.DIRECTION_UP);
 				break;
 

@@ -25,7 +25,7 @@ public class Constants {
 	public static final float NORMAL_GRAVITY = -9.81f;
 	// Length of time in a physics step
 	public static final float TIME_STEP = 1/120f;
-	// Amount of velocity iterations in a physics step
+	// Amount of moveSpeed iterations in a physics step
 	public static final int VELOCITY_ITERATIONS = 8;
 	// Amount of position iterations in a physics step
 	public static final int POSITION_ITERATIONS = 3;
