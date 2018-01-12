@@ -97,7 +97,6 @@ public class WorldController {
 	 * @param deltaTime time passed between cycles in ms
 	 */
 	private void doPhysicsStep(float deltaTime) {
-		// fixed time step
 		// max frame time to avoid spiral of death (on slow devices)
 		double frameTime = Math.min(deltaTime, 0.25f);
 		accumulator += frameTime;

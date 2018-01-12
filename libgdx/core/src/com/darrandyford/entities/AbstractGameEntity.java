@@ -56,11 +56,9 @@ public abstract class AbstractGameEntity {
 		Vector2 bodyPosition = transform.getPosition();
 		float bodyAngle = transform.getRotation();
 
-		position.x = bodyPosition.x * extraTime +
-			position.x * (1.0f - extraTime);
-		position.y = bodyPosition.y * extraTime +
-			position.y * (1.0f - extraTime);
 		rotation = bodyAngle * extraTime + rotation * (1.0f - extraTime);
+		setPosition(bodyPosition.x * extraTime + position.x * (1.0f - extraTime),
+			bodyPosition.y * extraTime + position.y * (1.0f - extraTime));
 	}
 
 	public void updateOrigin() {
