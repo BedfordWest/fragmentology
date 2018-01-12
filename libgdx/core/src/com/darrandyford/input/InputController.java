@@ -4,7 +4,6 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
-import com.badlogic.gdx.math.Vector2;
 import com.darrandyford.entities.living.characters.Player;
 import com.darrandyford.utils.CameraHelper;
 import com.darrandyford.utils.Constants;
@@ -12,6 +11,9 @@ import com.darrandyford.world.WorldController;
 
 /**
  * Handles user input
+ *
+ * Notes: something is weird with the directional facing of W then D vs D then W
+ *
  */
 public class InputController extends InputAdapter {
 	private WorldController worldController;
