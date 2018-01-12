@@ -1,5 +1,6 @@
 package com.darrandyford;
 
+import box2dLight.RayHandler;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.ApplicationListener;
@@ -8,6 +9,8 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.World;
 import com.darrandyford.assets.Assets;
 import com.darrandyford.world.WorldController;
 import com.darrandyford.world.WorldRenderer;
