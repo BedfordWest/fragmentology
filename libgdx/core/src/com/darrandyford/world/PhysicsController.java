@@ -2,9 +2,7 @@ package com.darrandyford.world;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 import com.darrandyford.entities.living.characters.Player;
 import com.darrandyford.utils.Constants;
@@ -47,7 +45,19 @@ public class PhysicsController {
 		bodyDef.type = BodyDef.BodyType.KinematicBody;
 		bodyDef.position.set(player.getPosition());
 		player.setBody(b2world.createBody(bodyDef));
+		PolygonShape polygonShape = new PolygonShape();
+		polygonShape.setAsBox(
+			player.getDimension().x / 2.0f,
+			player.getDimension().y / 2.0f,
+			player.getOrigin(),
+			0
+		);
+		FixtureDef fixtureDef = new FixtureDef();
+		fixtureDef.shape = polygonShape;
+		fixtureDef.restitution = 0f;
+		player.getBody().createFixture(fixtureDef);
 		player.getBody().setUserData(player);
+		polygonShape.dispose();
 	}
 
 	/**
