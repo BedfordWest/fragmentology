@@ -23,6 +23,7 @@ public abstract class AbstractGameEntity {
 	protected Rectangle bounds;
 	public enum MoveState { MS_LEFT, MS_RIGHT, MS_UP, MS_DOWN, MS_NONE }
 	MoveState moveState;
+	protected Body body;
 
 	/**
 	 * Constructor - we'll want to default these values for all subclasses
@@ -75,6 +76,7 @@ public abstract class AbstractGameEntity {
 	public float getDirection() { return this.direction; }
 	public MoveState getMoveState() { return this.moveState; }
 	public Rectangle getBounds() { return bounds; }
+	public Body getBody() { return body; }
 
 	// Setters
 	public void setPosition(float x, float y) {
@@ -92,5 +94,6 @@ public abstract class AbstractGameEntity {
 		this.velocity.x = x;
 		this.velocity.y = y;
 	}
+	public void setBody(Body body) { this.body = body; }
 
 }
