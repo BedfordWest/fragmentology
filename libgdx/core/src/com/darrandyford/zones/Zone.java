@@ -6,10 +6,10 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.tiles.StaticTiledMapTile;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.World;
 import com.darrandyford.assets.Assets;
 import com.darrandyford.entities.living.LivingEntity;
-import com.darrandyford.entities.nonliving.terrain.TerrainTile;
+import com.darrandyford.entities.nonliving.NonlivingEntity;
+import com.darrandyford.entities.terrain.TerrainTile;
 import com.darrandyford.utils.Constants;
 import com.darrandyford.world.WorldController;
 
@@ -26,6 +26,7 @@ public class Zone {
 	private TiledMap map;
 	private List<TerrainTile> zoneTiles = new ArrayList<TerrainTile>();
 	private static final int ENEMY_TOTAL = 4;
+	private ArrayList<NonlivingEntity> walls = new ArrayList<NonlivingEntity>();
 	private ArrayList<LivingEntity> enemies = new ArrayList<LivingEntity>();
 	private WorldController worldController;
 
@@ -72,6 +73,7 @@ public class Zone {
 				else {
 					}
 		}
+		createWalls();
 		createEnemies(ENEMY_TOTAL);
 		updateZoneState();
 	}
@@ -118,6 +120,33 @@ public class Zone {
 		return false;
 	}
 
+	private void createWalls() {
+		for(int i = 0; i < Constants.ZONE_X_TILES; i++) {
+			NonlivingEntity topWall = new NonlivingEntity();
+			NonlivingEntity bottomWall = new NonlivingEntity();
+			topWall.setPosition(i * Constants.TILE_WIDTH + Constants.TILE_WIDTH/2,
+				Constants.ZONE_Y_TILES * Constants.TILE_HEIGHT - Constants.TILE_HEIGHT/2);
+			bottomWall.setPosition(i * Constants.TILE_WIDTH + Constants.TILE_WIDTH/2, Constants.TILE_HEIGHT/2);
+			topWall.setSprite(Assets.instance.wall.wall);
+			bottomWall.setSprite(Assets.instance.wall.wall);
+			walls.add(topWall);
+			walls.add(bottomWall);
+		}
+
+		for(int i = 1; i < Constants.ZONE_Y_TILES - 1; i++) {
+			NonlivingEntity leftWall = new NonlivingEntity();
+			NonlivingEntity rightWall = new NonlivingEntity();
+			rightWall.setPosition( Constants.ZONE_X_TILES * Constants.TILE_WIDTH - Constants.TILE_WIDTH/2,
+				i * Constants.TILE_HEIGHT + Constants.TILE_HEIGHT/2);
+			leftWall.setPosition(Constants.TILE_WIDTH/2, i * Constants.TILE_HEIGHT + Constants.TILE_HEIGHT/2);
+			rightWall.setSprite(Assets.instance.wall.wall);
+			leftWall.setSprite(Assets.instance.wall.wall);
+			walls.add(rightWall);
+			walls.add(leftWall);
+		}
+
+	}
+
 	private void createEnemies(int numEnemies) {
 		Random rand = new Random();
 		for(int i = 0; i < numEnemies; i++) {
@@ -134,11 +163,21 @@ public class Zone {
 				enemyOverlap = true;
 			}
 			else {
-				for(LivingEntity anotherEnemy:enemies) {
-					if(enemyRect.overlaps(anotherEnemy.getBounds())) {
+				for(NonlivingEntity wall:walls) {
+					if(enemyRect.overlaps(wall.getBounds())) {
 						i--;
 						enemyOverlap = true;
 						break;
+					}
+				}
+
+				if(!enemyOverlap) {
+					for (LivingEntity anotherEnemy : enemies) {
+						if (enemyRect.overlaps(anotherEnemy.getBounds())) {
+							i--;
+							enemyOverlap = true;
+							break;
+						}
 					}
 				}
 			}
@@ -165,6 +204,9 @@ public class Zone {
 		return zoneTiles.get(index);
 	}
 
+	public ArrayList<NonlivingEntity> getWalls() {
+		return walls;
+	}
 	public ArrayList<LivingEntity> getEnemies() {
 		return enemies;
 	}
