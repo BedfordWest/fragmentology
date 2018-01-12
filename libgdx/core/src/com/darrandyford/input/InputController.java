@@ -12,8 +12,6 @@ import com.darrandyford.world.WorldController;
 /**
  * Handles user input
  *
- * Notes: something is weird with the directional facing of W then D vs D then W
- *
  */
 public class InputController extends InputAdapter {
 	private WorldController worldController;
@@ -114,7 +112,7 @@ public class InputController extends InputAdapter {
 					break;
 				} else if(Gdx.input.isKeyPressed(Input.Keys.D)){
 					Gdx.app.debug(TAG, "S released, D pressed");
-					player.setVelocity(0.0f,-1.0f);
+					player.setVelocity(1.0f,0.0f);
 					player.setDirection(Constants.DIRECTION_RIGHT);
 					break;
 				} else if(Gdx.input.isKeyPressed(Input.Keys.A)){
