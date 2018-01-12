@@ -24,6 +24,7 @@ public class Assets implements Disposable, AssetErrorListener {
 	public AssetEnemy enemy;
 	public AssetGround ground;
 	public AssetWall wall;
+	public AssetObject object;
 
 	// singleton: prevent instantiation from other classes
 	private Assets () {}
@@ -61,6 +62,7 @@ public class Assets implements Disposable, AssetErrorListener {
 		enemy = new AssetEnemy(atlas);
 		ground = new AssetGround(atlas);
 		wall = new AssetWall(atlas);
+		object = new AssetObject(atlas);
 	}
 
 	/**
@@ -131,6 +133,17 @@ public class Assets implements Disposable, AssetErrorListener {
 
 		public AssetWall (TextureAtlas atlas) {
 			wall = atlas.findRegion("HO_PLACEHOLDER_01_32_X");
+		}
+	}
+
+	/**
+	 * Asset inner class for an object tile
+	 */
+	public class AssetObject {
+		public final TextureAtlas.AtlasRegion object;
+
+		public AssetObject (TextureAtlas atlas) {
+			object = atlas.findRegion("IT_PLACEHOLDER_01_32_X");
 		}
 	}
 
