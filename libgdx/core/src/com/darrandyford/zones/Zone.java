@@ -26,7 +26,9 @@ public class Zone {
 	private TiledMap map;
 	private List<TerrainTile> zoneTiles = new ArrayList<TerrainTile>();
 	private static final int ENEMY_TOTAL = 4;
+	private static final int OBJECT_TOTAL = 3;
 	private ArrayList<NonlivingEntity> walls = new ArrayList<NonlivingEntity>();
+	private ArrayList<NonlivingEntity> objects = new ArrayList<NonlivingEntity>();
 	private ArrayList<LivingEntity> enemies = new ArrayList<LivingEntity>();
 	private WorldController worldController;
 
@@ -75,6 +77,7 @@ public class Zone {
 		}
 		createWalls();
 		createEnemies(ENEMY_TOTAL);
+		createObjects(OBJECT_TOTAL);
 		updateZoneState();
 	}
 
@@ -192,6 +195,60 @@ public class Zone {
 		}
 	}
 
+	private void createObjects(int numObjects) {
+		Random rand = new Random();
+		for(int i = 0; i < numObjects; i++) {
+			boolean overlap = false;
+			float newX = rand.nextInt((Constants.ZONE_X_TILES * (int)Constants.TILE_WIDTH) -
+				(int)Constants.TILE_WIDTH/2) + Constants.TILE_WIDTH/2;
+			float newY = rand.nextInt((Constants.ZONE_Y_TILES * (int)Constants.TILE_HEIGHT) -
+				(int)Constants.TILE_HEIGHT/2) + Constants.TILE_HEIGHT/2;
+			Rectangle objectRect = new Rectangle(newX - Constants.TILE_WIDTH/2, newY - Constants.TILE_HEIGHT/2,
+				2, 2);
+
+			if(objectRect.overlaps(worldController.getPlayer().getBounds())) {
+				i--;
+				overlap = true;
+			}
+			else {
+				for(NonlivingEntity wall:walls) {
+					if(objectRect.overlaps(wall.getBounds())) {
+						i--;
+						overlap = true;
+						break;
+					}
+				}
+
+				if(!overlap) {
+					for (LivingEntity anotherEnemy : enemies) {
+						if (objectRect.overlaps(anotherEnemy.getBounds())) {
+							i--;
+							overlap = true;
+							break;
+						}
+					}
+				}
+
+				if(!overlap) {
+					for (NonlivingEntity anotherObject : objects) {
+						if (objectRect.overlaps(anotherObject.getBounds())) {
+							i--;
+							overlap = true;
+							break;
+						}
+					}
+				}
+
+			}
+			if(!overlap) {
+				NonlivingEntity object = new NonlivingEntity();
+				object.setPosition(newX, newY);
+				object.setSprite(Assets.instance.object.object);
+				objects.add(object);
+			}
+		}
+	}
+
 	// Getters
 	public TiledMap getTiledMap() {
 		return this.map;
@@ -207,6 +264,11 @@ public class Zone {
 	public ArrayList<NonlivingEntity> getWalls() {
 		return walls;
 	}
+
+	public ArrayList<NonlivingEntity> getObjects() {
+		return objects;
+	}
+
 	public ArrayList<LivingEntity> getEnemies() {
 		return enemies;
 	}

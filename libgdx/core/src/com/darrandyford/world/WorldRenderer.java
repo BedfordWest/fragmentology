@@ -88,6 +88,7 @@ public class WorldRenderer implements Disposable {
 		renderPlayer();
 		renderEnemies();
 		renderWalls();
+		renderObjects();
 		batch.end();
 	}
 
@@ -149,6 +150,17 @@ public class WorldRenderer implements Disposable {
 		ArrayList<NonlivingEntity> zoneWalls = worldController.getZone().getWalls();
 		for(NonlivingEntity wall:zoneWalls){
 			wall.render(batch);
+		}
+	}
+
+	/**
+	 * Render the objects
+	 */
+	private void renderObjects()
+	{
+		ArrayList<NonlivingEntity> zoneObjects = worldController.getZone().getObjects();
+		for(NonlivingEntity object:zoneObjects){
+			object.render(batch);
 		}
 	}
 
