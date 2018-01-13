@@ -76,5 +76,6 @@ public class DarrAndyFord implements ApplicationListener {
 		// Disposal is a render event, therefore we want WorldRenderer to handle it
 		worldRenderer.dispose();
 		Assets.instance.dispose();
+		worldController.dispose();
 	}
 }
