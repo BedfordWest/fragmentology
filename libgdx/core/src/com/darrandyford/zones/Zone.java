@@ -8,6 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.darrandyford.assets.Assets;
 import com.darrandyford.entities.living.LivingEntity;
+import com.darrandyford.entities.living.characters.Enemy;
 import com.darrandyford.entities.nonliving.NonlivingEntity;
 import com.darrandyford.entities.terrain.TerrainTile;
 import com.darrandyford.utils.Constants;
@@ -29,7 +30,7 @@ public class Zone {
 	private static final int OBJECT_TOTAL = 3;
 	private ArrayList<NonlivingEntity> walls = new ArrayList<NonlivingEntity>();
 	private ArrayList<NonlivingEntity> objects = new ArrayList<NonlivingEntity>();
-	private ArrayList<LivingEntity> enemies = new ArrayList<LivingEntity>();
+	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	private WorldController worldController;
 
 	public Zone (WorldController newWorldController) {
@@ -185,7 +186,7 @@ public class Zone {
 				}
 			}
 			if(!enemyOverlap) {
-				LivingEntity enemy = new LivingEntity();
+				Enemy enemy = new Enemy();
 				enemy.setPosition(newX, newY);
 				enemy.setSideSprite(Assets.instance.enemy.left);
 				enemy.setFrontSprite(Assets.instance.enemy.down);
@@ -269,7 +270,7 @@ public class Zone {
 		return objects;
 	}
 
-	public ArrayList<LivingEntity> getEnemies() {
+	public ArrayList<Enemy> getEnemies() {
 		return enemies;
 	}
 }

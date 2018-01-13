@@ -1,10 +1,15 @@
 package com.darrandyford.world;
 
+import box2dLight.ConeLight;
+import box2dLight.PointLight;
+import box2dLight.RayHandler;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
 import com.darrandyford.entities.living.LivingEntity;
+import com.darrandyford.entities.living.characters.Enemy;
 import com.darrandyford.entities.living.characters.Player;
 import com.darrandyford.utils.Constants;
 
@@ -18,6 +23,7 @@ public class PhysicsController {
 	private World b2world;
 	private WorldController worldController;
 	private Player player;
+	private RayHandler rayHandler;
 	private static final String TAG = PhysicsController.class.getName();
 
 	/**
@@ -38,6 +44,7 @@ public class PhysicsController {
 		this.worldController = worldController;
 		initPlayerPhysics();
 		initEnemyPhysics();
+		initLights();
 	}
 
 	/**
@@ -68,7 +75,7 @@ public class PhysicsController {
 	 * Initialize enemy physics
 	 */
 	private void initEnemyPhysics() {
-		ArrayList<LivingEntity> enemies = worldController.getZone().getEnemies();
+		ArrayList<Enemy> enemies = worldController.getZone().getEnemies();
 		for(LivingEntity enemy:enemies) {
 			BodyDef bodyDef = new BodyDef();
 			bodyDef.type = BodyDef.BodyType.KinematicBody;
@@ -88,6 +95,27 @@ public class PhysicsController {
 			enemy.getBody().setUserData(enemy);
 			polygonShape.dispose();
 		}
+	}
+
+	/**
+	 * Initialize the LOS lights
+	 */
+	private void initLights() {
+		rayHandler = new RayHandler(b2world);
+		rayHandler.setAmbientLight(0.1f, 0.1f, 0.1f, 1f);
+		rayHandler.setBlurNum(3);
+		rayHandler.setShadows(true);
+
+		ArrayList<Enemy> enemies = worldController.getZone().getEnemies();
+		for(Enemy enemy:enemies) {
+			for(int i = 0; i < enemy.getNumConelights(); i++) {
+				enemy.addConelight(new ConeLight(rayHandler, 3,
+					new Color(1.0f, 0.03f, 0.3f, 1.0f),
+					12.0f, enemy.getPosition().x, enemy.getPosition().y,
+					enemy.getDirection(), 20.0f));
+			}
+		}
+
 	}
 
 	/**
@@ -118,17 +146,30 @@ public class PhysicsController {
 	 * @param deltaTime time elapsed since last cycle (in ms)
 	 */
 	public void updateEnemyPhysics(float deltaTime) {
-		ArrayList<LivingEntity> enemies = worldController.getZone().getEnemies();
-		for(LivingEntity enemy:enemies) {
+		ArrayList<Enemy> enemies = worldController.getZone().getEnemies();
+		for(Enemy enemy:enemies) {
 			Vector2 moveSpeed = enemy.getMoveSpeed();
 			enemy.getBody()
 				.setLinearVelocity(moveSpeed);
 			if (!(moveSpeed.x == 0.0f && moveSpeed.y == 0.0f)) {
 				enemy.setMoving(true);
 			} else enemy.setMoving(false);
+			for(ConeLight conelight:enemy.getConelights()) {
+				conelight.setDirection(enemy.getDirection());
+				conelight.setPosition(enemy.getPosition());
+				conelight.update();
+			}
 		}
+	}
+
+	public void dispose() {
+		rayHandler.dispose();
 	}
 
 	// Getters
 	public World getB2World() { return this.b2world; }
+
+	public RayHandler getRayHandler() {
+		return rayHandler;
+	}
 }

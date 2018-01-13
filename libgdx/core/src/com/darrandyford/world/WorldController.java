@@ -131,6 +131,10 @@ public class WorldController {
 		}
 	}
 
+	public void dispose() {
+		getPhysicsController().dispose();
+	}
+
 
 	// Getters
 	public boolean getInitRenderState() { return this.initRenderState; }
