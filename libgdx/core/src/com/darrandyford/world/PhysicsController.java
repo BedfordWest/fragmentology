@@ -4,8 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.utils.Array;
+import com.darrandyford.entities.living.LivingEntity;
 import com.darrandyford.entities.living.characters.Player;
 import com.darrandyford.utils.Constants;
+
+import java.util.ArrayList;
 
 /**
  * Controls the physics system for the game.
@@ -34,6 +37,7 @@ public class PhysicsController {
 		b2world = new World(new Vector2(0, Constants.NORMAL_GRAVITY), true);
 		this.worldController = worldController;
 		initPlayerPhysics();
+		initEnemyPhysics();
 	}
 
 	/**
@@ -61,11 +65,38 @@ public class PhysicsController {
 	}
 
 	/**
+	 * Initialize enemy physics
+	 */
+	private void initEnemyPhysics() {
+		ArrayList<LivingEntity> enemies = worldController.getZone().getEnemies();
+		for(LivingEntity enemy:enemies) {
+			BodyDef bodyDef = new BodyDef();
+			bodyDef.type = BodyDef.BodyType.KinematicBody;
+			bodyDef.position.set(enemy.getPosition());
+			enemy.setBody(b2world.createBody(bodyDef));
+			PolygonShape polygonShape = new PolygonShape();
+			polygonShape.setAsBox(
+				enemy.getDimension().x / 2.0f,
+				enemy.getDimension().y / 2.0f,
+				enemy.getOrigin(),
+				0
+			);
+			FixtureDef fixtureDef = new FixtureDef();
+			fixtureDef.shape = polygonShape;
+			fixtureDef.restitution = 0f;
+			enemy.getBody().createFixture(fixtureDef);
+			enemy.getBody().setUserData(enemy);
+			polygonShape.dispose();
+		}
+	}
+
+	/**
 	 * Update the physics world
 	 * @param deltaTime time elapsed since last cycle (in ms)
 	 */
 	public void updatePhysics(float deltaTime) {
 		updatePlayerPhysics(deltaTime);
+		updateEnemyPhysics(deltaTime);
 	}
 
 	/**
@@ -80,6 +111,22 @@ public class PhysicsController {
 			player.setMoving(true);
 		}
 		else player.setMoving(false);
+	}
+
+	/**
+	 * Update enemy physics
+	 * @param deltaTime time elapsed since last cycle (in ms)
+	 */
+	public void updateEnemyPhysics(float deltaTime) {
+		ArrayList<LivingEntity> enemies = worldController.getZone().getEnemies();
+		for(LivingEntity enemy:enemies) {
+			Vector2 moveSpeed = enemy.getMoveSpeed();
+			enemy.getBody()
+				.setLinearVelocity(moveSpeed);
+			if (!(moveSpeed.x == 0.0f && moveSpeed.y == 0.0f)) {
+				enemy.setMoving(true);
+			} else enemy.setMoving(false);
+		}
 	}
 
 	// Getters
