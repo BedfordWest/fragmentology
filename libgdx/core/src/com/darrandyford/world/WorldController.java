@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
 import com.darrandyford.entities.AbstractGameEntity;
 import com.darrandyford.entities.living.LivingEntity;
+import com.darrandyford.entities.living.characters.Enemy;
 import com.darrandyford.entities.living.characters.Player;
 import com.darrandyford.input.InputController;
 import com.darrandyford.utils.CameraHelper;
