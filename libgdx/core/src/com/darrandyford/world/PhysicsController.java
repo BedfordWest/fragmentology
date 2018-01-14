@@ -1,13 +1,10 @@
 package com.darrandyford.world;
 
 import box2dLight.ConeLight;
-import box2dLight.PointLight;
 import box2dLight.RayHandler;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
-import com.badlogic.gdx.utils.Array;
 import com.darrandyford.entities.living.LivingEntity;
 import com.darrandyford.entities.living.characters.Enemy;
 import com.darrandyford.entities.living.characters.Player;
@@ -155,7 +152,7 @@ public class PhysicsController {
 				enemy.setMoving(true);
 			} else enemy.setMoving(false);
 			for(ConeLight conelight:enemy.getConelights()) {
-				conelight.setDirection(enemy.getDirection());
+				conelight.setDirection(-enemy.getDirection());
 				conelight.setPosition(enemy.getPosition());
 				conelight.update();
 			}

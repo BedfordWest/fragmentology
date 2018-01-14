@@ -38,7 +38,7 @@ public abstract class AbstractGameEntity {
 		direction = Constants.DIRECTION_LEFT;
 		acceleration = new Vector2(0,0);
 		moveSpeed = new Vector2(0,0);
-		moveRate = 5;
+		moveRate = 5.0f;
 
 	}
 
