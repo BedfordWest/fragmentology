@@ -65,9 +65,6 @@ public class WorldController {
 	 */
 	public void update (float deltaTime) {
 		inputController.handleDebugInput(deltaTime);
-		for(Enemy enemy:zone.getEnemies()) {
-			enemy.update(deltaTime);
-		}
 		updatePhysics(deltaTime);
 		doPhysicsStep(deltaTime);
 		cameraHelper.update(deltaTime);
