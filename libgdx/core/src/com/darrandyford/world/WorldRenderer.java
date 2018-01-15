@@ -3,6 +3,7 @@ package com.darrandyford.world;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.utils.Disposable;
 import com.darrandyford.entities.living.LivingEntity;
 import com.darrandyford.entities.living.characters.Enemy;
@@ -23,6 +24,7 @@ public class WorldRenderer implements Disposable {
 	private WorldController worldController;
 	private OrthogonalTiledMapRenderer renderer;
 	private SpriteBatch batch;
+	private Box2DDebugRenderer box2DDebugRenderer;
 
 	// Rendering constants/switches
 	private static final boolean DEBUG_DRAW_BOX2D_WORLD = true;
@@ -56,6 +58,7 @@ public class WorldRenderer implements Disposable {
 			getTiledMap(),
 			1/Constants.WORLD_SCALE
 		);
+		box2DDebugRenderer = new Box2DDebugRenderer();
 	}
 
 	/**
@@ -83,7 +86,6 @@ public class WorldRenderer implements Disposable {
 		worldController.getCameraHelper().applyTo(camera);
 		renderer.setView(camera);
 		renderZone();
-		if(DEBUG_DRAW_BOX2D_WORLD) { renderPhysicsDebugLines(); }
 		batch.setProjectionMatrix(camera.combined);
 		batch.begin();
 		renderPlayer();
@@ -93,6 +95,7 @@ public class WorldRenderer implements Disposable {
 		batch.end();
 		worldController.getPhysicsController().getRayHandler().setCombinedMatrix(camera);
 		worldController.getPhysicsController().getRayHandler().updateAndRender();
+		if(DEBUG_DRAW_BOX2D_WORLD) { renderPhysicsDebugLines(); }
 	}
 
 	/**
@@ -180,6 +183,10 @@ public class WorldRenderer implements Disposable {
 	 * Render physics debug lines - useful when trying to understand what is happening in strange physics interactions
 	 */
 	private void renderPhysicsDebugLines() {
+		box2DDebugRenderer.render(
+			worldController.getPhysicsController().getB2World(),
+			camera.combined
+		);
 	}
 
 	/**
