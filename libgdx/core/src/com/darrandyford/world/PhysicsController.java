@@ -152,7 +152,7 @@ public class PhysicsController {
 				enemy.setMoving(true);
 			} else enemy.setMoving(false);
 			for(ConeLight conelight:enemy.getConelights()) {
-				conelight.setDirection(-enemy.getDirection());
+				conelight.setDirection(-enemy.getDirection() + 90.0f);
 				conelight.setPosition(enemy.getPosition());
 				conelight.update();
 			}

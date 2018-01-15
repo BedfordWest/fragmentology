@@ -1,6 +1,7 @@
 package com.darrandyford.entities.living.characters;
 
 import box2dLight.ConeLight;
+import com.badlogic.gdx.math.Vector2;
 import com.darrandyford.entities.living.LivingEntity;
 import com.darrandyford.utils.Constants;
 
@@ -53,30 +54,27 @@ public class Enemy extends LivingEntity {
 		}
 	}
 
+	/**
+	 * Patrolling is done based on the following algorithm:
+	 * Generate a random point in the zone. The enemy will move toward that point for 3 seconds, then move
+	 * toward a newly generated random point.
+	 */
 	private void executePatrol() {
 		Random rand = new Random();
-		int direction = rand.nextInt(4);
-		switch(direction) {
-			case 0: //North
-				setDirection(Constants.DIRECTION_UP);
-				body.setLinearVelocity(0.0f, moveRate);
-				break;
-			case 1: //East
-				setDirection(Constants.DIRECTION_RIGHT);
-				body.setLinearVelocity(moveRate, 0.0f);
-				break;
-			case 2: //South
-				setDirection(Constants.DIRECTION_DOWN);
-				body.setLinearVelocity(0.0f, -moveRate);
-				break;
-			case 3: //West
-				setDirection(Constants.DIRECTION_LEFT);
-				body.setLinearVelocity(-moveRate, 0.0f);
-				break;
-			default:
-				break;
+		float xLocation = rand.nextInt(Constants.ZONE_X_TILES);
+		float yLocation = rand.nextInt(Constants.ZONE_Y_TILES);
+		Vector2 randomLocation = new Vector2(xLocation, yLocation);
+		Vector2 normalizedDirection = new Vector2(randomLocation);
+		normalizedDirection.sub(position).nor();
+		float angle = (360.0f - normalizedDirection.angle()) + 90.0f;
+		if(angle >= 360.0f) {
+			angle -= 360.0f;
 		}
-		setMoveSpeed(body.getLinearVelocity());
+		setDirection(angle);
+		float newSpeedX = normalizedDirection.x * moveRate;
+		float newSpeedY = normalizedDirection.y * moveRate;
+		body.setLinearVelocity(newSpeedX, newSpeedY);
+		setMoveSpeed(newSpeedX, newSpeedY);
 
 	}
 
