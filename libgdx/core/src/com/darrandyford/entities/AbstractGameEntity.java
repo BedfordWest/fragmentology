@@ -114,5 +114,6 @@ public abstract class AbstractGameEntity {
 	}
 	public void setBody(Body body) { this.body = body; }
 	public void setMoving(boolean moving) { isMoving = moving; }
+	public void setDimension(float x, float y) { this.dimension.x = x; this.dimension.y = y; }
 
 }

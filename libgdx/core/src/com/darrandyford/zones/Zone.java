@@ -188,6 +188,7 @@ public class Zone {
 			if(!enemyOverlap) {
 				Enemy enemy = new Enemy();
 				enemy.setPosition(newX, newY);
+				enemy.setDimension(1.0f, 1.0f);
 				enemy.setSideSprite(Assets.instance.enemy.left);
 				enemy.setFrontSprite(Assets.instance.enemy.down);
 				enemy.setBackSprite(Assets.instance.enemy.up);
@@ -244,6 +245,7 @@ public class Zone {
 			if(!overlap) {
 				NonlivingEntity object = new NonlivingEntity();
 				object.setPosition(newX, newY);
+				object.setDimension(1,1);
 				object.setSprite(Assets.instance.object.object);
 				objects.add(object);
 			}
