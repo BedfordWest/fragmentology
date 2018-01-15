@@ -44,13 +44,11 @@ public class Zone {
 	private void createTileObjects() {
 		for (int x = 0; x < Constants.ZONE_X_TILES; x++) {
 			for (int y = 0; y < Constants.ZONE_Y_TILES; y++) {
-				TerrainTile ttile = new TerrainTile();
-				ttile.setCellPosition(x,y);
-				ttile.setPosition(
-					(x * Constants.TILE_WIDTH) -
-						ttile.getDimension().x/2,
+				TerrainTile ttile = new TerrainTile((x * Constants.TILE_WIDTH) -
+					Constants.TILE_WIDTH/2,
 					(y * Constants.TILE_HEIGHT) -
-						ttile.getDimension().y/2);
+						Constants.TILE_HEIGHT/2, 2.0f, 2.0f, Assets.instance.ground);
+				ttile.setCellPosition(x,y);
 				ttile.setSolid(false);
 				zoneTiles.add(ttile);
 			}
@@ -96,10 +94,10 @@ public class Zone {
 				if (!tile.isSolid())
 				{
 					cell.setTile(new StaticTiledMapTile
-						(Assets.instance.ground.terrain));
+						(Assets.instance.ground.getRegion()));
 				} else if (tile.isSolid())
 					cell.setTile(new StaticTiledMapTile
-						(Assets.instance.wall.wall));
+						(Assets.instance.wall.getRegion()));
 				{
 				}
 				losLayer.setCell(
@@ -126,25 +124,23 @@ public class Zone {
 
 	private void createWalls() {
 		for(int i = 0; i < Constants.ZONE_X_TILES; i++) {
-			NonlivingEntity topWall = new NonlivingEntity();
-			NonlivingEntity bottomWall = new NonlivingEntity();
-			topWall.setPosition(i * Constants.TILE_WIDTH + Constants.TILE_WIDTH/2,
-				Constants.ZONE_Y_TILES * Constants.TILE_HEIGHT - Constants.TILE_HEIGHT/2);
-			bottomWall.setPosition(i * Constants.TILE_WIDTH + Constants.TILE_WIDTH/2, Constants.TILE_HEIGHT/2);
-			topWall.setSprite(Assets.instance.wall.wall);
-			bottomWall.setSprite(Assets.instance.wall.wall);
+			NonlivingEntity topWall = new NonlivingEntity(i * Constants.TILE_WIDTH + Constants.TILE_WIDTH/2,
+				Constants.ZONE_Y_TILES * Constants.TILE_HEIGHT - Constants.TILE_HEIGHT/2,
+				Constants.TILE_WIDTH, Constants.TILE_HEIGHT, Assets.instance.wall);
+			NonlivingEntity bottomWall = new NonlivingEntity(i * Constants.TILE_WIDTH + Constants.TILE_WIDTH/2,
+				Constants.TILE_HEIGHT/2, Constants.TILE_WIDTH, Constants.TILE_HEIGHT, Assets.instance.wall);
 			walls.add(topWall);
 			walls.add(bottomWall);
 		}
 
 		for(int i = 1; i < Constants.ZONE_Y_TILES - 1; i++) {
-			NonlivingEntity leftWall = new NonlivingEntity();
-			NonlivingEntity rightWall = new NonlivingEntity();
-			rightWall.setPosition( Constants.ZONE_X_TILES * Constants.TILE_WIDTH - Constants.TILE_WIDTH/2,
-				i * Constants.TILE_HEIGHT + Constants.TILE_HEIGHT/2);
-			leftWall.setPosition(Constants.TILE_WIDTH/2, i * Constants.TILE_HEIGHT + Constants.TILE_HEIGHT/2);
-			rightWall.setSprite(Assets.instance.wall.wall);
-			leftWall.setSprite(Assets.instance.wall.wall);
+			NonlivingEntity rightWall =
+				new NonlivingEntity(Constants.ZONE_X_TILES * Constants.TILE_WIDTH - Constants.TILE_WIDTH/2,
+				i * Constants.TILE_HEIGHT + Constants.TILE_HEIGHT/2, Constants.TILE_WIDTH,
+					Constants.TILE_HEIGHT, Assets.instance.wall);
+			NonlivingEntity leftWall = new NonlivingEntity(Constants.TILE_WIDTH/2,
+				i * Constants.TILE_HEIGHT + Constants.TILE_HEIGHT/2, Constants.TILE_WIDTH,
+				Constants.TILE_HEIGHT, Assets.instance.wall);
 			walls.add(rightWall);
 			walls.add(leftWall);
 		}
@@ -186,12 +182,7 @@ public class Zone {
 				}
 			}
 			if(!enemyOverlap) {
-				Enemy enemy = new Enemy();
-				enemy.setPosition(newX, newY);
-				enemy.setDimension(1.0f, 1.0f);
-				enemy.setSideSprite(Assets.instance.enemy.left);
-				enemy.setFrontSprite(Assets.instance.enemy.down);
-				enemy.setBackSprite(Assets.instance.enemy.up);
+				Enemy enemy = new Enemy(newX, newY, 1.0f, 1.0f, Assets.instance.enemy);
 				enemies.add(enemy);
 			}
 		}
@@ -243,10 +234,8 @@ public class Zone {
 
 			}
 			if(!overlap) {
-				NonlivingEntity object = new NonlivingEntity();
-				object.setPosition(newX, newY);
-				object.setDimension(1,1);
-				object.setSprite(Assets.instance.object.object);
+				NonlivingEntity object = new NonlivingEntity(newX, newY, 1.0f, 1.0f,
+					Assets.instance.object);
 				objects.add(object);
 			}
 		}

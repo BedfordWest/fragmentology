@@ -88,10 +88,29 @@ public class Assets implements Disposable, AssetErrorListener {
 	/* -------------------------------------------------------------- */
 
 	/**
+	 * Allows for easy instantiation of living entities
+	 */
+	public abstract class AssetGenericLiving {
+		protected TextureAtlas.AtlasRegion left, up, down;
+
+		public TextureAtlas.AtlasRegion getLeft() { return left; }
+		public TextureAtlas.AtlasRegion getUp() { return up; }
+		public TextureAtlas.AtlasRegion getDown() { return down; }
+	}
+
+	/**
+	 * Allows for easy instantiation of nonliving entities
+	 */
+	public abstract class AssetGenericNonLiving {
+		protected TextureAtlas.AtlasRegion region;
+
+		public TextureAtlas.AtlasRegion getRegion() { return region; }
+	}
+
+	/**
 	 * 	Asset inner class for the player assets
  	 */
-	public class AssetPlayer {
-		public final TextureAtlas.AtlasRegion left, up, down;
+	public class AssetPlayer extends AssetGenericLiving {
 
 		public AssetPlayer (TextureAtlas atlas) {
 			left = atlas.findRegion("CH_PLACEHOLDER_01_32_SL");
@@ -103,8 +122,7 @@ public class Assets implements Disposable, AssetErrorListener {
 	/**
 	 * Asset inner class for the enemy assets
  	 */
-	public class AssetEnemy {
-		public final TextureAtlas.AtlasRegion left, up, down;
+	public class AssetEnemy extends AssetGenericLiving {
 
 		public AssetEnemy (TextureAtlas atlas) {
 			left = atlas.findRegion("EN_PLACEHOLDER_01_32_SL");
@@ -117,33 +135,30 @@ public class Assets implements Disposable, AssetErrorListener {
 	/**
 	 * Asset inner class for a ground tile
 	 */
-	public class AssetGround {
-		public final TextureAtlas.AtlasRegion terrain;
+	public class AssetGround extends AssetGenericNonLiving {
 
 		public AssetGround(TextureAtlas atlas) {
-			terrain = atlas.findRegion("TR_PLACEHOLDER_01_32_X");
+			region = atlas.findRegion("TR_PLACEHOLDER_01_32_X");
 		}
 	}
 
 	/**
 	 * Asset inner class for a wall tile
  	 */
-	public class AssetWall {
-		public final TextureAtlas.AtlasRegion wall;
+	public class AssetWall extends AssetGenericNonLiving {
 
 		public AssetWall (TextureAtlas atlas) {
-			wall = atlas.findRegion("HO_PLACEHOLDER_01_32_X");
+			region = atlas.findRegion("HO_PLACEHOLDER_01_32_X");
 		}
 	}
 
 	/**
 	 * Asset inner class for an object tile
 	 */
-	public class AssetObject {
-		public final TextureAtlas.AtlasRegion object;
+	public class AssetObject extends AssetGenericNonLiving {
 
 		public AssetObject (TextureAtlas atlas) {
-			object = atlas.findRegion("IT_PLACEHOLDER_01_32_X");
+			region = atlas.findRegion("IT_PLACEHOLDER_01_32_X");
 		}
 	}
 

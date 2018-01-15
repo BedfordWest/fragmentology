@@ -3,6 +3,7 @@ package com.darrandyford.entities.terrain;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.darrandyford.assets.Assets;
 import com.darrandyford.entities.AbstractGameEntity;
 import com.darrandyford.utils.Constants;
 
@@ -14,14 +15,10 @@ public class TerrainTile extends AbstractGameEntity {
 	private Constants.TileType tileType;
 	private int cellXPosition, cellYPosition;
 
-	public TerrainTile () {
-		position = new Vector2();
-		dimension = new Vector2(Constants.TILE_WIDTH/Constants.WORLD_SCALE,
-			Constants.TILE_HEIGHT/Constants.WORLD_SCALE);
-		origin = new Vector2();
-		rotation = 0;
+	public TerrainTile (float positionX, float positionY, float dimensionX, float dimensionY,
+	                    Assets.AssetGenericNonLiving asset) {
+		super(positionX, positionY, dimensionX, dimensionY);
 		isSolid = false;
-		bounds.set(0, 0, dimension.x, dimension.y);
 	}
 
 	public void update (float deltaTime) {
