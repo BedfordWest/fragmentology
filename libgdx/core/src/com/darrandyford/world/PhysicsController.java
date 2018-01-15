@@ -40,9 +40,9 @@ public class PhysicsController {
 	private void init(WorldController worldController) {
 		if (b2world != null) { b2world.dispose(); }
 		b2world = new World(new Vector2(0.0f, 0.0f), true);
-		worldListener = new WorldListener();
-		b2world.setContactListener(worldListener);
 		this.worldController = worldController;
+		worldListener = new WorldListener(this.worldController);
+		b2world.setContactListener(worldListener);
 		initPlayerPhysics();
 		initEnemyPhysics();
 		initLights();

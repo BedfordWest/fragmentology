@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Transform;
 import com.darrandyford.utils.Constants;
+import com.darrandyford.world.WorldController;
 
 /**
  * Abstract game entity - all game entities should inherit from this.
