@@ -21,6 +21,7 @@ public class PhysicsController {
 	private WorldController worldController;
 	private Player player;
 	private RayHandler rayHandler;
+	private WorldListener worldListener;
 	private static final String TAG = PhysicsController.class.getName();
 
 	/**
@@ -38,6 +39,8 @@ public class PhysicsController {
 	private void init(WorldController worldController) {
 		if (b2world != null) { b2world.dispose(); }
 		b2world = new World(new Vector2(0, Constants.NORMAL_GRAVITY), true);
+		worldListener = new WorldListener();
+		b2world.setContactListener(worldListener);
 		this.worldController = worldController;
 		initPlayerPhysics();
 		initEnemyPhysics();
