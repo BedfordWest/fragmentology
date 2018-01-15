@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.darrandyford.entities.living.LivingEntity;
 import com.darrandyford.entities.living.characters.Enemy;
 import com.darrandyford.entities.living.characters.Player;
+import com.darrandyford.entities.nonliving.NonlivingEntity;
 import com.darrandyford.utils.Constants;
 
 import java.util.ArrayList;
@@ -38,13 +39,14 @@ public class PhysicsController {
 	 */
 	private void init(WorldController worldController) {
 		if (b2world != null) { b2world.dispose(); }
-		b2world = new World(new Vector2(0, Constants.NORMAL_GRAVITY), true);
+		b2world = new World(new Vector2(0.0f, 0.0f), true);
 		worldListener = new WorldListener();
 		b2world.setContactListener(worldListener);
 		this.worldController = worldController;
 		initPlayerPhysics();
 		initEnemyPhysics();
 		initLights();
+		initWallPhysics();
 	}
 
 	/**
@@ -53,14 +55,14 @@ public class PhysicsController {
 	private void initPlayerPhysics() {
 		player = worldController.getPlayer();
 		BodyDef bodyDef = new BodyDef();
-		bodyDef.type = BodyDef.BodyType.KinematicBody;
+		bodyDef.type = BodyDef.BodyType.DynamicBody;
 		bodyDef.position.set(player.getPosition());
 		player.setBody(b2world.createBody(bodyDef));
 		PolygonShape polygonShape = new PolygonShape();
 		polygonShape.setAsBox(
 			player.getDimension().x / 2.0f,
 			player.getDimension().y / 2.0f,
-			player.getOrigin(),
+			new Vector2(0.0f,0.0f),
 			0
 		);
 		FixtureDef fixtureDef = new FixtureDef();
@@ -78,14 +80,14 @@ public class PhysicsController {
 		ArrayList<Enemy> enemies = worldController.getZone().getEnemies();
 		for(LivingEntity enemy:enemies) {
 			BodyDef bodyDef = new BodyDef();
-			bodyDef.type = BodyDef.BodyType.KinematicBody;
+			bodyDef.type = BodyDef.BodyType.DynamicBody;
 			bodyDef.position.set(enemy.getPosition());
 			enemy.setBody(b2world.createBody(bodyDef));
 			PolygonShape polygonShape = new PolygonShape();
 			polygonShape.setAsBox(
 				enemy.getDimension().x / 2.0f,
 				enemy.getDimension().y / 2.0f,
-				enemy.getOrigin(),
+				new Vector2(0.0f,0.0f),
 				0
 			);
 			FixtureDef fixtureDef = new FixtureDef();
@@ -93,6 +95,32 @@ public class PhysicsController {
 			fixtureDef.restitution = 0f;
 			enemy.getBody().createFixture(fixtureDef);
 			enemy.getBody().setUserData(enemy);
+			polygonShape.dispose();
+		}
+	}
+
+	/**
+	 * Initialize wall physics
+	 */
+	private void initWallPhysics() {
+		ArrayList<NonlivingEntity> walls = worldController.getZone().getWalls();
+		for(NonlivingEntity wall:walls) {
+			BodyDef bodyDef = new BodyDef();
+			bodyDef.type = BodyDef.BodyType.StaticBody;
+			bodyDef.position.set(wall.getOrigin());
+			wall.setBody(b2world.createBody(bodyDef));
+			PolygonShape polygonShape = new PolygonShape();
+			polygonShape.setAsBox(
+				wall.getDimension().x / 2.0f,
+				wall.getDimension().y / 2.0f,
+				new Vector2(0.0f,0.0f),
+				0
+			);
+			FixtureDef fixtureDef = new FixtureDef();
+			fixtureDef.shape = polygonShape;
+			fixtureDef.restitution = 0f;
+			wall.getBody().createFixture(fixtureDef);
+			wall.getBody().setUserData(wall);
 			polygonShape.dispose();
 		}
 	}
