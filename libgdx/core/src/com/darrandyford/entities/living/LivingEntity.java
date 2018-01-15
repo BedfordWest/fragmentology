@@ -31,7 +31,17 @@ public class LivingEntity extends AbstractGameEntity {
 	@Override
 	public void render (SpriteBatch batch) {
 
-		if (this.direction == Constants.DIRECTION_RIGHT)
+		float directionUpMin = 315.0f;
+		float directionUpMax = 45.0f;
+		float directionRightMin = 45.0f;
+		float directionRightMax = 135.0f;
+		float directionDownMin = 135.0f;
+		float directionDownMax = 225.0f;
+		float directionLeftMin = 225.0f;
+		float directionLeftMax = 315.0f;
+
+		if ((this.direction > directionRightMin) &&
+			(this.direction <= directionRightMax))
 		{
 			sideSprite.setPosition(position.x, position.y);
 			sideSprite.setCenter(position.x, position.y);
@@ -41,7 +51,8 @@ public class LivingEntity extends AbstractGameEntity {
 			sideSprite.draw(batch);
 		}
 
-		else if (this.direction == Constants.DIRECTION_LEFT)
+		else if ((this.direction > directionLeftMin) &&
+			(this.direction <= directionLeftMax))
 		{
 			sideSprite.setPosition(position.x, position.y);
 			sideSprite.setCenter(position.x, position.y);
@@ -51,18 +62,20 @@ public class LivingEntity extends AbstractGameEntity {
 			sideSprite.draw(batch);
 		}
 
-		else if (this.direction == Constants.DIRECTION_UP) {
-			backSprite.setPosition(position.x, position.y);
-			backSprite.setCenter(position.x, position.y);
-			backSprite.setOriginCenter();
-			backSprite.draw(batch);
-		}
-
-		else if (this.direction == Constants.DIRECTION_DOWN) {
+		else if ((this.direction > directionDownMin) &&
+			(this.direction <= directionDownMax)) {
 			frontSprite.setPosition(position.x, position.y);
 			frontSprite.setCenter(position.x, position.y);
 			frontSprite.setOriginCenter();
 			frontSprite.draw(batch);
+		}
+
+		else if ((this.direction > directionUpMin) ||
+			(this.direction <= directionUpMax)) {
+			backSprite.setPosition(position.x, position.y);
+			backSprite.setCenter(position.x, position.y);
+			backSprite.setOriginCenter();
+			backSprite.draw(batch);
 		}
 
 		else {

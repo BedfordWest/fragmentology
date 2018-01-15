@@ -54,9 +54,9 @@ public class Constants {
 	public static final int ZONE_Y_TILES = 15;
 
 	/** General constants for code readability **/
-	public static final float DIRECTION_RIGHT = 0.0f;
-	public static final float DIRECTION_LEFT = 180.0f;
-	public static final float DIRECTION_UP = 270.0f;
-	public static final float DIRECTION_DOWN = 90.0f;
+	public static final float DIRECTION_RIGHT = 90.0f;
+	public static final float DIRECTION_LEFT = 270.0f;
+	public static final float DIRECTION_UP = 0.0f;
+	public static final float DIRECTION_DOWN = 180.0f;
 
 }
