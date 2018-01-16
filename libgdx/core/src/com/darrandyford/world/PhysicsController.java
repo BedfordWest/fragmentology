@@ -1,6 +1,7 @@
 package com.darrandyford.world;
 
 import box2dLight.ConeLight;
+import box2dLight.Light;
 import box2dLight.RayHandler;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
@@ -130,7 +131,8 @@ public class PhysicsController {
 	 */
 	private void initLights() {
 		rayHandler = new RayHandler(b2world);
-		rayHandler.setAmbientLight(0.1f, 0.1f, 0.1f, 1f);
+		rayHandler.useDiffuseLight(true);
+		rayHandler.setAmbientLight(0.7f, 0.7f, 0.7f, 1f);
 		rayHandler.setBlurNum(3);
 		rayHandler.setShadows(true);
 
@@ -174,6 +176,7 @@ public class PhysicsController {
 	 * @param deltaTime time elapsed since last cycle (in ms)
 	 */
 	public void updateEnemyPhysics(float deltaTime) {
+		boolean playerSpotted = false;
 		ArrayList<Enemy> enemies = worldController.getZone().getEnemies();
 		for(Enemy enemy:enemies) {
 			Vector2 moveSpeed = enemy.getMoveSpeed();
@@ -186,9 +189,33 @@ public class PhysicsController {
 				conelight.setDirection(-enemy.getDirection() + 90.0f);
 				conelight.setPosition(enemy.getPosition());
 				conelight.update();
+				if(!playerSpotted) {
+					// Conelights contain areas much farther and narrower than are actually visible, so temporarily
+					//    adjust with shorter distance and wider degree for collision detection
+					conelight.setDistance(conelight.getDistance() - 4.0f);
+					conelight.setConeDegree(conelight.getConeDegree() + 20.0f);
+					conelight.update();
+					if(playerInLight(conelight)) playerSpotted = true;
+					conelight.setDistance(conelight.getDistance() + 4.0f);
+					conelight.setConeDegree((conelight.getConeDegree() - 20.0f));
+					conelight.update();
+				}
 			}
+			if(playerSpotted) worldController.playerSpotted(enemy);
 		}
 	}
+
+	/**
+	 * Check if the player is in a given light source
+	 */
+	private boolean playerInLight(Light light) {
+		ArrayList<Vector2> contactPoints = player.getContactPoints();
+		for(Vector2 point:contactPoints) {
+			if(light.contains(point.x, point.y)) return true;
+		}
+		return false;
+	}
+
 
 	public void dispose() {
 		rayHandler.dispose();

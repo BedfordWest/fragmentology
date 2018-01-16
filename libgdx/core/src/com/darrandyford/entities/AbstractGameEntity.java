@@ -9,6 +9,8 @@ import com.badlogic.gdx.physics.box2d.Transform;
 import com.darrandyford.utils.Constants;
 import com.darrandyford.world.WorldController;
 
+import java.util.ArrayList;
+
 /**
  * Abstract game entity - all game entities should inherit from this.
  */
@@ -90,6 +92,18 @@ public abstract class AbstractGameEntity {
 	public Rectangle getBounds() { return bounds; }
 	public Body getBody() { return body; }
 	public boolean getMoving() { return isMoving; }
+	public ArrayList<Vector2> getContactPoints() {
+		ArrayList<Vector2> contactPoints = new ArrayList<Vector2>();
+		contactPoints.add(new Vector2(position.x, position.y));
+		contactPoints.add(new Vector2(position.x + dimension.x, position.y));
+		contactPoints.add(new Vector2(position.x, position.y + dimension.y));
+		contactPoints.add(new Vector2(position.x + dimension.x, position.y + dimension.y));
+		contactPoints.add(new Vector2(position.x + dimension.x/2, position.y));
+		contactPoints.add(new Vector2(position.x, position.y + dimension.y/2));
+		contactPoints.add(new Vector2(position.x + dimension.x/2, position.y + dimension.y));
+		contactPoints.add(new Vector2(position.x + dimension.x, position.y + dimension.y/2));
+		return contactPoints;
+	}
 
 	// Setters
 	public void setPosition(float x, float y) {

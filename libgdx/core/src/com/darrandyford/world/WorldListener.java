@@ -1,5 +1,7 @@
 package com.darrandyford.world;
 
+import box2dLight.ConeLight;
+import box2dLight.Light;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.darrandyford.entities.living.characters.Enemy;
@@ -35,6 +37,20 @@ public class WorldListener implements ContactListener {
 		}
 
 		else if (aClassType.isAssignableFrom(Enemy.class)) {
+			if (bClassType.isAssignableFrom(Player.class)) {
+				worldController.reset();
+			}
+
+		}
+
+		else if (aClassType.isAssignableFrom(Player.class)) {
+			if (bClassType.isAssignableFrom(ConeLight.class)) {
+				worldController.reset();
+			}
+
+		}
+
+		else if (aClassType.isAssignableFrom(ConeLight.class)) {
 			if (bClassType.isAssignableFrom(Player.class)) {
 				worldController.reset();
 			}
