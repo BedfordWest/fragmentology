@@ -138,7 +138,7 @@ public class Assets implements Disposable, AssetErrorListener {
 	public class AssetGround extends AssetGenericNonLiving {
 
 		public AssetGround(TextureAtlas atlas) {
-			region = atlas.findRegion("TR_PLACEHOLDER_01_32_X");
+			region = atlas.findRegion("TR_DIRTROCKS_01_32_X");
 		}
 	}
 
