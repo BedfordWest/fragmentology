@@ -43,20 +43,6 @@ public class WorldListener implements ContactListener {
 
 		}
 
-		else if (aClassType.isAssignableFrom(Player.class)) {
-			if (bClassType.isAssignableFrom(ConeLight.class)) {
-				worldController.reset();
-			}
-
-		}
-
-		else if (aClassType.isAssignableFrom(ConeLight.class)) {
-			if (bClassType.isAssignableFrom(Player.class)) {
-				worldController.reset();
-			}
-
-		}
-
 	}
 
 	/** Called when two fixtures cease to touch. */
