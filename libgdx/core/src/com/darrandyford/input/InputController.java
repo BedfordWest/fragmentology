@@ -190,6 +190,11 @@ public class InputController extends InputAdapter {
 				//player attacks
 				break;
 
+			case Input.Keys.Q:
+				Gdx.app.debug(TAG, "Q pressed -> quitting game");
+				Gdx.app.exit();
+				break;
+
 			case Input.Keys.A:
 				if(Gdx.input.isKeyPressed(Input.Keys.D)){
 					//player can't move if pressing opposite directions
