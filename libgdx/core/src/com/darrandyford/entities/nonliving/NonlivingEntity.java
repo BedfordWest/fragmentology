@@ -12,9 +12,9 @@ public class NonlivingEntity extends AbstractGameEntity {
 	protected Sprite sprite;
 
 	public NonlivingEntity(float positionX, float positionY, float dimensionX, float dimensionY,
-	                    Assets.AssetGenericNonLiving asset) {
+	                    Assets.AssetGenericNonLiving asset, String region) {
 		super(positionX, positionY, dimensionX, dimensionY);
-		setSprite(asset.getRegion());
+		setSprite(asset.getRegions().get(region));
 		init();
 	}
 
