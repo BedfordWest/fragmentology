@@ -64,8 +64,8 @@ public class Enemy extends LivingEntity {
 	 */
 	private void executePatrol() {
 		Random rand = new Random();
-		float xLocation = rand.nextInt(Constants.ZONE_X_TILES);
-		float yLocation = rand.nextInt(Constants.ZONE_Y_TILES);
+		float xLocation = rand.nextInt(Constants.ZONE_X_TILES * 2);
+		float yLocation = rand.nextInt(Constants.ZONE_Y_TILES * 2);
 		Vector2 randomLocation = new Vector2(xLocation, yLocation);
 		Vector2 normalizedDirection = new Vector2(randomLocation);
 		normalizedDirection.sub(position).nor();
