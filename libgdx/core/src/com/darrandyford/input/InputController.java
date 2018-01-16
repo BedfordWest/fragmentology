@@ -190,8 +190,8 @@ public class InputController extends InputAdapter {
 				//player attacks
 				break;
 
-			case Input.Keys.Q:
-				Gdx.app.debug(TAG, "Q pressed -> quitting game");
+			case Input.Keys.ESCAPE:
+				Gdx.app.debug(TAG, "ESC pressed -> quitting game");
 				Gdx.app.exit();
 				break;
 
