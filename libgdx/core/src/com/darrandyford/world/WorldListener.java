@@ -10,6 +10,11 @@ import com.darrandyford.entities.living.characters.Player;
  * adjustments.
  */
 public class WorldListener implements ContactListener {
+	private WorldController worldController;
+
+	public WorldListener(WorldController worldController) {
+		this.worldController = worldController;
+	}
 
 	/** Called when two fixtures begin to touch. */
 	@Override
@@ -24,12 +29,14 @@ public class WorldListener implements ContactListener {
 
 		if (aClassType.isAssignableFrom(Player.class)) {
 			if (bClassType.isAssignableFrom(Enemy.class)) {
+				worldController.reset();
 			}
 
 		}
 
 		else if (aClassType.isAssignableFrom(Enemy.class)) {
 			if (bClassType.isAssignableFrom(Player.class)) {
+				worldController.reset();
 			}
 
 		}
