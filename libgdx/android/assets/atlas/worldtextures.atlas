@@ -116,6 +116,13 @@ EN_PLACEHOLDER_01_32_X
   orig: 32, 32
   offset: 0, 0
   index: -1
+HO_BASICBRICKWALL_01_32_X
+  rotate: false
+  xy: 273, 19
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 HO_PLACEHOLDER_01_16_X
   rotate: false
   xy: 73, 1
