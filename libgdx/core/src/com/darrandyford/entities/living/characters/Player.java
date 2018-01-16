@@ -14,7 +14,9 @@ public class Player extends LivingEntity {
 	// Set the TAG for logging purposes
 	private static final String TAG = Player.class.getName();
 
-	public Player() {
+	public Player(float positionX, float positionY, float dimensionX, float dimensionY,
+	             Assets.AssetGenericLiving asset) {
+		super(positionX, positionY, dimensionX, dimensionY, asset);
 		init();
 	}
 
@@ -22,11 +24,6 @@ public class Player extends LivingEntity {
 	 * Initialize the player. Should be facing right by default. The origin should be in the middle of the player.
 	 */
 	private void init () {
-		setPosition((Constants.ZONE_X_TILES * Constants.TILE_WIDTH)/2,
-			(Constants.ZONE_Y_TILES * Constants.TILE_HEIGHT)/2);
-		setSideSprite(Assets.instance.player.left);
-		setBackSprite(Assets.instance.player.up);
-		setFrontSprite(Assets.instance.player.down);
 	}
 
 	/**

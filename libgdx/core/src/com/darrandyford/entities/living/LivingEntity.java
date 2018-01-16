@@ -1,9 +1,11 @@
 package com.darrandyford.entities.living;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.darrandyford.assets.Assets;
 import com.darrandyford.entities.AbstractGameEntity;
 import com.darrandyford.utils.Constants;
 
@@ -13,8 +15,12 @@ public class LivingEntity extends AbstractGameEntity {
 	private static final String TAG = LivingEntity.class.getName();
 	protected Sprite sideSprite, frontSprite, backSprite;
 
-
-	public LivingEntity() {
+	public LivingEntity(float positionX, float positionY, float dimensionX, float dimensionY,
+	                    Assets.AssetGenericLiving asset) {
+		super(positionX, positionY, dimensionX, dimensionY);
+		setSideSprite(asset.getLeft());
+		setFrontSprite(asset.getDown());
+		setBackSprite(asset.getUp());
 		init();
 	}
 

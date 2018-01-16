@@ -50,8 +50,8 @@ public class Constants {
 	/** Enemy Constants **/
 
 	/** Zone Constants **/
-	public static final int ZONE_X_TILES = 20;
-	public static final int ZONE_Y_TILES = 15;
+	public static final int ZONE_X_TILES = 25;
+	public static final int ZONE_Y_TILES = 20;
 
 	/** General constants for code readability **/
 	public static final float DIRECTION_RIGHT = 90.0f;

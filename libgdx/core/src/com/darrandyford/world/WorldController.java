@@ -3,6 +3,7 @@ package com.darrandyford.world;
 
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
+import com.darrandyford.assets.Assets;
 import com.darrandyford.entities.AbstractGameEntity;
 import com.darrandyford.entities.living.LivingEntity;
 import com.darrandyford.entities.living.characters.Enemy;
@@ -51,7 +52,9 @@ public class WorldController {
 	 * 	completely deleting and re-instantiating it.
 	 */
 	private void init () {
-		player = new Player();
+		player = new Player((Constants.ZONE_X_TILES * Constants.TILE_WIDTH)/2,
+			(Constants.ZONE_Y_TILES * Constants.TILE_HEIGHT)/2,
+			2.0f, 2.0f, Assets.instance.player);
 		cameraHelper = new CameraHelper();
 		initZone();
 		initPhysics();

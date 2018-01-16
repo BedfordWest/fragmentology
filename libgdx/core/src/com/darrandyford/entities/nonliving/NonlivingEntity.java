@@ -3,6 +3,7 @@ package com.darrandyford.entities.nonliving;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.darrandyford.assets.Assets;
 import com.darrandyford.entities.AbstractGameEntity;
 
 public class NonlivingEntity extends AbstractGameEntity {
@@ -10,8 +11,10 @@ public class NonlivingEntity extends AbstractGameEntity {
 	private static final String TAG = NonlivingEntity.class.getName();
 	protected Sprite sprite;
 
-
-	public NonlivingEntity() {
+	public NonlivingEntity(float positionX, float positionY, float dimensionX, float dimensionY,
+	                    Assets.AssetGenericNonLiving asset) {
+		super(positionX, positionY, dimensionX, dimensionY);
+		setSprite(asset.getRegion());
 		init();
 	}
 

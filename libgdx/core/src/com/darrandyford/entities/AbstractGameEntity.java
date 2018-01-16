@@ -27,11 +27,11 @@ public abstract class AbstractGameEntity {
 	/**
 	 * Constructor - we'll want to default these values for all subclasses
 	 */
-	public AbstractGameEntity () {
-		position = new Vector2(0f,0f);
-		dimension = new Vector2(2f, 2f);
+	public AbstractGameEntity (float positionX, float positionY, float dimensionX, float dimensionY) {
+		position = new Vector2(positionX, positionY);
+		dimension = new Vector2(dimensionX, dimensionY);
 		origin = new Vector2(this.position.x, this.position.y);
-		scale = new Vector2(1f,1f);
+		scale = new Vector2(1.0f,1.0f);
 		bounds = new Rectangle(this.position.x - this.dimension.x/2, this.position.y - this.dimension.y/2,
 			this.dimension.x, this.dimension.y);
 		rotation = 0f;
@@ -39,7 +39,6 @@ public abstract class AbstractGameEntity {
 		acceleration = new Vector2(0,0);
 		moveSpeed = new Vector2(0,0);
 		moveRate = 5.0f;
-
 	}
 
 	/**
@@ -114,5 +113,6 @@ public abstract class AbstractGameEntity {
 	}
 	public void setBody(Body body) { this.body = body; }
 	public void setMoving(boolean moving) { isMoving = moving; }
+	public void setDimension(float x, float y) { this.dimension.x = x; this.dimension.y = y; }
 
 }

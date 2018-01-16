@@ -2,6 +2,7 @@ package com.darrandyford.entities.living.characters;
 
 import box2dLight.ConeLight;
 import com.badlogic.gdx.math.Vector2;
+import com.darrandyford.assets.Assets;
 import com.darrandyford.entities.living.LivingEntity;
 import com.darrandyford.utils.Constants;
 
@@ -18,7 +19,9 @@ public class Enemy extends LivingEntity {
 	// Set the TAG for logging purposes
 	private static final String TAG = Enemy.class.getName();
 
-	public Enemy() {
+	public Enemy(float positionX, float positionY, float dimensionX, float dimensionY,
+	                    Assets.AssetGenericLiving asset) {
+		super(positionX, positionY, dimensionX, dimensionY, asset);
 		init();
 	}
 
