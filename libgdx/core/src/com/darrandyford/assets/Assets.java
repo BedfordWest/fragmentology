@@ -9,6 +9,9 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Disposable;
 import com.darrandyford.utils.Constants;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 /**
  * Handles asset management. In particular, creates the asset manager and handles unpacking the atlas into
  * defined assets with textures for loading during render.
@@ -102,9 +105,9 @@ public class Assets implements Disposable, AssetErrorListener {
 	 * Allows for easy instantiation of nonliving entities
 	 */
 	public abstract class AssetGenericNonLiving {
-		protected TextureAtlas.AtlasRegion region;
+		protected HashMap<String, TextureAtlas.AtlasRegion> regions = new HashMap<String, TextureAtlas.AtlasRegion>();
 
-		public TextureAtlas.AtlasRegion getRegion() { return region; }
+		public HashMap<String, TextureAtlas.AtlasRegion> getRegions() { return regions; }
 	}
 
 	/**
@@ -138,7 +141,7 @@ public class Assets implements Disposable, AssetErrorListener {
 	public class AssetGround extends AssetGenericNonLiving {
 
 		public AssetGround(TextureAtlas atlas) {
-			region = atlas.findRegion("TR_DIRTROCKS_V2_01_32_X");
+			regions.put("dirtrocks", atlas.findRegion("TR_DIRTROCKS_V2_01_32_X"));
 		}
 	}
 
@@ -148,7 +151,7 @@ public class Assets implements Disposable, AssetErrorListener {
 	public class AssetWall extends AssetGenericNonLiving {
 
 		public AssetWall (TextureAtlas atlas) {
-			region = atlas.findRegion("HO_PLACEHOLDER_01_32_X");
+			regions.put("wall", atlas.findRegion("HO_PLACEHOLDER_01_32_X"));
 		}
 	}
 
@@ -158,7 +161,7 @@ public class Assets implements Disposable, AssetErrorListener {
 	public class AssetObject extends AssetGenericNonLiving {
 
 		public AssetObject (TextureAtlas atlas) {
-			region = atlas.findRegion("IT_PLACEHOLDER_01_32_X");
+			regions.put("object", atlas.findRegion("IT_PLACEHOLDER_01_32_X"));
 		}
 	}
 

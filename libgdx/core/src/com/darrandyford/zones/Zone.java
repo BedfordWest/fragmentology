@@ -94,10 +94,10 @@ public class Zone {
 				if (!tile.isSolid())
 				{
 					cell.setTile(new StaticTiledMapTile
-						(Assets.instance.ground.getRegion()));
+						(Assets.instance.ground.getRegions().get("dirtrocks")));
 				} else if (tile.isSolid())
 					cell.setTile(new StaticTiledMapTile
-						(Assets.instance.wall.getRegion()));
+						(Assets.instance.wall.getRegions().get("wall")));
 				{
 				}
 				losLayer.setCell(
@@ -126,9 +126,9 @@ public class Zone {
 		for(int i = 0; i < Constants.ZONE_X_TILES; i++) {
 			NonlivingEntity topWall = new NonlivingEntity(i * Constants.TILE_WIDTH + Constants.TILE_WIDTH/2,
 				Constants.ZONE_Y_TILES * Constants.TILE_HEIGHT - Constants.TILE_HEIGHT/2,
-				Constants.TILE_WIDTH, Constants.TILE_HEIGHT, Assets.instance.wall);
+				Constants.TILE_WIDTH, Constants.TILE_HEIGHT, Assets.instance.wall, "wall");
 			NonlivingEntity bottomWall = new NonlivingEntity(i * Constants.TILE_WIDTH + Constants.TILE_WIDTH/2,
-				Constants.TILE_HEIGHT/2, Constants.TILE_WIDTH, Constants.TILE_HEIGHT, Assets.instance.wall);
+				Constants.TILE_HEIGHT/2, Constants.TILE_WIDTH, Constants.TILE_HEIGHT, Assets.instance.wall, "wall");
 			walls.add(topWall);
 			walls.add(bottomWall);
 		}
@@ -137,10 +137,10 @@ public class Zone {
 			NonlivingEntity rightWall =
 				new NonlivingEntity(Constants.ZONE_X_TILES * Constants.TILE_WIDTH - Constants.TILE_WIDTH/2,
 				i * Constants.TILE_HEIGHT + Constants.TILE_HEIGHT/2, Constants.TILE_WIDTH,
-					Constants.TILE_HEIGHT, Assets.instance.wall);
+					Constants.TILE_HEIGHT, Assets.instance.wall, "wall");
 			NonlivingEntity leftWall = new NonlivingEntity(Constants.TILE_WIDTH/2,
 				i * Constants.TILE_HEIGHT + Constants.TILE_HEIGHT/2, Constants.TILE_WIDTH,
-				Constants.TILE_HEIGHT, Assets.instance.wall);
+				Constants.TILE_HEIGHT, Assets.instance.wall, "wall");
 			walls.add(rightWall);
 			walls.add(leftWall);
 		}
@@ -235,7 +235,7 @@ public class Zone {
 			}
 			if(!overlap) {
 				NonlivingEntity object = new NonlivingEntity(newX, newY, 1.0f, 1.0f,
-					Assets.instance.object);
+					Assets.instance.object, "object");
 				objects.add(object);
 			}
 		}
