@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Disposable;
 import com.darrandyford.utils.Constants;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -156,7 +155,7 @@ public class Assets implements Disposable, AssetErrorListener {
 	public class AssetWall extends AssetGenericNonLiving {
 
 		public AssetWall (TextureAtlas atlas) {
-			regions.put("wall", atlas.findRegion("HO_PLACEHOLDER_01_32_X"));
+			regions.put("wall", atlas.findRegion("HO_BASICBRICKWALL_01_32_X"));
 		}
 	}
 
