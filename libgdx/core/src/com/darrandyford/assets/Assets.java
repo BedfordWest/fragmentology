@@ -142,6 +142,11 @@ public class Assets implements Disposable, AssetErrorListener {
 
 		public AssetGround(TextureAtlas atlas) {
 			regions.put("dirtrocks", atlas.findRegion("TR_DIRTROCKS_V2_01_32_X"));
+			regions.put("assorted", atlas.findRegion("TR_ASSORTED_01_32_X"));
+			regions.put("empty", atlas.findRegion("TR_EMPTY_01_32_X"));
+			regions.put("specks", atlas.findRegion("TR_SPECKS_01_32_X"));
+			regions.put("dirtrocks2", atlas.findRegion("TR_DIRTROCKS_V3_01_32_X"));
+			regions.put("dirtrocks3", atlas.findRegion("TR_DIRTROCKS_V4_01_32_X"));
 		}
 	}
 

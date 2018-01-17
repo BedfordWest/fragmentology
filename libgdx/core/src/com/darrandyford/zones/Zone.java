@@ -28,6 +28,11 @@ public class Zone {
 	private List<TerrainTile> zoneTiles = new ArrayList<TerrainTile>();
 	private static final int ENEMY_TOTAL = 4;
 	private static final int OBJECT_TOTAL = 3;
+	private static final int CHANCE_ROCK1_TILE = 1;
+	private static final int CHANCE_ROCK2_TILE = 6;
+	private static final int CHANCE_ROCK3_TILE = 1;
+	private static final int CHANCE_ASSORTED_TILE = 2;
+	private static final int CHANCE_SPECKS_TILE = 25;
 	private ArrayList<NonlivingEntity> walls = new ArrayList<NonlivingEntity>();
 	private ArrayList<NonlivingEntity> objects = new ArrayList<NonlivingEntity>();
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
@@ -68,22 +73,6 @@ public class Zone {
 			(int) Constants.TILE_WIDTH * (int) Constants.WORLD_SCALE,
 			(int) Constants.TILE_HEIGHT * (int) Constants.WORLD_SCALE));
 
-		for ( TerrainTile tile : zoneTiles) {
-			if (!tile.isSolid()) {
-				}
-				else {
-					}
-		}
-		createWalls();
-		createEnemies(ENEMY_TOTAL);
-		createObjects(OBJECT_TOTAL);
-		updateZoneState();
-	}
-
-	/**
-	 * Update the zone state as necessary. This will later contain logic for player line-of-sight, etc.
-	 */
-	public void updateZoneState() {
 		TiledMapTileLayer losLayer = (TiledMapTileLayer)map.getLayers().get(0);
 
 		for (TerrainTile tile : zoneTiles) {
@@ -93,8 +82,31 @@ public class Zone {
 				TiledMapTileLayer.Cell cell = new TiledMapTileLayer.Cell();
 				if (!tile.isSolid())
 				{
-					cell.setTile(new StaticTiledMapTile
-						(Assets.instance.ground.getRegions().get("dirtrocks")));
+					Random rand = new Random();
+					if(rand.nextInt(199) + 1 <= CHANCE_ROCK1_TILE) {
+						cell.setTile(new StaticTiledMapTile
+							(Assets.instance.ground.getRegions().get("dirtrocks")));
+					}
+					else if(rand.nextInt(199) + 1 <= CHANCE_ROCK2_TILE) {
+						cell.setTile(new StaticTiledMapTile
+							(Assets.instance.ground.getRegions().get("dirtrocks2")));
+					}
+					else if(rand.nextInt(199) + 1 <= CHANCE_ROCK3_TILE) {
+						cell.setTile(new StaticTiledMapTile
+							(Assets.instance.ground.getRegions().get("dirtrocks3")));
+					}
+					else if(rand.nextInt(99) + 1 <= CHANCE_ASSORTED_TILE) {
+						cell.setTile(new StaticTiledMapTile
+							(Assets.instance.ground.getRegions().get("assorted")));
+					}
+					else if(rand.nextInt(99) + 1 <= CHANCE_SPECKS_TILE) {
+						cell.setTile(new StaticTiledMapTile
+							(Assets.instance.ground.getRegions().get("specks")));
+					}
+					else {
+						cell.setTile(new StaticTiledMapTile
+							(Assets.instance.ground.getRegions().get("empty")));
+					}
 				} else if (tile.isSolid())
 					cell.setTile(new StaticTiledMapTile
 						(Assets.instance.wall.getRegions().get("wall")));
@@ -114,7 +126,16 @@ public class Zone {
 				);
 			}
 		}
+		createWalls();
+		createEnemies(ENEMY_TOTAL);
+		createObjects(OBJECT_TOTAL);
+		updateZoneState();
+	}
 
+	/**
+	 * Update the zone state as necessary. This will later contain logic for player line-of-sight, etc.
+	 */
+	public void updateZoneState() {
 	}
 
 	private boolean inRange(float numToCheck, Vector2 vec) {
