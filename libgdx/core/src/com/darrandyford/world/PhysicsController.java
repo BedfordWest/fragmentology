@@ -46,6 +46,7 @@ public class PhysicsController {
 		b2world.setContactListener(worldListener);
 		initPlayerPhysics();
 		initEnemyPhysics();
+		initObjectPhysics();
 		initLights();
 		initWallPhysics();
 	}
@@ -122,6 +123,32 @@ public class PhysicsController {
 			fixtureDef.restitution = 0f;
 			wall.getBody().createFixture(fixtureDef);
 			wall.getBody().setUserData(wall);
+			polygonShape.dispose();
+		}
+	}
+
+	/**
+	 * Initialize object physics
+	 */
+	private void initObjectPhysics() {
+		ArrayList<NonlivingEntity> objects = worldController.getZone().getObjects();
+		for (NonlivingEntity object : objects) {
+			BodyDef bodyDef = new BodyDef();
+			bodyDef.type = BodyDef.BodyType.DynamicBody;
+			bodyDef.position.set(object.getPosition());
+			object.setBody(b2world.createBody(bodyDef));
+			PolygonShape polygonShape = new PolygonShape();
+			polygonShape.setAsBox(
+					object.getDimension().x / 2.0f,
+					object.getDimension().y / 2.0f,
+					new Vector2(0.0f, 0.0f),
+					0
+			);
+			FixtureDef fixtureDef = new FixtureDef();
+			fixtureDef.shape = polygonShape;
+			fixtureDef.restitution = 0f;
+			object.getBody().createFixture(fixtureDef);
+			object.getBody().setUserData(object);
 			polygonShape.dispose();
 		}
 	}
