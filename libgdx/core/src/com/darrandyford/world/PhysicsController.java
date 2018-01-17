@@ -4,6 +4,7 @@ import box2dLight.ConeLight;
 import box2dLight.Light;
 import box2dLight.RayHandler;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.darrandyford.entities.living.LivingEntity;
@@ -138,11 +139,38 @@ public class PhysicsController {
 
 		ArrayList<Enemy> enemies = worldController.getZone().getEnemies();
 		for(Enemy enemy:enemies) {
+
 			for(int i = 0; i < enemy.getNumConelights(); i++) {
 				enemy.addConelight(new ConeLight(rayHandler, 3,
 					new Color(1.0f, 0.03f, 0.3f, 1.0f),
 					12.0f, enemy.getPosition().x, enemy.getPosition().y,
 					enemy.getDirection(), 20.0f));
+				if(!enemy.coneLightBodySet()) {
+					BodyDef bodyDef = new BodyDef();
+					bodyDef.type = BodyDef.BodyType.DynamicBody;
+					bodyDef.position.set(enemy.getOrigin());
+					enemy.setLightBody(b2world.createBody(bodyDef));
+					PolygonShape coneLightBody = new PolygonShape();
+					float directionInRad = MathUtils.degRad * enemy.getDirection();
+					float coneWidth = 20.0f * MathUtils.degRad;
+					Vector2 leftVecRaw = new Vector2((float)Math.cos(directionInRad - coneWidth),
+						(float)Math.sin(directionInRad - coneWidth));
+					Vector2 rightVecRaw = new Vector2((float)Math.cos(directionInRad + coneWidth),
+						(float)Math.sin(directionInRad + coneWidth));
+					Vector2 leftVec = new Vector2(leftVecRaw.nor());
+					Vector2 rightVec = new Vector2(rightVecRaw.nor());
+					Vector2 enemyPosLeft = new Vector2(enemy.getPosition().add(leftVec.scl(10.f)));
+					Vector2 enemyPosRight = new Vector2(enemy.getPosition().add(rightVec.scl(10.f)));
+					Vector2[] vertices = {enemy.getPosition(), enemyPosLeft, enemyPosRight};
+					coneLightBody.set(vertices);
+					FixtureDef fixtureDef = new FixtureDef();
+					fixtureDef.shape = coneLightBody;
+					fixtureDef.restitution = 0f;
+					enemy.getLightBody().createFixture(fixtureDef);
+					enemy.getLightBody().setUserData(enemy.getConelights().get(0));
+					coneLightBody.dispose();
+					enemy.setConeLightBodySetState(true);
+				}
 			}
 		}
 
@@ -182,11 +210,13 @@ public class PhysicsController {
 			Vector2 moveSpeed = enemy.getMoveSpeed();
 			enemy.getBody()
 				.setLinearVelocity(moveSpeed);
+			enemy.getLightBody().setLinearVelocity(moveSpeed);
+			enemy.getLightBody().v
 			if (!(moveSpeed.x == 0.0f && moveSpeed.y == 0.0f)) {
 				enemy.setMoving(true);
 			} else enemy.setMoving(false);
 			for(ConeLight conelight:enemy.getConelights()) {
-				conelight.setDirection(-enemy.getDirection() + 90.0f);
+				conelight.setDirection(enemy.getDirection());
 				conelight.setPosition(enemy.getPosition());
 				conelight.update();
 				if(!playerSpotted) {

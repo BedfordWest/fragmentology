@@ -2,6 +2,7 @@ package com.darrandyford.entities.living.characters;
 
 import box2dLight.ConeLight;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.darrandyford.assets.Assets;
 import com.darrandyford.entities.living.LivingEntity;
 import com.darrandyford.utils.Constants;
@@ -15,6 +16,8 @@ public class Enemy extends LivingEntity {
 	private enum AlertState { STATIONARY, PATROLLING, ALERT, CHASING }
 	private AlertState alertState;
 	private float patrolDuration, patrolCurrent;
+	private Body lightBody;
+	boolean coneLightBodySet = false;
 
 	// Set the TAG for logging purposes
 	private static final String TAG = Enemy.class.getName();
@@ -69,16 +72,21 @@ public class Enemy extends LivingEntity {
 		Vector2 randomLocation = new Vector2(xLocation, yLocation);
 		Vector2 normalizedDirection = new Vector2(randomLocation);
 		normalizedDirection.sub(position).nor();
-		float angle = (360.0f - normalizedDirection.angle()) + 90.0f;
-		if(angle >= 360.0f) {
-			angle -= 360.0f;
-		}
+		float angle = normalizedDirection.angle();
 		setDirection(angle);
 		float newSpeedX = normalizedDirection.x * moveRate;
 		float newSpeedY = normalizedDirection.y * moveRate;
 		body.setLinearVelocity(newSpeedX, newSpeedY);
 		setMoveSpeed(newSpeedX, newSpeedY);
 
+	}
+
+	public boolean coneLightBodySet() {
+		return coneLightBodySet;
+	}
+
+	public void setConeLightBodySetState(boolean setState) {
+		coneLightBodySet = setState;
 	}
 
 	//Getters
@@ -88,9 +96,13 @@ public class Enemy extends LivingEntity {
 	public int getNumConelights() {
 		return numConelights;
 	}
+	public Body getLightBody() { return this.lightBody; }
 
 	//Setters
 	public void addConelight(ConeLight light) {
 		coneLights.add(light);
+	}
+	public void setLightBody(Body body) {
+		this.lightBody = body;
 	}
 }

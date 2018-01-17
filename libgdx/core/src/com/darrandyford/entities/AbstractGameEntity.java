@@ -80,7 +80,7 @@ public abstract class AbstractGameEntity {
 	public abstract void render (SpriteBatch batch);
 
 	// Getters
-	public Vector2 getPosition() { return this.position; }
+	public Vector2 getPosition() { return new Vector2(this.position); }
 	public Vector2 getDimension() { return this.dimension; }
 	public Vector2 getOrigin() { return this.origin; }
 	public float getRotation() { return this.rotation; }
