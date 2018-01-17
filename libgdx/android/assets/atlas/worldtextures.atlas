@@ -60,30 +60,37 @@ CH_PLACEHOLDER_01_32_X
   orig: 32, 32
   offset: 0, 0
   index: -1
-EN_PLACEHOLDER_01_16_SD
+EN_BLOB_01_16_S
   rotate: false
   xy: 19, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-EN_PLACEHOLDER_01_16_SL
+EN_PLACEHOLDER_01_16_SD
   rotate: false
   xy: 205, 51
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-EN_PLACEHOLDER_01_16_SU
+EN_PLACEHOLDER_01_16_SL
   rotate: false
   xy: 37, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
-EN_PLACEHOLDER_01_16_X
+EN_PLACEHOLDER_01_16_SU
   rotate: false
   xy: 205, 33
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+EN_PLACEHOLDER_01_16_X
+  rotate: false
+  xy: 55, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -125,7 +132,7 @@ HO_BASICBRICKWALL_01_32_X
   index: -1
 HO_PLACEHOLDER_01_16_X
   rotate: false
-  xy: 55, 1
+  xy: 73, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -139,7 +146,7 @@ HO_PLACEHOLDER_01_32_X
   index: -1
 IT_PLACEHOLDER_01_16_X
   rotate: false
-  xy: 73, 1
+  xy: 91, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -153,14 +160,14 @@ IT_PLACEHOLDER_01_32_X
   index: -1
 IT_STICK_01_16_X
   rotate: false
-  xy: 91, 1
+  xy: 109, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 SO_PLACEHOLDER_01_16_X
   rotate: false
-  xy: 109, 1
+  xy: 127, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -216,7 +223,7 @@ TR_EMPTY_01_32_X
   index: -1
 TR_PLACEHOLDER_01_16_X
   rotate: false
-  xy: 127, 1
+  xy: 145, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
