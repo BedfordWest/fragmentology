@@ -1,187 +1,222 @@
 
 worldtextures.png
-size: 512,64
+size: 256,128
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
 CH_PLACEHOLDER_01_16_SD
   rotate: false
-  xy: 1, 1
+  xy: 239, 103
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 CH_PLACEHOLDER_01_16_SL
   rotate: false
-  xy: 477, 35
+  xy: 239, 85
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 CH_PLACEHOLDER_01_16_SU
   rotate: false
-  xy: 495, 35
+  xy: 1, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 CH_PLACEHOLDER_01_16_X
   rotate: false
-  xy: 19, 1
+  xy: 171, 35
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 CH_PLACEHOLDER_01_32_SD
   rotate: false
-  xy: 1, 19
+  xy: 1, 87
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 CH_PLACEHOLDER_01_32_SL
   rotate: false
-  xy: 35, 19
+  xy: 1, 53
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 CH_PLACEHOLDER_01_32_SU
   rotate: false
-  xy: 69, 19
+  xy: 35, 87
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 CH_PLACEHOLDER_01_32_X
   rotate: false
-  xy: 103, 19
+  xy: 1, 19
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 EN_PLACEHOLDER_01_16_SD
   rotate: false
-  xy: 37, 1
+  xy: 205, 69
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 EN_PLACEHOLDER_01_16_SL
   rotate: false
-  xy: 55, 1
+  xy: 19, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 EN_PLACEHOLDER_01_16_SU
   rotate: false
-  xy: 73, 1
+  xy: 37, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 EN_PLACEHOLDER_01_16_X
   rotate: false
-  xy: 91, 1
+  xy: 55, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 EN_PLACEHOLDER_01_32_SD
   rotate: false
-  xy: 137, 19
+  xy: 35, 53
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 EN_PLACEHOLDER_01_32_SL
   rotate: false
-  xy: 171, 19
+  xy: 69, 87
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 EN_PLACEHOLDER_01_32_SU
   rotate: false
-  xy: 205, 19
+  xy: 35, 19
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 EN_PLACEHOLDER_01_32_X
   rotate: false
-  xy: 239, 19
+  xy: 69, 53
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 HO_PLACEHOLDER_01_16_X
   rotate: false
-  xy: 109, 1
+  xy: 73, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 HO_PLACEHOLDER_01_32_X
   rotate: false
-  xy: 273, 19
+  xy: 103, 87
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 IT_PLACEHOLDER_01_16_X
   rotate: false
-  xy: 127, 1
+  xy: 91, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 IT_PLACEHOLDER_01_32_X
   rotate: false
-  xy: 307, 19
+  xy: 69, 19
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 SO_PLACEHOLDER_01_16_X
   rotate: false
-  xy: 145, 1
+  xy: 109, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 SO_PLACEHOLDER_01_32_X
   rotate: false
-  xy: 341, 19
+  xy: 103, 53
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+TR_ASSORTED_01_32_X
+  rotate: false
+  xy: 137, 87
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 TR_DIRTROCKS_01_32_X
   rotate: false
-  xy: 375, 19
+  xy: 103, 19
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 TR_DIRTROCKS_V2_01_32_X
   rotate: false
-  xy: 409, 19
+  xy: 137, 53
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+TR_DIRTROCKS_V3_01_32_X
+  rotate: false
+  xy: 171, 87
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+TR_DIRTROCKS_V4_01_32_X
+  rotate: false
+  xy: 137, 19
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+TR_EMPTY_01_32_X
+  rotate: false
+  xy: 171, 53
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 TR_PLACEHOLDER_01_16_X
   rotate: false
-  xy: 163, 1
+  xy: 127, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 TR_PLACEHOLDER_01_32_X
   rotate: false
-  xy: 443, 19
+  xy: 205, 87
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+TR_SPECKS_01_32_X
+  rotate: false
+  xy: 205, 87
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
