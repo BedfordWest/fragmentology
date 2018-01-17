@@ -256,7 +256,7 @@ public class Zone {
 			}
 			if(!overlap) {
 				NonlivingEntity object = new NonlivingEntity(newX, newY, 1.0f, 1.0f,
-					Assets.instance.object, "object");
+					Assets.instance.object, "stick");
 				objects.add(object);
 			}
 		}
