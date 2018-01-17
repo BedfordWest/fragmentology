@@ -160,7 +160,7 @@ IT_STICK_01_16_X
   index: -1
 SO_PLACEHOLDER_01_16_X
   rotate: false
-  xy: 127, 1
+  xy: 109, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -216,11 +216,7 @@ TR_EMPTY_01_32_X
   index: -1
 TR_PLACEHOLDER_01_16_X
   rotate: false
-<<<<<<< HEAD
-  xy: 109, 1
-=======
-  xy: 145, 1
->>>>>>> feat(stick): Added a stick object to the game
+  xy: 127, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
