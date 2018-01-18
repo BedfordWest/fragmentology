@@ -3,6 +3,7 @@ package com.darrandyford.world;
 import com.badlogic.gdx.physics.box2d.*;
 import com.darrandyford.entities.living.characters.Enemy;
 import com.darrandyford.entities.living.characters.Player;
+import com.darrandyford.entities.nonliving.EnemyLight;
 
 /**
  * Handle events when two physics bodies collide. This is useful for any collision detection and corresponding game
@@ -31,11 +32,24 @@ public class WorldListener implements ContactListener {
 				worldController.reset();
 			}
 
+			else if (bClassType.isAssignableFrom(EnemyLight.class)) {
+				EnemyLight enemyLight = (EnemyLight) b.getUserData();
+				worldController.playerSpotted(enemyLight.getEnemy());
+			}
+
 		}
 
 		else if (aClassType.isAssignableFrom(Enemy.class)) {
 			if (bClassType.isAssignableFrom(Player.class)) {
 				worldController.reset();
+			}
+
+		}
+
+		else if (aClassType.isAssignableFrom(EnemyLight.class)) {
+			if (bClassType.isAssignableFrom(Player.class)) {
+				EnemyLight enemyLight = (EnemyLight) a.getUserData();
+				worldController.playerSpotted(enemyLight.getEnemy());
 			}
 
 		}

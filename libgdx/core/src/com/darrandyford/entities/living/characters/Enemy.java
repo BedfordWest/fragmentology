@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.darrandyford.assets.Assets;
 import com.darrandyford.entities.living.LivingEntity;
+import com.darrandyford.entities.nonliving.EnemyLight;
 import com.darrandyford.utils.Constants;
 
 import java.util.ArrayList;
@@ -18,6 +19,7 @@ public class Enemy extends LivingEntity {
 	private float patrolDuration, patrolCurrent;
 	private Body lightBody;
 	boolean coneLightBodySet = false;
+	private EnemyLight enemyLight;
 
 	// Set the TAG for logging purposes
 	private static final String TAG = Enemy.class.getName();
@@ -37,6 +39,7 @@ public class Enemy extends LivingEntity {
 		patrolDuration = 3.0f;
 		patrolCurrent = 3.0f;
 		moveRate = 2.0f;
+		this.enemyLight = new EnemyLight(this);
 	}
 
 	public void update(float deltaTime) {
@@ -97,6 +100,10 @@ public class Enemy extends LivingEntity {
 		return numConelights;
 	}
 	public Body getLightBody() { return this.lightBody; }
+
+	public EnemyLight getEnemyLight() {
+		return enemyLight;
+	}
 
 	//Setters
 	public void addConelight(ConeLight light) {

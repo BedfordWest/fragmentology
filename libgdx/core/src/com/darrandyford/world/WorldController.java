@@ -1,6 +1,7 @@
 package com.darrandyford.world;
 
 
+import box2dLight.ConeLight;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
 import com.darrandyford.assets.Assets;
@@ -146,6 +147,10 @@ public class WorldController {
 	 */
 	public void playerSpotted(Enemy enemy) {
 		reset();
+	}
+
+	public void playerSpotted(ConeLight coneLight) {
+
 	}
 
 	public void dispose() {
