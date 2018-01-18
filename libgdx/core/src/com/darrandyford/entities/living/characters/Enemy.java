@@ -16,7 +16,7 @@ public class Enemy extends LivingEntity {
 	private int numConelights = 4;
 	public enum AlertState { STATIONARY, PATROLLING, ALERT, CHASING }
 	private AlertState alertState;
-	private float patrolDuration, patrolCurrent, chasingDuration, chasingCurrent;
+	private float patrolDuration, patrolCurrent, alertDuration, alertCurrent;
 	private Body lightBody;
 	boolean coneLightBodySet = false;
 	private EnemyLight enemyLight;
@@ -38,18 +38,18 @@ public class Enemy extends LivingEntity {
 		alertState = AlertState.PATROLLING;
 		patrolDuration = 3.0f;
 		patrolCurrent = 3.0f;
-		chasingDuration = 3.0f;
-		chasingCurrent = 0.0f;
+		alertDuration = 3.0f;
+		alertCurrent = 0.0f;
 		moveRate = 2.0f;
 		this.enemyLight = new EnemyLight(this);
 	}
 
 	public void update(float deltaTime) {
 		switch (alertState) {
-			case CHASING:
-				chasingCurrent += deltaTime;
-				if(chasingCurrent >= chasingDuration) {
-					chasingCurrent = 0.0f;
+			case ALERT:
+				alertCurrent += deltaTime;
+				if(alertCurrent >= alertDuration) {
+					alertCurrent = 0.0f;
 					alertState = AlertState.PATROLLING;
 				}
 				break;
@@ -63,7 +63,7 @@ public class Enemy extends LivingEntity {
 					executePatrol();
 				}
 				break;
-			case ALERT:
+			case CHASING:
 				break;
 			default:
 				break;
@@ -116,8 +116,8 @@ public class Enemy extends LivingEntity {
 		return alertState;
 	}
 
-	public float getChasingCurrent() {
-		return chasingCurrent;
+	public float getAlertCurrent() {
+		return alertCurrent;
 	}
 
 	//Setters
@@ -131,7 +131,7 @@ public class Enemy extends LivingEntity {
 	public void setAlertState(AlertState alertState) {
 		this.alertState = alertState;
 	}
-	public void setChasingCurrent(float current) {
-		chasingCurrent = current;
+	public void setAlertCurrent(float current) {
+		alertCurrent = current;
 	}
 }

@@ -144,12 +144,12 @@ public class WorldController {
 	 * Handle the events that occur when a player is spotted by an enemy.
 	 */
 	public void playerSpotted(Enemy enemy) {
-		enemy.setAlertState(Enemy.AlertState.ALERT);
+		enemy.setAlertState(Enemy.AlertState.CHASING);
 	}
 
 	public void playerOutOfLOS(Enemy enemy) {
-		enemy.setAlertState(Enemy.AlertState.CHASING);
-		enemy.setChasingCurrent(0.0f);
+		enemy.setAlertState(Enemy.AlertState.ALERT);
+		enemy.setAlertCurrent(0.0f);
 	}
 
 	public void dispose() {
