@@ -1,6 +1,7 @@
 package com.darrandyford.world;
 
 
+import box2dLight.ConeLight;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
 import com.darrandyford.assets.Assets;
@@ -118,19 +119,25 @@ public class WorldController {
 			for (Body b : bodies) {
 				// Get the body's user data - in this example, our user data
 				//   is an instance of the Entity class
-				AbstractGameEntity e = (AbstractGameEntity) b.getUserData();
+				if (b.getUserData() instanceof AbstractGameEntity) {
+					AbstractGameEntity e = (AbstractGameEntity) b.getUserData();
 
-				if (e != null) { e.update(Constants.TIME_STEP); }
+					if (e != null) {
+						e.update(Constants.TIME_STEP);
+					}
+				}
 			}
 		}
 
 		for (Body b : bodies) {
 			// Get the body's user data - in this example, our user data
 			//   is an instance of the Entity class
-			AbstractGameEntity e = (AbstractGameEntity) b.getUserData();
+			if (b.getUserData() instanceof AbstractGameEntity) {
+				AbstractGameEntity e = (AbstractGameEntity) b.getUserData();
 
-			if (e != null) {
-				e.interpolate(accumulator / Constants.TIME_STEP);
+				if (e != null) {
+					e.interpolate(accumulator / Constants.TIME_STEP);
+				}
 			}
 		}
 	}
@@ -140,6 +147,10 @@ public class WorldController {
 	 */
 	public void playerSpotted(Enemy enemy) {
 		reset();
+	}
+
+	public void playerSpotted(ConeLight coneLight) {
+
 	}
 
 	public void dispose() {

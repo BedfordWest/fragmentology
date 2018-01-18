@@ -37,24 +37,22 @@ public class LivingEntity extends AbstractGameEntity {
 	@Override
 	public void render (SpriteBatch batch) {
 
-		float directionUpMin = 315.0f;
-		float directionUpMax = 45.0f;
-		float directionRightMin = 45.0f;
-		float directionRightMax = 135.0f;
-		float directionDownMin = 135.0f;
-		float directionDownMax = 225.0f;
-		float directionLeftMin = 225.0f;
-		float directionLeftMax = 315.0f;
+		float directionUpMin = 45.0f;
+		float directionUpMax = 135.0f;
+		float directionRightMin = 315.0f;
+		float directionRightMax = 45.0f;
+		float directionDownMin = 225.0f;
+		float directionDownMax = 315.0f;
+		float directionLeftMin = 135.0f;
+		float directionLeftMax = 225.0f;
 
-		if ((this.direction > directionRightMin) &&
-			(this.direction <= directionRightMax))
+		if ((this.direction > directionUpMin) &&
+			(this.direction <= directionUpMax))
 		{
-			sideSprite.setPosition(position.x, position.y);
-			sideSprite.setCenter(position.x, position.y);
-			sideSprite.setOriginCenter();
-			sideSprite.flip(true, false);
-			sideSprite.setFlip(true, false);
-			sideSprite.draw(batch);
+			backSprite.setPosition(position.x, position.y);
+			backSprite.setCenter(position.x, position.y);
+			backSprite.setOriginCenter();
+			backSprite.draw(batch);
 		}
 
 		else if ((this.direction > directionLeftMin) &&
@@ -76,12 +74,14 @@ public class LivingEntity extends AbstractGameEntity {
 			frontSprite.draw(batch);
 		}
 
-		else if ((this.direction > directionUpMin) ||
-			(this.direction <= directionUpMax)) {
-			backSprite.setPosition(position.x, position.y);
-			backSprite.setCenter(position.x, position.y);
-			backSprite.setOriginCenter();
-			backSprite.draw(batch);
+		else if ((this.direction > directionRightMin) ||
+			(this.direction <= directionRightMax)) {
+			sideSprite.setPosition(position.x, position.y);
+			sideSprite.setCenter(position.x, position.y);
+			sideSprite.setOriginCenter();
+			sideSprite.flip(true, false);
+			sideSprite.setFlip(true, false);
+			sideSprite.draw(batch);
 		}
 
 		else {

@@ -31,9 +31,22 @@ public class Constants {
 	public static final int POSITION_ITERATIONS = 3;
 
 	/** Collision filter groups **/
+	public static final short CATEGORY_PLAYER = 0x0001;
+	public static final short CATEGORY_ENEMY = 0x0002;
+	public static final short CATEGORY_SCENERY = 0x0004;
+	public static final short CATEGORY_ENEMY_LIGHT = 0x0008;
 
 
 	/** Collision masks **/
+	public static final short MASK_PLAYER =
+		(CATEGORY_ENEMY |
+			CATEGORY_SCENERY |
+			CATEGORY_ENEMY_LIGHT);
+	public static final short MASK_ENEMY_LIGHT =
+		(CATEGORY_PLAYER |
+			CATEGORY_ENEMY |
+			CATEGORY_SCENERY);
+	public static final short MASK_SCENERY = -1;
 
 	/** Asset Constants **/
 	// Location of descriptor file for texture atlas
@@ -54,9 +67,9 @@ public class Constants {
 	public static final int ZONE_Y_TILES = 20;
 
 	/** General constants for code readability **/
-	public static final float DIRECTION_RIGHT = 90.0f;
-	public static final float DIRECTION_LEFT = 270.0f;
-	public static final float DIRECTION_UP = 0.0f;
-	public static final float DIRECTION_DOWN = 180.0f;
+	public static final float DIRECTION_RIGHT = 0.0f;
+	public static final float DIRECTION_LEFT = 180.0f;
+	public static final float DIRECTION_UP = 90.0f;
+	public static final float DIRECTION_DOWN = 270.0f;
 
 }
