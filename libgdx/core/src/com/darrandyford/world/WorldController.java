@@ -55,7 +55,7 @@ public class WorldController {
 	private void init () {
 		player = new Player((Constants.ZONE_X_TILES * Constants.TILE_WIDTH)/2,
 			(Constants.ZONE_Y_TILES * Constants.TILE_HEIGHT)/2,
-			2.0f, 2.0f, Assets.instance.player);
+			.95f, 1.95f, Assets.instance.player);
 		cameraHelper = new CameraHelper();
 		initZone();
 		initPhysics();
