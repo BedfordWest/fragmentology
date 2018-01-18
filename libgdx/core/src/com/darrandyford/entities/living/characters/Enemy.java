@@ -14,9 +14,9 @@ import java.util.Random;
 public class Enemy extends LivingEntity {
 	private ArrayList<ConeLight> coneLights;
 	private int numConelights = 4;
-	private enum AlertState { STATIONARY, PATROLLING, ALERT, CHASING }
+	public enum AlertState { STATIONARY, PATROLLING, ALERT, CHASING }
 	private AlertState alertState;
-	private float patrolDuration, patrolCurrent;
+	private float patrolDuration, patrolCurrent, alertDuration, alertCurrent;
 	private Body lightBody;
 	boolean coneLightBodySet = false;
 	private EnemyLight enemyLight;
@@ -38,6 +38,8 @@ public class Enemy extends LivingEntity {
 		alertState = AlertState.PATROLLING;
 		patrolDuration = 3.0f;
 		patrolCurrent = 3.0f;
+		alertDuration = 3.0f;
+		alertCurrent = 0.0f;
 		moveRate = 2.0f;
 		this.enemyLight = new EnemyLight(this);
 	}
@@ -45,6 +47,11 @@ public class Enemy extends LivingEntity {
 	public void update(float deltaTime) {
 		switch (alertState) {
 			case ALERT:
+				alertCurrent += deltaTime;
+				if(alertCurrent >= alertDuration) {
+					alertCurrent = 0.0f;
+					alertState = AlertState.PATROLLING;
+				}
 				break;
 			case STATIONARY:
 				break;
@@ -105,11 +112,26 @@ public class Enemy extends LivingEntity {
 		return enemyLight;
 	}
 
+	public AlertState getAlertState() {
+		return alertState;
+	}
+
+	public float getAlertCurrent() {
+		return alertCurrent;
+	}
+
 	//Setters
 	public void addConelight(ConeLight light) {
 		coneLights.add(light);
 	}
 	public void setLightBody(Body body) {
 		this.lightBody = body;
+	}
+
+	public void setAlertState(AlertState alertState) {
+		this.alertState = alertState;
+	}
+	public void setAlertCurrent(float current) {
+		alertCurrent = current;
 	}
 }

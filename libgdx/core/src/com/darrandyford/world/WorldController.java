@@ -1,12 +1,10 @@
 package com.darrandyford.world;
 
 
-import box2dLight.ConeLight;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.utils.Array;
 import com.darrandyford.assets.Assets;
 import com.darrandyford.entities.AbstractGameEntity;
-import com.darrandyford.entities.living.LivingEntity;
 import com.darrandyford.entities.living.characters.Enemy;
 import com.darrandyford.entities.living.characters.Player;
 import com.darrandyford.input.InputController;
@@ -146,11 +144,12 @@ public class WorldController {
 	 * Handle the events that occur when a player is spotted by an enemy.
 	 */
 	public void playerSpotted(Enemy enemy) {
-		reset();
+		enemy.setAlertState(Enemy.AlertState.CHASING);
 	}
 
-	public void playerSpotted(ConeLight coneLight) {
-
+	public void playerOutOfLOS(Enemy enemy) {
+		enemy.setAlertState(Enemy.AlertState.ALERT);
+		enemy.setAlertCurrent(0.0f);
 	}
 
 	public void dispose() {

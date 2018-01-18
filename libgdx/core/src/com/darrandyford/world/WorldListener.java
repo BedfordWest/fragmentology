@@ -59,7 +59,39 @@ public class WorldListener implements ContactListener {
 	/** Called when two fixtures cease to touch. */
 	@Override
 	public void endContact(Contact contact) {
+		Body a = contact.getFixtureA().getBody();
+		Body b = contact.getFixtureB().getBody();
 
+		// Handle special class-based collisions to act on things like damage
+		Class aClassType = a.getUserData().getClass();
+		Class bClassType = b.getUserData().getClass();
+
+		if (aClassType.isAssignableFrom(Player.class)) {
+			if (bClassType.isAssignableFrom(Enemy.class)) {
+				worldController.reset();
+			}
+
+			else if (bClassType.isAssignableFrom(EnemyLight.class)) {
+				EnemyLight enemyLight = (EnemyLight) b.getUserData();
+				worldController.playerOutOfLOS(enemyLight.getEnemy());
+			}
+
+		}
+
+		else if (aClassType.isAssignableFrom(Enemy.class)) {
+			if (bClassType.isAssignableFrom(Player.class)) {
+				worldController.reset();
+			}
+
+		}
+
+		else if (aClassType.isAssignableFrom(EnemyLight.class)) {
+			if (bClassType.isAssignableFrom(Player.class)) {
+				EnemyLight enemyLight = (EnemyLight) a.getUserData();
+				worldController.playerOutOfLOS(enemyLight.getEnemy());
+			}
+
+		}
 	}
 
 	/*
@@ -77,6 +109,10 @@ public class WorldListener implements ContactListener {
 	public void preSolve (Contact contact, Manifold oldManifold) {
 		Body a = contact.getFixtureA().getBody();
 		Body b = contact.getFixtureB().getBody();
+
+		// Handle special class-based collisions to act on things like damage
+		Class aClassType = a.getUserData().getClass();
+		Class bClassType = b.getUserData().getClass();
 
 	}
 

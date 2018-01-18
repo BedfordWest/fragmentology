@@ -249,6 +249,15 @@ public class PhysicsController {
 			for(ConeLight conelight:enemy.getConelights()) {
 				conelight.setDirection(enemy.getDirection());
 				conelight.setPosition(enemy.getPosition());
+				switch(enemy.getAlertState()) {
+					case PATROLLING:
+						conelight.setColor(255.0f/255.0f, 224.0f/255.0f, 58.0f/255.0f, 1.0f);
+						break;
+					case ALERT:
+					case CHASING:
+						conelight.setColor(1.0f, 0.03f, 0.3f, 1.0f);
+						break;
+				}
 				conelight.update();
 			}
 		}
