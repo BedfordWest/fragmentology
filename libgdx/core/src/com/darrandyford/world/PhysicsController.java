@@ -71,6 +71,8 @@ public class PhysicsController {
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = polygonShape;
 		fixtureDef.restitution = 0f;
+		fixtureDef.filter.categoryBits = Constants.CATEGORY_PLAYER;
+		fixtureDef.filter.maskBits = Constants.MASK_PLAYER;
 		player.getBody().createFixture(fixtureDef);
 		player.getBody().setUserData(player);
 		polygonShape.dispose();
@@ -96,6 +98,8 @@ public class PhysicsController {
 			FixtureDef fixtureDef = new FixtureDef();
 			fixtureDef.shape = polygonShape;
 			fixtureDef.restitution = 0f;
+			fixtureDef.filter.categoryBits = Constants.CATEGORY_ENEMY;
+			fixtureDef.filter.maskBits = Constants.MASK_ENEMY;
 			enemy.getBody().createFixture(fixtureDef);
 			enemy.getBody().setUserData(enemy);
 			polygonShape.dispose();
@@ -148,6 +152,8 @@ public class PhysicsController {
 			FixtureDef fixtureDef = new FixtureDef();
 			fixtureDef.shape = polygonShape;
 			fixtureDef.restitution = 0f;
+			fixtureDef.filter.categoryBits = Constants.CATEGORY_ITEM;
+			fixtureDef.filter.maskBits = Constants.MASK_ITEM;
 			object.getBody().createFixture(fixtureDef);
 			object.getBody().setUserData(object);
 			polygonShape.dispose();
