@@ -8,6 +8,7 @@ import com.darrandyford.entities.living.characters.Player;
 import com.darrandyford.utils.CameraHelper;
 import com.darrandyford.utils.Constants;
 import com.darrandyford.world.WorldController;
+import com.darrandyford.world.WorldRenderer;
 
 /**
  * Handles user input
@@ -193,6 +194,12 @@ public class InputController extends InputAdapter {
 			case Input.Keys.ESCAPE:
 				Gdx.app.debug(TAG, "ESC pressed -> quitting game");
 				Gdx.app.exit();
+				break;
+
+			case Input.Keys.ALT_RIGHT:
+				WorldRenderer.toggleDebugDrawBox2dWorld();
+				Gdx.app.debug(TAG, "ALT_RIGHT pressed -> Box 2D Debug Mode: " +
+					WorldRenderer.getDebugDrawBox2dWorld());
 				break;
 
 			case Input.Keys.A:

@@ -27,7 +27,7 @@ public class WorldRenderer implements Disposable {
 	private Box2DDebugRenderer box2DDebugRenderer;
 
 	// Rendering constants/switches
-	private static final boolean DEBUG_DRAW_BOX2D_WORLD = true;
+	private static boolean debugDrawBox2dWorld = true;
 
 	/**
 	 * Constructor.
@@ -95,7 +95,7 @@ public class WorldRenderer implements Disposable {
 		batch.end();
 		worldController.getPhysicsController().getRayHandler().setCombinedMatrix(camera);
 		worldController.getPhysicsController().getRayHandler().updateAndRender();
-		if(DEBUG_DRAW_BOX2D_WORLD) { renderPhysicsDebugLines(); }
+		if(debugDrawBox2dWorld) { renderPhysicsDebugLines(); }
 	}
 
 	/**
@@ -194,6 +194,14 @@ public class WorldRenderer implements Disposable {
 	 */
 	private void renderFPS()
 	{
+	}
+
+	public static void toggleDebugDrawBox2dWorld(){
+		debugDrawBox2dWorld = !debugDrawBox2dWorld;
+	}
+
+	public static boolean getDebugDrawBox2dWorld(){
+		return debugDrawBox2dWorld;
 	}
 
 }
