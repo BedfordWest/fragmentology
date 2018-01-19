@@ -10,6 +10,7 @@ import com.darrandyford.utils.Constants;
 import com.darrandyford.world.WorldController;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Abstract game entity - all game entities should inherit from this.
@@ -31,6 +32,7 @@ public abstract class AbstractGameEntity {
 	 * Constructor - we'll want to default these values for all subclasses
 	 */
 	public AbstractGameEntity (float positionX, float positionY, float dimensionX, float dimensionY) {
+		Random rand = new Random();
 		position = new Vector2(positionX, positionY);
 		dimension = new Vector2(dimensionX, dimensionY);
 		origin = new Vector2(this.position.x, this.position.y);
@@ -38,7 +40,7 @@ public abstract class AbstractGameEntity {
 		bounds = new Rectangle(this.position.x - this.dimension.x/2, this.position.y - this.dimension.y/2,
 			this.dimension.x, this.dimension.y);
 		rotation = 0f;
-		direction = Constants.DIRECTION_LEFT;
+		direction = (float)rand.nextInt(360);
 		acceleration = new Vector2(0,0);
 		moveSpeed = new Vector2(0,0);
 		moveRate = 5.0f;

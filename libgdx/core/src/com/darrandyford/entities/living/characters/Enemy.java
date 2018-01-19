@@ -1,6 +1,7 @@
 package com.darrandyford.entities.living.characters;
 
 import box2dLight.ConeLight;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.darrandyford.assets.Assets;
@@ -36,8 +37,8 @@ public class Enemy extends LivingEntity {
 	private void init () {
 		coneLights = new ArrayList<ConeLight>();
 		alertState = AlertState.PATROLLING;
-		patrolDuration = 3.0f;
-		patrolCurrent = 3.0f;
+		patrolDuration = 1.0f;
+		patrolCurrent = 1.0f;
 		alertDuration = 3.0f;
 		alertCurrent = 0.0f;
 		moveRate = 2.0f;
@@ -80,12 +81,34 @@ public class Enemy extends LivingEntity {
 		float xLocation = rand.nextInt(Constants.ZONE_X_TILES * 2);
 		float yLocation = rand.nextInt(Constants.ZONE_Y_TILES * 2);
 		Vector2 randomLocation = new Vector2(xLocation, yLocation);
-		Vector2 normalizedDirection = new Vector2(randomLocation);
-		normalizedDirection.sub(position).nor();
-		float angle = normalizedDirection.angle();
-		setDirection(angle);
-		float newSpeedX = normalizedDirection.x * moveRate;
-		float newSpeedY = normalizedDirection.y * moveRate;
+		float randomDirection = new Vector2(randomLocation).sub(getPosition()).angle() * MathUtils.degRad;
+		float currentDirection = getDirection() * MathUtils.degRad;
+
+		float newDirection = 0.0f;
+
+		// Faster to get to random point by going clockwise
+		if((randomDirection - currentDirection) >= Math.PI) {
+			newDirection = ((float)(Math.PI * 2 - randomDirection) + currentDirection)/4.0f + currentDirection;
+		}
+		// Faster to get to random point by going counter-clockwise
+		else if((randomDirection - currentDirection) < Math.PI && (randomDirection - currentDirection) >= 0) {
+			newDirection = (randomDirection - currentDirection)/4.0f + currentDirection;
+		}
+		// Faster to get to point by going counter-clockwise
+		else if((randomDirection - currentDirection) < 0 && (randomDirection - currentDirection) <= -Math.PI) {
+			newDirection = (randomDirection + (float)(2 * Math.PI - currentDirection))/4.0f + currentDirection;
+		}
+		// Faster to get to point by going clockwise
+		else  {
+			newDirection = (randomDirection - currentDirection)/4.0f + currentDirection;
+		}
+
+		Vector2 newDirectionVecRaw = new Vector2((float)Math.cos(newDirection),
+			(float)Math.sin(newDirection));
+
+		setDirection(newDirection * MathUtils.radDeg);
+		float newSpeedX = newDirectionVecRaw.x * moveRate;
+		float newSpeedY = newDirectionVecRaw.y * moveRate;
 		body.setLinearVelocity(newSpeedX, newSpeedY);
 		setMoveSpeed(newSpeedX, newSpeedY);
 

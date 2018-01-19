@@ -180,12 +180,11 @@ public class PhysicsController {
 					bodyDef.position.set(enemy.getPosition());
 					enemy.setLightBody(b2world.createBody(bodyDef));
 					PolygonShape coneLightBody = new PolygonShape();
-					float directionInRad = MathUtils.degRad * enemy.getDirection();
 					float coneWidth = 20.0f * MathUtils.degRad;
-					Vector2 leftVecRaw = new Vector2((float)Math.cos(directionInRad - coneWidth),
-						(float)Math.sin(directionInRad - coneWidth));
-					Vector2 rightVecRaw = new Vector2((float)Math.cos(directionInRad + coneWidth),
-						(float)Math.sin(directionInRad + coneWidth));
+					Vector2 leftVecRaw = new Vector2((float)Math.cos(-coneWidth),
+						(float)Math.sin(-coneWidth));
+					Vector2 rightVecRaw = new Vector2((float)Math.cos(coneWidth),
+						(float)Math.sin(coneWidth));
 					Vector2 leftVec = new Vector2(leftVecRaw.nor());
 					Vector2 rightVec = new Vector2(rightVecRaw.nor());
 					Vector2 enemyPosLeft = new Vector2((leftVec.scl(10.f)));
@@ -242,7 +241,7 @@ public class PhysicsController {
 			Vector2 moveSpeed = enemy.getMoveSpeed();
 			enemy.getBody()
 				.setLinearVelocity(moveSpeed);
-			enemy.getLightBody().setTransform(enemy.getPosition(), (enemy.getDirection() + 180.0f) * MathUtils.degRad);
+			enemy.getLightBody().setTransform(enemy.getPosition(), (enemy.getDirection()) * MathUtils.degRad);
 			if (!(moveSpeed.x == 0.0f && moveSpeed.y == 0.0f)) {
 				enemy.setMoving(true);
 			} else enemy.setMoving(false);
