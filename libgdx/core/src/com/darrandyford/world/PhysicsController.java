@@ -71,8 +71,11 @@ public class PhysicsController {
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = polygonShape;
 		fixtureDef.restitution = 0f;
+		fixtureDef.filter.categoryBits = Constants.CATEGORY_PLAYER;
+		fixtureDef.filter.maskBits = Constants.MASK_PLAYER;
 		player.getBody().createFixture(fixtureDef);
 		player.getBody().setUserData(player);
+		player.getBody().setSleepingAllowed(false);
 		polygonShape.dispose();
 	}
 
@@ -96,6 +99,8 @@ public class PhysicsController {
 			FixtureDef fixtureDef = new FixtureDef();
 			fixtureDef.shape = polygonShape;
 			fixtureDef.restitution = 0f;
+			fixtureDef.filter.categoryBits = Constants.CATEGORY_ENEMY;
+			fixtureDef.filter.maskBits = Constants.MASK_ENEMY;
 			enemy.getBody().createFixture(fixtureDef);
 			enemy.getBody().setUserData(enemy);
 			polygonShape.dispose();
@@ -148,6 +153,8 @@ public class PhysicsController {
 			FixtureDef fixtureDef = new FixtureDef();
 			fixtureDef.shape = polygonShape;
 			fixtureDef.restitution = 0f;
+			fixtureDef.filter.categoryBits = Constants.CATEGORY_ITEM;
+			fixtureDef.filter.maskBits = Constants.MASK_ITEM;
 			object.getBody().createFixture(fixtureDef);
 			object.getBody().setUserData(object);
 			polygonShape.dispose();
@@ -196,9 +203,11 @@ public class PhysicsController {
 					fixtureDef.isSensor = true;
 					fixtureDef.shape = coneLightBody;
 					fixtureDef.filter.categoryBits = Constants.CATEGORY_ENEMY_LIGHT;
+					fixtureDef.filter.maskBits = Constants.MASK_ENEMY_LIGHT;
 					fixtureDef.restitution = 0f;
 					enemy.getLightBody().createFixture(fixtureDef);
 					enemy.getLightBody().setUserData(enemy.getEnemyLight());
+					enemy.getLightBody().setSleepingAllowed(false);
 					coneLightBody.dispose();
 					enemy.setConeLightBodySetState(true);
 				}

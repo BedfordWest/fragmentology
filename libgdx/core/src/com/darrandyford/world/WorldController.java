@@ -7,10 +7,14 @@ import com.darrandyford.assets.Assets;
 import com.darrandyford.entities.AbstractGameEntity;
 import com.darrandyford.entities.living.characters.Enemy;
 import com.darrandyford.entities.living.characters.Player;
+import com.darrandyford.entities.nonliving.NonlivingEntity;
 import com.darrandyford.input.InputController;
 import com.darrandyford.utils.CameraHelper;
 import com.darrandyford.utils.Constants;
 import com.darrandyford.zones.Zone;
+
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Controls the primary loop of the game world. This includes initialization, updates, and destruction.
@@ -31,6 +35,7 @@ public class WorldController {
 	private Player player;
 	private PhysicsController physicsController;
 	private Array<Body> bodies = new Array<Body>();
+	private ArrayList<AbstractGameEntity> scheduledForRemoval = new ArrayList<AbstractGameEntity>();
 
 	private float accumulator = 0; // keeps track of physics accumulated time between steps
 	private boolean initRenderState = false;
@@ -70,6 +75,7 @@ public class WorldController {
 		updatePhysics(deltaTime);
 		doPhysicsStep(deltaTime);
 		cameraHelper.update(deltaTime);
+		removeScheduledEntities();
 	}
 
 	/**
@@ -151,6 +157,22 @@ public class WorldController {
 	public void playerOutOfLOS(Enemy enemy) {
 		enemy.setAlertState(Enemy.AlertState.ALERT);
 		enemy.setAlertCurrent(0.0f);
+	}
+
+	/**
+	 * Handle the events that occur when a player acquires an item
+	 */
+	public void acquireItem(NonlivingEntity item) {
+		scheduledForRemoval.add(item);
+	}
+
+	private void removeScheduledEntities() {
+		for(Iterator<AbstractGameEntity> it = scheduledForRemoval.iterator(); it.hasNext(); ) {
+			AbstractGameEntity entity = it.next();
+			getPhysicsController().getB2World().destroyBody(entity.getBody());
+			getZone().getObjects().remove(entity);
+			it.remove();
+		}
 	}
 
 	public void dispose() {
