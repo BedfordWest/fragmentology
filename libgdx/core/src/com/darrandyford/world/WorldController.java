@@ -64,6 +64,7 @@ public class WorldController {
 		initPhysics();
 		inputController = new InputController(this);
 		cameraHelper.setTarget(player);
+		Assets.instance.playMusic("cave");
 	}
 
 	/**

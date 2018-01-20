@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -48,6 +49,7 @@ public class Assets implements Disposable, AssetErrorListener {
 		assetManager.load("audio/sounds/slime_sound.wav", Sound.class);
 		assetManager.load("audio/sounds/item_sound.wav", Sound.class);
 		assetManager.load("audio/sounds/alert_sound.wav", Sound.class);
+		assetManager.load("audio/music/cave_music2.ogg", Music.class);
 		// start loading assets and wait until finished
 		assetManager.finishLoading();
 		Gdx.app.debug(TAG, "# of assets loaded: " +
@@ -187,6 +189,18 @@ public class Assets implements Disposable, AssetErrorListener {
 			thisSound.play(1.0f);
 		}
 		else Gdx.app.error(TAG, "Couldn't play sound:" + soundType);
+
+	}
+
+	public void playMusic(String musicType) {
+		Music thisMusic = null;
+		if(musicType.contains("cave")) thisMusic = assetManager.get("audio/music/cave_music2.ogg", Music.class);
+		if(thisMusic != null) {
+			thisMusic.setLooping(true);
+			thisMusic.setVolume(0.3f);
+			thisMusic.play();
+		}
+		else Gdx.app.error(TAG, "Couldn't play sound:" + musicType);
 
 	}
 
