@@ -144,6 +144,7 @@ public class WorldController {
 	 * Handle the events that occur when a player is spotted by an enemy.
 	 */
 	public void playerSpotted(Enemy enemy) {
+		Assets.instance.playSound("alert");
 		enemy.setAlertState(Enemy.AlertState.CHASING);
 	}
 

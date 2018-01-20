@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.utils.Disposable;
@@ -43,6 +44,10 @@ public class Assets implements Disposable, AssetErrorListener {
 		// load texture atlas
 		assetManager.load(Constants.TEXTURE_ATLAS_OBJECTS,
 			TextureAtlas.class);
+		// load sounds
+		assetManager.load("audio/sounds/slime_sound.wav", Sound.class);
+		assetManager.load("audio/sounds/item_sound.wav", Sound.class);
+		assetManager.load("audio/sounds/alert_sound.wav", Sound.class);
 		// start loading assets and wait until finished
 		assetManager.finishLoading();
 		Gdx.app.debug(TAG, "# of assets loaded: " +
@@ -65,6 +70,7 @@ public class Assets implements Disposable, AssetErrorListener {
 		ground = new AssetGround(atlas);
 		wall = new AssetWall(atlas);
 		object = new AssetObject(atlas);
+
 	}
 
 	/**
@@ -171,5 +177,17 @@ public class Assets implements Disposable, AssetErrorListener {
 	}
 
 	/*******************************************************************/
+
+	public void playSound(String soundType) {
+		Sound thisSound = null;
+		if(soundType.contains("slime")) thisSound = assetManager.get("audio/sounds/slime_sound.wav", Sound.class);
+		else if(soundType.contains("item"))	thisSound = assetManager.get("audio/sounds/item_sound.wav", Sound.class);
+		else if(soundType.contains("alert")) thisSound = assetManager.get("audio/sounds/alert_sound.wav", Sound.class);
+		if(thisSound != null) {
+			thisSound.play(1.0f);
+		}
+		else Gdx.app.error(TAG, "Couldn't play sound:" + soundType);
+
+	}
 
 }
