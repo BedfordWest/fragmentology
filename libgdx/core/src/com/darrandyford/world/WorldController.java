@@ -164,6 +164,7 @@ public class WorldController {
 	 * Handle the events that occur when a player acquires an item
 	 */
 	public void acquireItem(NonlivingEntity item) {
+		Assets.instance.playSound("item");
 		scheduledForRemoval.add(item);
 	}
 
