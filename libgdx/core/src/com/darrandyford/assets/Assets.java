@@ -177,6 +177,7 @@ public class Assets implements Disposable, AssetErrorListener {
 		public AssetObject (TextureAtlas atlas) {
 			regions.put("object", atlas.findRegion("IT_PLACEHOLDER_01_32_X"));
 			regions.put("stick", atlas.findRegion("IT_STICK_01_16_X"));
+			regions.put("stickbundle", atlas.findRegion("SO_STICKBUNDLE_01_32_X"));
 		}
 	}
 

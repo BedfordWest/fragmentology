@@ -27,14 +27,22 @@ CH_PLACEHOLDER_01_16_SL
   index: -1
 CH_PLACEHOLDER_01_16_SU
   rotate: false
+<<<<<<< HEAD
   xy: 239, 33
+=======
+  xy: 1, 1
+>>>>>>> feat(soft_cover): Added a stick bundle soft cover
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 CH_PLACEHOLDER_01_16_X
   rotate: false
+<<<<<<< HEAD
   xy: 239, 15
+=======
+  xy: 205, 35
+>>>>>>> feat(soft_cover): Added a stick bundle soft cover
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -69,7 +77,11 @@ CH_PLACEHOLDER_01_32_X
   index: -1
 EN_BLOB_01_16_S
   rotate: false
+<<<<<<< HEAD
   xy: 1, 1
+=======
+  xy: 19, 1
+>>>>>>> feat(soft_cover): Added a stick bundle soft cover
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -83,21 +95,33 @@ EN_PLACEHOLDER_01_16_SD
   index: -1
 EN_PLACEHOLDER_01_16_SL
   rotate: false
+<<<<<<< HEAD
   xy: 37, 1
+=======
+  xy: 55, 1
+>>>>>>> feat(soft_cover): Added a stick bundle soft cover
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 EN_PLACEHOLDER_01_16_SU
   rotate: false
+<<<<<<< HEAD
   xy: 55, 1
+=======
+  xy: 73, 1
+>>>>>>> feat(soft_cover): Added a stick bundle soft cover
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 EN_PLACEHOLDER_01_16_X
   rotate: false
+<<<<<<< HEAD
   xy: 73, 1
+=======
+  xy: 91, 1
+>>>>>>> feat(soft_cover): Added a stick bundle soft cover
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -153,7 +177,11 @@ HO_CAVEWALL_01_32_X
   index: -1
 HO_PLACEHOLDER_01_16_X
   rotate: false
+<<<<<<< HEAD
   xy: 91, 1
+=======
+  xy: 109, 1
+>>>>>>> feat(soft_cover): Added a stick bundle soft cover
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -167,7 +195,11 @@ HO_PLACEHOLDER_01_32_X
   index: -1
 IT_PLACEHOLDER_01_16_X
   rotate: false
+<<<<<<< HEAD
   xy: 109, 1
+=======
+  xy: 127, 1
+>>>>>>> feat(soft_cover): Added a stick bundle soft cover
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -181,14 +213,22 @@ IT_PLACEHOLDER_01_32_X
   index: -1
 IT_STICK_01_16_X
   rotate: false
+<<<<<<< HEAD
   xy: 127, 1
+=======
+  xy: 145, 1
+>>>>>>> feat(soft_cover): Added a stick bundle soft cover
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 SO_PLACEHOLDER_01_16_X
   rotate: false
+<<<<<<< HEAD
   xy: 145, 1
+=======
+  xy: 163, 1
+>>>>>>> feat(soft_cover): Added a stick bundle soft cover
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -200,65 +240,84 @@ SO_PLACEHOLDER_01_32_X
   orig: 32, 32
   offset: 0, 0
   index: -1
-TR_ASSORTED_01_32_X
+SO_STICKBUNDLE_01_32_X
   rotate: false
   xy: 171, 87
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-TR_DIRTROCKS_01_32_X
+TR_ASSORTED_01_32_X
   rotate: false
   xy: 137, 19
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-TR_DIRTROCKS_V2_01_32_X
+TR_DIRTROCKS_01_32_X
   rotate: false
   xy: 171, 53
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-TR_DIRTROCKS_V3_01_32_X
+TR_DIRTROCKS_V2_01_32_X
   rotate: false
   xy: 205, 87
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-TR_DIRTROCKS_V4_01_32_X
+TR_DIRTROCKS_V3_01_32_X
   rotate: false
   xy: 171, 19
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
-TR_EMPTY_01_32_X
+TR_DIRTROCKS_V4_01_32_X
   rotate: false
   xy: 205, 53
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
+TR_EMPTY_01_32_X
+  rotate: false
+  xy: 171, 19
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 TR_PLACEHOLDER_01_16_X
   rotate: false
+<<<<<<< HEAD
   xy: 163, 1
+=======
+  xy: 181, 1
+>>>>>>> feat(soft_cover): Added a stick bundle soft cover
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 TR_PLACEHOLDER_01_32_X
   rotate: false
+<<<<<<< HEAD
   xy: 205, 19
+=======
+  xy: 205, 53
+>>>>>>> feat(soft_cover): Added a stick bundle soft cover
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 TR_SPECKS_01_32_X
   rotate: false
+<<<<<<< HEAD
   xy: 205, 19
+=======
+  xy: 205, 53
+>>>>>>> feat(soft_cover): Added a stick bundle soft cover
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

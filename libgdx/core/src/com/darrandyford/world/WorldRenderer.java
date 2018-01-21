@@ -92,6 +92,7 @@ public class WorldRenderer implements Disposable {
 		renderEnemies();
 		renderWalls();
 		renderObjects();
+		renderCoverObjects();
 		batch.end();
 		worldController.getPhysicsController().getRayHandler().setCombinedMatrix(camera);
 		worldController.getPhysicsController().getRayHandler().updateAndRender();
@@ -167,6 +168,17 @@ public class WorldRenderer implements Disposable {
 		ArrayList<NonlivingEntity> zoneObjects = worldController.getZone().getObjects();
 		for(NonlivingEntity object:zoneObjects){
 			object.render(batch);
+		}
+	}
+
+	/**
+	 * Render the cover objects
+	 */
+	private void renderCoverObjects()
+	{
+		ArrayList<NonlivingEntity> zoneCoverObjects = worldController.getZone().getCoverObjects();
+		for(NonlivingEntity coverObject:zoneCoverObjects){
+			coverObject.render(batch);
 		}
 	}
 
