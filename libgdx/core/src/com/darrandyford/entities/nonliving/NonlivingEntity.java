@@ -44,4 +44,7 @@ public class NonlivingEntity extends AbstractGameEntity {
 	}
 
 	// Getters
+	public Sprite getSprite() {
+		return sprite;
+	}
 }
