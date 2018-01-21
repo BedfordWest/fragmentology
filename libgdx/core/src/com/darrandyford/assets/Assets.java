@@ -180,16 +180,20 @@ public class Assets implements Disposable, AssetErrorListener {
 
 	/*******************************************************************/
 
-	public void playSound(String soundType) {
+	public void playSound(String soundType, float volume) {
 		Sound thisSound = null;
 		if(soundType.contains("slime")) thisSound = assetManager.get("audio/sounds/slime_sound.wav", Sound.class);
 		else if(soundType.contains("item"))	thisSound = assetManager.get("audio/sounds/item_sound.wav", Sound.class);
 		else if(soundType.contains("alert")) thisSound = assetManager.get("audio/sounds/alert_sound.wav", Sound.class);
 		if(thisSound != null) {
-			thisSound.play(1.0f);
+			thisSound.play(volume);
 		}
 		else Gdx.app.error(TAG, "Couldn't play sound:" + soundType);
 
+	}
+
+	public void playSound(String soundType) {
+		playSound(soundType, 1.0f);
 	}
 
 	public void playMusic(String musicType) {
