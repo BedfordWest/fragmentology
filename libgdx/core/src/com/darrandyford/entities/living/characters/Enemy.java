@@ -126,8 +126,11 @@ public class Enemy extends LivingEntity {
 	 * Chase after the player for as long as they are in the cone of sight.
 	 */
 	private void executeChase() {
-		Vector2 toPlayer = new Vector2(bod)
-		moveSpeed = chaseRate;
+		Vector2 toPlayer = new Vector2(worldController.getPlayer().getPosition().sub(getPosition()));
+		toPlayer.nor();
+		moveSpeed.x = toPlayer.x * chaseRate;
+		moveSpeed.y = toPlayer.y * chaseRate;
+		direction = toPlayer.angle();
 	}
 
 	public boolean coneLightBodySet() {
