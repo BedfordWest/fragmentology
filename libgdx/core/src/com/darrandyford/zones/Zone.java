@@ -205,6 +205,7 @@ public class Zone {
 			if(!enemyOverlap) {
 				Enemy enemy = new Enemy(newX, newY, 1.0f, 1.0f, Assets.instance.enemy);
 				enemies.add(enemy);
+				enemy.setWorldController(worldController);
 			}
 		}
 	}

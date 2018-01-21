@@ -112,6 +112,11 @@ public class Enemy extends LivingEntity {
 		body.setLinearVelocity(newSpeedX, newSpeedY);
 		setMoveSpeed(newSpeedX, newSpeedY);
 
+		// Play sound when enemy moves
+		float toPlayer = getPosition().sub(worldController.getPlayer().getPosition()).len();
+		if(toPlayer < 1.0f) toPlayer = 1.0f;
+		Assets.instance.playSound("slime", 1.0f/toPlayer);
+
 	}
 
 	public boolean coneLightBodySet() {

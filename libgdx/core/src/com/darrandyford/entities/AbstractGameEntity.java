@@ -6,6 +6,7 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Transform;
+import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Disposable;
 import com.darrandyford.utils.Constants;
 import com.darrandyford.world.WorldController;
@@ -28,6 +29,7 @@ public abstract class AbstractGameEntity {
 	protected float moveRate;
 	protected Body body;
 	protected boolean isMoving;
+	protected WorldController worldController;
 
 	/**
 	 * Constructor - we'll want to default these values for all subclasses
@@ -108,6 +110,10 @@ public abstract class AbstractGameEntity {
 		return contactPoints;
 	}
 
+	public WorldController getWorldController() {
+		return worldController;
+	}
+
 	// Setters
 	public void setPosition(float x, float y) {
 		this.position.x = x;
@@ -132,5 +138,6 @@ public abstract class AbstractGameEntity {
 	public void setBody(Body body) { this.body = body; }
 	public void setMoving(boolean moving) { isMoving = moving; }
 	public void setDimension(float x, float y) { this.dimension.x = x; this.dimension.y = y; }
+	public void setWorldController(WorldController worldController) { this.worldController = worldController; }
 
 }
