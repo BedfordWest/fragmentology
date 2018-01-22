@@ -21,6 +21,7 @@ public class Enemy extends LivingEntity {
 	private Body lightBody;
 	boolean coneLightBodySet = false;
 	private EnemyLight enemyLight;
+	private float chaseRate;
 
 	// Set the TAG for logging purposes
 	private static final String TAG = Enemy.class.getName();
@@ -42,6 +43,7 @@ public class Enemy extends LivingEntity {
 		alertDuration = 3.0f;
 		alertCurrent = 0.0f;
 		moveRate = 2.0f;
+		chaseRate = 6.0f;
 		this.enemyLight = new EnemyLight(this);
 	}
 
@@ -65,6 +67,7 @@ public class Enemy extends LivingEntity {
 				}
 				break;
 			case CHASING:
+				executeChase();
 				break;
 			default:
 				break;
@@ -117,6 +120,17 @@ public class Enemy extends LivingEntity {
 		if(toPlayer < 1.0f) toPlayer = 1.0f;
 		Assets.instance.playSound("slime", 1.0f/toPlayer);
 
+	}
+
+	/**
+	 * Chase after the player for as long as they are in the cone of sight.
+	 */
+	private void executeChase() {
+		Vector2 toPlayer = new Vector2(worldController.getPlayer().getPosition().sub(getPosition()));
+		toPlayer.nor();
+		moveSpeed.x = toPlayer.x * chaseRate;
+		moveSpeed.y = toPlayer.y * chaseRate;
+		direction = toPlayer.angle();
 	}
 
 	public boolean coneLightBodySet() {
