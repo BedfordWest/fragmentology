@@ -28,6 +28,7 @@ public class Zone {
 	private List<TerrainTile> zoneTiles = new ArrayList<TerrainTile>();
 	private static final int ENEMY_TOTAL = 4;
 	private static final int OBJECT_TOTAL = 3;
+	private static final int SOFT_COVER_TOTAL = 2;
 	private static final int CHANCE_ROCK1_TILE = 1;
 	private static final int CHANCE_ROCK2_TILE = 6;
 	private static final int CHANCE_ROCK3_TILE = 1;
@@ -35,6 +36,7 @@ public class Zone {
 	private static final int CHANCE_SPECKS_TILE = 25;
 	private ArrayList<NonlivingEntity> walls = new ArrayList<NonlivingEntity>();
 	private ArrayList<NonlivingEntity> objects = new ArrayList<NonlivingEntity>();
+	private ArrayList<NonlivingEntity> coverObjects = new ArrayList<NonlivingEntity>();
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	private WorldController worldController;
 
@@ -129,6 +131,7 @@ public class Zone {
 		createWalls();
 		createEnemies(ENEMY_TOTAL);
 		createObjects(OBJECT_TOTAL);
+		createSoftCover(SOFT_COVER_TOTAL);
 		updateZoneState();
 	}
 
@@ -291,6 +294,69 @@ public class Zone {
 		}
 	}
 
+	private void createSoftCover(int numCoverObjects) {
+		Random rand = new Random();
+		for(int i = 0; i < numCoverObjects; i++) {
+			boolean overlap = false;
+			float newX = rand.nextInt((Constants.ZONE_X_TILES * (int)Constants.TILE_WIDTH) -
+				(int)Constants.TILE_WIDTH/2) + Constants.TILE_WIDTH/2;
+			float newY = rand.nextInt((Constants.ZONE_Y_TILES * (int)Constants.TILE_HEIGHT) -
+				(int)Constants.TILE_HEIGHT/2) + Constants.TILE_HEIGHT/2;
+			Rectangle objectRect = new Rectangle(newX - Constants.TILE_WIDTH/2, newY - Constants.TILE_HEIGHT/2,
+				2, 2);
+
+			if(objectRect.overlaps(worldController.getPlayer().getBounds())) {
+				i--;
+				overlap = true;
+			}
+			else {
+				for(NonlivingEntity wall:walls) {
+					if(objectRect.overlaps(wall.getBounds())) {
+						i--;
+						overlap = true;
+						break;
+					}
+				}
+
+				if(!overlap) {
+					for (LivingEntity anotherEnemy : enemies) {
+						if (objectRect.overlaps(anotherEnemy.getBounds())) {
+							i--;
+							overlap = true;
+							break;
+						}
+					}
+				}
+
+				if(!overlap) {
+					for (NonlivingEntity anotherObject : objects) {
+						if (objectRect.overlaps(anotherObject.getBounds())) {
+							i--;
+							overlap = true;
+							break;
+						}
+					}
+				}
+
+				if(!overlap) {
+					for (NonlivingEntity anotherCoverObject : coverObjects) {
+						if (objectRect.overlaps(anotherCoverObject.getBounds())) {
+							i--;
+							overlap = true;
+							break;
+						}
+					}
+				}
+
+			}
+			if(!overlap) {
+				NonlivingEntity coverObject = new NonlivingEntity(newX, newY, 2.0f, 2.0f,
+					Assets.instance.object, "stickbundle");
+				coverObjects.add(coverObject);
+			}
+		}
+	}
+
 	// Getters
 	public TiledMap getTiledMap() {
 		return this.map;
@@ -309,6 +375,10 @@ public class Zone {
 
 	public ArrayList<NonlivingEntity> getObjects() {
 		return objects;
+	}
+
+	public ArrayList<NonlivingEntity> getCoverObjects() {
+		return coverObjects;
 	}
 
 	public ArrayList<Enemy> getEnemies() {
