@@ -163,7 +163,9 @@ public class Assets implements Disposable, AssetErrorListener {
 	public class AssetWall extends AssetGenericNonLiving {
 
 		public AssetWall (TextureAtlas atlas) {
-			regions.put("wall", atlas.findRegion("HO_BASICBRICKWALL_01_32_X"));
+
+			regions.put("wall", atlas.findRegion("HO_CAVEWALL_01_32_X"));
+			regions.put("cornerwall", atlas.findRegion(("HO_CAVEWALLCORNER_01_32_X")));
 		}
 	}
 

@@ -144,12 +144,38 @@ public class Zone {
 	}
 
 	private void createWalls() {
-		for(int i = 0; i < Constants.ZONE_X_TILES; i++) {
+		// Top left corner
+		NonlivingEntity topLeftWall = new NonlivingEntity(Constants.TILE_WIDTH/2,
+			Constants.ZONE_Y_TILES * Constants.TILE_HEIGHT - Constants.TILE_HEIGHT/2,
+			Constants.TILE_WIDTH, Constants.TILE_HEIGHT, Assets.instance.wall, "cornerwall");
+		// Top right corner
+		NonlivingEntity topRightWall = new NonlivingEntity(Constants.ZONE_X_TILES * Constants.TILE_WIDTH - Constants.TILE_WIDTH/2,
+			Constants.ZONE_Y_TILES * Constants.TILE_HEIGHT - Constants.TILE_HEIGHT/2,
+			Constants.TILE_WIDTH, Constants.TILE_HEIGHT, Assets.instance.wall, "cornerwall");
+		topRightWall.getSprite().rotate90(true);
+		// Bottom left corner
+		NonlivingEntity bottomLeftWall = new NonlivingEntity(Constants.TILE_WIDTH/2, Constants.TILE_HEIGHT/2, Constants.TILE_WIDTH,
+			Constants.TILE_HEIGHT, Assets.instance.wall, "cornerwall");
+		bottomLeftWall.getSprite().rotate(90);
+		// Bottom right corner
+		NonlivingEntity bottomRightWall = new NonlivingEntity(Constants.ZONE_X_TILES * Constants.TILE_WIDTH - Constants.TILE_WIDTH/2, Constants.TILE_HEIGHT/2, Constants.TILE_WIDTH,
+			Constants.TILE_HEIGHT, Assets.instance.wall, "cornerwall");
+		bottomRightWall.getSprite().rotate(180);
+
+		walls.add(topLeftWall);
+		walls.add(topRightWall);
+		walls.add(bottomLeftWall);
+		walls.add(bottomRightWall);
+
+
+		for(int i = 1; i < Constants.ZONE_X_TILES - 1; i++) {
 			NonlivingEntity topWall = new NonlivingEntity(i * Constants.TILE_WIDTH + Constants.TILE_WIDTH/2,
 				Constants.ZONE_Y_TILES * Constants.TILE_HEIGHT - Constants.TILE_HEIGHT/2,
 				Constants.TILE_WIDTH, Constants.TILE_HEIGHT, Assets.instance.wall, "wall");
 			NonlivingEntity bottomWall = new NonlivingEntity(i * Constants.TILE_WIDTH + Constants.TILE_WIDTH/2,
 				Constants.TILE_HEIGHT/2, Constants.TILE_WIDTH, Constants.TILE_HEIGHT, Assets.instance.wall, "wall");
+			bottomWall.getSprite().flip(false, true);
+			bottomWall.getSprite().setFlip(false, true);
 			walls.add(topWall);
 			walls.add(bottomWall);
 		}
@@ -162,6 +188,8 @@ public class Zone {
 			NonlivingEntity leftWall = new NonlivingEntity(Constants.TILE_WIDTH/2,
 				i * Constants.TILE_HEIGHT + Constants.TILE_HEIGHT/2, Constants.TILE_WIDTH,
 				Constants.TILE_HEIGHT, Assets.instance.wall, "wall");
+			rightWall.getSprite().rotate90(true);
+			leftWall.getSprite().rotate(90);
 			walls.add(rightWall);
 			walls.add(leftWall);
 		}
