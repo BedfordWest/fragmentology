@@ -4,9 +4,23 @@ size: 1024,64
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-CH_BASIC_01_1632_SS
+CH_BASIC_01_1632_SD
   rotate: false
   xy: 783, 19
+  size: 16, 32
+  orig: 16, 32
+  offset: 0, 0
+  index: -1
+CH_BASIC_01_1632_SL
+  rotate: false
+  xy: 801, 19
+  size: 16, 32
+  orig: 16, 32
+  offset: 0, 0
+  index: -1
+CH_BASIC_01_1632_SU
+  rotate: false
+  xy: 819, 19
   size: 16, 32
   orig: 16, 32
   offset: 0, 0
@@ -20,7 +34,7 @@ CH_PLACEHOLDER_01_16_SD
   index: -1
 CH_PLACEHOLDER_01_16_SL
   rotate: false
-  xy: 801, 35
+  xy: 837, 35
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -34,7 +48,7 @@ CH_PLACEHOLDER_01_16_SU
   index: -1
 CH_PLACEHOLDER_01_16_X
   rotate: false
-  xy: 819, 35
+  xy: 855, 35
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -76,7 +90,7 @@ EN_BLOB_01_16_S
   index: -1
 EN_PLACEHOLDER_01_16_SD
   rotate: false
-  xy: 837, 35
+  xy: 873, 35
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -90,7 +104,7 @@ EN_PLACEHOLDER_01_16_SL
   index: -1
 EN_PLACEHOLDER_01_16_SU
   rotate: false
-  xy: 855, 35
+  xy: 891, 35
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -153,7 +167,7 @@ HO_CAVEWALL_01_32_X
   index: -1
 HO_PLACEHOLDER_01_16_X
   rotate: false
-  xy: 873, 35
+  xy: 909, 35
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -181,7 +195,7 @@ IT_PLACEHOLDER_01_32_X
   index: -1
 IT_STICK_01_16_X
   rotate: false
-  xy: 891, 35
+  xy: 927, 35
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -258,7 +272,7 @@ TR_EMPTY_01_32_X
   index: -1
 TR_PLACEHOLDER_01_16_X
   rotate: false
-  xy: 909, 35
+  xy: 945, 35
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
