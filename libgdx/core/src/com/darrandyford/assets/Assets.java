@@ -135,9 +135,9 @@ public class Assets implements Disposable, AssetErrorListener {
 	public class AssetEnemy extends AssetGenericLiving {
 
 		public AssetEnemy (TextureAtlas atlas) {
-			left = atlas.findRegion("EN_BLOB_01_16_S");
-			up = atlas.findRegion("EN_BLOB_01_16_S");
-			down = atlas.findRegion("EN_BLOB_01_16_S");
+			left = atlas.findRegion("EN_BLOB_01_16_SL");
+			up = atlas.findRegion("EN_BLOB_01_16_SU");
+			down = atlas.findRegion("EN_BLOB_01_16_SU");
 
 		}
 	}
