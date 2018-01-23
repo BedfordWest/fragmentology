@@ -124,8 +124,8 @@ public class Assets implements Disposable, AssetErrorListener {
 
 		public AssetPlayer (TextureAtlas atlas) {
 			left = atlas.findRegion("CH_BASIC_01_1632_SL");
-			up = atlas.findRegion("CH_BASIC_01_1632_SS");
-			down = atlas.findRegion("CH_BASIC_01_1632_SS");
+			up = atlas.findRegion("CH_BASIC_01_1632_SU");
+			down = atlas.findRegion("CH_BASIC_01_1632_SD");
 		}
 	}
 
