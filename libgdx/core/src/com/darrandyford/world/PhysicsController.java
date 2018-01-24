@@ -11,6 +11,7 @@ import com.darrandyford.entities.living.LivingEntity;
 import com.darrandyford.entities.living.characters.Enemy;
 import com.darrandyford.entities.living.characters.Player;
 import com.darrandyford.entities.nonliving.Item;
+import com.darrandyford.entities.nonliving.Cover;
 import com.darrandyford.entities.nonliving.NonlivingEntity;
 import com.darrandyford.utils.Constants;
 
@@ -51,6 +52,7 @@ public class PhysicsController {
 		initObjectPhysics();
 		initLights();
 		initWallPhysics();
+		initCoverPhysics();
 	}
 
 	/**
@@ -132,6 +134,32 @@ public class PhysicsController {
 			fixtureDef.filter.maskBits = Constants.MASK_HARDOBJECT;
 			wall.getBody().createFixture(fixtureDef);
 			wall.getBody().setUserData(wall);
+			polygonShape.dispose();
+		}
+	}
+
+	/**
+	 * Initialize cover physics
+	 */
+	private void initCoverPhysics() {
+		ArrayList<Cover> coverObjects = worldController.getZone().getCoverObjects();
+		for(Cover coverObject:coverObjects) {
+			BodyDef bodyDef = new BodyDef();
+			bodyDef.type = BodyDef.BodyType.StaticBody;
+			bodyDef.position.set(coverObject.getOrigin());
+			coverObject.setBody(b2world.createBody(bodyDef));
+			PolygonShape polygonShape = new PolygonShape();
+			polygonShape.setAsBox(
+				coverObject.getDimension().x / 2.0f,
+				coverObject.getDimension().y / 2.0f,
+				new Vector2(0.0f,0.0f),
+				0
+			);
+			FixtureDef fixtureDef = new FixtureDef();
+			fixtureDef.shape = polygonShape;
+			fixtureDef.restitution = 0f;
+			coverObject.getBody().createFixture(fixtureDef);
+			coverObject.getBody().setUserData(coverObject);
 			polygonShape.dispose();
 		}
 	}
