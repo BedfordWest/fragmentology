@@ -158,6 +158,9 @@ public class PhysicsController {
 			FixtureDef fixtureDef = new FixtureDef();
 			fixtureDef.shape = polygonShape;
 			fixtureDef.restitution = 0f;
+			fixtureDef.filter.categoryBits = Constants.CATEGORY_SOFTCOVER;
+			fixtureDef.filter.maskBits = Constants.MASK_SOFTCOVER;
+			fixtureDef.isSensor = true;
 			coverObject.getBody().createFixture(fixtureDef);
 			coverObject.getBody().setUserData(coverObject);
 			polygonShape.dispose();

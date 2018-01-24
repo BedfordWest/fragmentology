@@ -152,13 +152,17 @@ public class WorldController {
 	 * Handle the events that occur when a player is spotted by an enemy.
 	 */
 	public void playerSpotted(Enemy enemy) {
-		Assets.instance.playSound("alert");
-		enemy.setAlertState(Enemy.AlertState.CHASING);
+		if(!player.getCover()) {
+			Assets.instance.playSound("alert");
+			enemy.setAlertState(Enemy.AlertState.CHASING);
+		}
 	}
 
 	public void playerOutOfLOS(Enemy enemy) {
-		enemy.setAlertState(Enemy.AlertState.ALERT);
-		enemy.setAlertCurrent(0.0f);
+		if(!player.getCover()) {
+			enemy.setAlertState(Enemy.AlertState.ALERT);
+			enemy.setAlertCurrent(0.0f);
+		}
 	}
 
 	/**
