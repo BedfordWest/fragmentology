@@ -103,7 +103,7 @@ public class WorldListener implements ContactListener {
 			}
 
 			else if (bClassType.isAssignableFrom(Cover.class) && (bClassType != NonlivingEntity.class)) {
-				worldController.getPlayer().setCover(true);
+				worldController.getPlayer().setCover(false);
 			}
 
 		}
