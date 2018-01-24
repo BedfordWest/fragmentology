@@ -36,19 +36,28 @@ public class Constants {
 	public static final short CATEGORY_SCENERY = 0x0004;
 	public static final short CATEGORY_ENEMY_LIGHT = 0x0008;
 	public static final short CATEGORY_ITEM = 0x0016;
+	public static final short CATEGORY_HARDOBJECT = 0x0032;
+	public static final short CATEGORY_SOFTCOVER = 0x0064;
 
 
 	/** Collision masks **/
 	public static final short MASK_PLAYER =
 		(CATEGORY_ENEMY |
 			CATEGORY_ENEMY_LIGHT |
-			CATEGORY_ITEM);
+			CATEGORY_ITEM |
+			CATEGORY_SOFTCOVER |
+			CATEGORY_HARDOBJECT);
 	public static final short MASK_ENEMY_LIGHT =
 		(CATEGORY_PLAYER );
 	public static final short MASK_ENEMY =
-		(CATEGORY_PLAYER);
+		(CATEGORY_PLAYER |
+		CATEGORY_HARDOBJECT);
 	public static final short MASK_ITEM =
 		(CATEGORY_PLAYER);
+	public static final short MASK_HARDOBJECT =
+		(CATEGORY_HARDOBJECT |
+			CATEGORY_ENEMY |
+			CATEGORY_PLAYER);
 	public static final short MASK_SCENERY = -1;
 
 	/** Asset Constants **/

@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.darrandyford.entities.living.LivingEntity;
 import com.darrandyford.entities.living.characters.Enemy;
 import com.darrandyford.entities.living.characters.Player;
+import com.darrandyford.entities.nonliving.Item;
 import com.darrandyford.entities.nonliving.NonlivingEntity;
 import com.darrandyford.utils.Constants;
 
@@ -127,6 +128,8 @@ public class PhysicsController {
 			FixtureDef fixtureDef = new FixtureDef();
 			fixtureDef.shape = polygonShape;
 			fixtureDef.restitution = 0f;
+			fixtureDef.filter.categoryBits = Constants.CATEGORY_HARDOBJECT;
+			fixtureDef.filter.maskBits = Constants.MASK_HARDOBJECT;
 			wall.getBody().createFixture(fixtureDef);
 			wall.getBody().setUserData(wall);
 			polygonShape.dispose();
@@ -137,8 +140,8 @@ public class PhysicsController {
 	 * Initialize object physics
 	 */
 	private void initObjectPhysics() {
-		ArrayList<NonlivingEntity> objects = worldController.getZone().getObjects();
-		for (NonlivingEntity object : objects) {
+		ArrayList<Item> objects = worldController.getZone().getObjects();
+		for (Item object : objects) {
 			BodyDef bodyDef = new BodyDef();
 			bodyDef.type = BodyDef.BodyType.DynamicBody;
 			bodyDef.position.set(object.getPosition());

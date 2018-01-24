@@ -4,6 +4,7 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.darrandyford.entities.living.characters.Enemy;
 import com.darrandyford.entities.living.characters.Player;
 import com.darrandyford.entities.nonliving.EnemyLight;
+import com.darrandyford.entities.nonliving.Item;
 import com.darrandyford.entities.nonliving.NonlivingEntity;
 
 /**
@@ -38,8 +39,8 @@ public class WorldListener implements ContactListener {
 				worldController.playerSpotted(enemyLight.getEnemy());
 			}
 
-			else if (bClassType.isAssignableFrom(NonlivingEntity.class)) {
-				NonlivingEntity item = (NonlivingEntity) b.getUserData();
+			else if (bClassType.isAssignableFrom(Item.class) && (bClassType != NonlivingEntity.class)) {
+				Item item = (Item) b.getUserData();
 				worldController.acquireItem(item);
 			}
 
@@ -60,9 +61,9 @@ public class WorldListener implements ContactListener {
 
 		}
 
-		else if (aClassType.isAssignableFrom(NonlivingEntity.class)) {
+		else if (aClassType.isAssignableFrom(Item.class) && (bClassType != NonlivingEntity.class)) {
 			if (bClassType.isAssignableFrom(Player.class)) {
-				NonlivingEntity item = (NonlivingEntity) a.getUserData();
+				Item item = (Item) a.getUserData();
 				worldController.acquireItem(item);
 			}
 		}
