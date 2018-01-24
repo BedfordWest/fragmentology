@@ -7,6 +7,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.utils.Disposable;
 import com.darrandyford.entities.living.LivingEntity;
 import com.darrandyford.entities.living.characters.Enemy;
+import com.darrandyford.entities.nonliving.Item;
 import com.darrandyford.entities.nonliving.NonlivingEntity;
 import com.darrandyford.utils.Constants;
 
@@ -165,7 +166,7 @@ public class WorldRenderer implements Disposable {
 	 */
 	private void renderObjects()
 	{
-		ArrayList<NonlivingEntity> zoneObjects = worldController.getZone().getObjects();
+		ArrayList<Item> zoneObjects = worldController.getZone().getObjects();
 		for(NonlivingEntity object:zoneObjects){
 			object.render(batch);
 		}

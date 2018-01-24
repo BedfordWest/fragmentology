@@ -7,6 +7,7 @@ import com.darrandyford.assets.Assets;
 import com.darrandyford.entities.AbstractGameEntity;
 import com.darrandyford.entities.living.characters.Enemy;
 import com.darrandyford.entities.living.characters.Player;
+import com.darrandyford.entities.nonliving.Item;
 import com.darrandyford.entities.nonliving.NonlivingEntity;
 import com.darrandyford.input.InputController;
 import com.darrandyford.utils.CameraHelper;
@@ -163,7 +164,7 @@ public class WorldController {
 	/**
 	 * Handle the events that occur when a player acquires an item
 	 */
-	public void acquireItem(NonlivingEntity item) {
+	public void acquireItem(Item item) {
 		Assets.instance.playSound("item");
 		scheduledForRemoval.add(item);
 	}
