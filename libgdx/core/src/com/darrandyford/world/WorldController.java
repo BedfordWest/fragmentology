@@ -8,10 +8,10 @@ import com.darrandyford.entities.AbstractGameEntity;
 import com.darrandyford.entities.living.characters.Enemy;
 import com.darrandyford.entities.living.characters.Player;
 import com.darrandyford.entities.nonliving.Item;
-import com.darrandyford.entities.nonliving.NonlivingEntity;
 import com.darrandyford.input.InputController;
 import com.darrandyford.utils.CameraHelper;
 import com.darrandyford.utils.Constants;
+import com.darrandyford.world.physics.PhysicsController;
 import com.darrandyford.zones.Zone;
 
 import java.util.ArrayList;

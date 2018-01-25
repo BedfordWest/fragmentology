@@ -1,5 +1,7 @@
 package com.darrandyford.utils;
 
+import java.util.HashMap;
+
 /**
  * Constants necessary for or helpful for the game will be housed here
  */
@@ -61,6 +63,32 @@ public class Constants {
 	public static final short MASK_SOFTCOVER =
 		(CATEGORY_PLAYER);
 	public static final short MASK_SCENERY = -1;
+
+	public static class CollisionTuple {
+		private short collisionCategory;
+		private short collisionMask;
+
+		public CollisionTuple(short category, short mask) {
+			collisionCategory = category;
+			collisionMask = mask;
+		}
+
+		public short getCollisionCategory() {
+			return collisionCategory;
+		}
+
+		public short getCollisionMask() {
+			return collisionMask;
+		}
+	}
+
+	public static final HashMap<String, CollisionTuple> collisionMap = createCollisionMap();
+
+	private static HashMap<String, CollisionTuple> createCollisionMap() {
+		HashMap<String, CollisionTuple> tempMap = new HashMap<String, CollisionTuple>();
+		tempMap.put("player", new CollisionTuple(CATEGORY_PLAYER, MASK_PLAYER));
+		return tempMap;
+	}
 
 	/** Asset Constants **/
 	// Location of descriptor file for texture atlas
