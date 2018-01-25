@@ -8,6 +8,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.darrandyford.entities.living.LivingEntity;
 import com.darrandyford.entities.living.characters.Enemy;
 import com.darrandyford.entities.nonliving.Item;
+import com.darrandyford.entities.nonliving.Cover;
 import com.darrandyford.entities.nonliving.NonlivingEntity;
 import com.darrandyford.utils.Constants;
 
@@ -177,8 +178,8 @@ public class WorldRenderer implements Disposable {
 	 */
 	private void renderCoverObjects()
 	{
-		ArrayList<NonlivingEntity> zoneCoverObjects = worldController.getZone().getCoverObjects();
-		for(NonlivingEntity coverObject:zoneCoverObjects){
+		ArrayList<Cover> zoneCoverObjects = worldController.getZone().getCoverObjects();
+		for(Cover coverObject:zoneCoverObjects){
 			coverObject.render(batch);
 		}
 	}

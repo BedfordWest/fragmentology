@@ -58,6 +58,8 @@ public class Constants {
 		(CATEGORY_HARDOBJECT |
 			CATEGORY_ENEMY |
 			CATEGORY_PLAYER);
+	public static final short MASK_SOFTCOVER =
+		(CATEGORY_PLAYER);
 	public static final short MASK_SCENERY = -1;
 
 	/** Asset Constants **/

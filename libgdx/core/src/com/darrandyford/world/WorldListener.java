@@ -3,6 +3,7 @@ package com.darrandyford.world;
 import com.badlogic.gdx.physics.box2d.*;
 import com.darrandyford.entities.living.characters.Enemy;
 import com.darrandyford.entities.living.characters.Player;
+import com.darrandyford.entities.nonliving.Cover;
 import com.darrandyford.entities.nonliving.EnemyLight;
 import com.darrandyford.entities.nonliving.Item;
 import com.darrandyford.entities.nonliving.NonlivingEntity;
@@ -44,6 +45,10 @@ public class WorldListener implements ContactListener {
 				worldController.acquireItem(item);
 			}
 
+			else if (bClassType.isAssignableFrom(Cover.class) && (bClassType != NonlivingEntity.class)) {
+				worldController.getPlayer().setCover(true);
+			}
+
 		}
 
 		else if (aClassType.isAssignableFrom(Enemy.class)) {
@@ -68,6 +73,12 @@ public class WorldListener implements ContactListener {
 			}
 		}
 
+		else if (bClassType.isAssignableFrom(Cover.class) && (bClassType != NonlivingEntity.class)) {
+			if (bClassType.isAssignableFrom(Player.class)) {
+				worldController.getPlayer().setCover(true);
+			}
+		}
+
 	}
 
 	/** Called when two fixtures cease to touch. */
@@ -81,6 +92,7 @@ public class WorldListener implements ContactListener {
 		Class bClassType = b.getUserData().getClass();
 
 		if (aClassType.isAssignableFrom(Player.class)) {
+
 			if (bClassType.isAssignableFrom(Enemy.class)) {
 				worldController.reset();
 			}
@@ -88,6 +100,10 @@ public class WorldListener implements ContactListener {
 			else if (bClassType.isAssignableFrom(EnemyLight.class)) {
 				EnemyLight enemyLight = (EnemyLight) b.getUserData();
 				worldController.playerOutOfLOS(enemyLight.getEnemy());
+			}
+
+			else if (bClassType.isAssignableFrom(Cover.class) && (bClassType != NonlivingEntity.class)) {
+				worldController.getPlayer().setCover(false);
 			}
 
 		}
@@ -104,7 +120,12 @@ public class WorldListener implements ContactListener {
 				EnemyLight enemyLight = (EnemyLight) a.getUserData();
 				worldController.playerOutOfLOS(enemyLight.getEnemy());
 			}
+		}
 
+		else if (bClassType.isAssignableFrom(Cover.class) && (bClassType != NonlivingEntity.class)) {
+			if (bClassType.isAssignableFrom(Player.class)) {
+				worldController.getPlayer().setCover(false);
+			}
 		}
 	}
 

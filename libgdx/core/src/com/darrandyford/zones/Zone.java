@@ -10,6 +10,7 @@ import com.darrandyford.assets.Assets;
 import com.darrandyford.entities.living.LivingEntity;
 import com.darrandyford.entities.living.characters.Enemy;
 import com.darrandyford.entities.nonliving.Item;
+import com.darrandyford.entities.nonliving.Cover;
 import com.darrandyford.entities.nonliving.NonlivingEntity;
 import com.darrandyford.entities.terrain.TerrainTile;
 import com.darrandyford.utils.Constants;
@@ -37,7 +38,7 @@ public class Zone {
 	private static final int CHANCE_SPECKS_TILE = 25;
 	private ArrayList<NonlivingEntity> walls = new ArrayList<NonlivingEntity>();
 	private ArrayList<Item> objects = new ArrayList<Item>();
-	private ArrayList<NonlivingEntity> coverObjects = new ArrayList<NonlivingEntity>();
+	private ArrayList<Cover> coverObjects = new ArrayList<Cover>();
 	private ArrayList<Enemy> enemies = new ArrayList<Enemy>();
 	private WorldController worldController;
 
@@ -340,7 +341,7 @@ public class Zone {
 				}
 
 				if(!overlap) {
-					for (NonlivingEntity anotherCoverObject : coverObjects) {
+					for (Cover anotherCoverObject : coverObjects) {
 						if (objectRect.overlaps(anotherCoverObject.getBounds())) {
 							i--;
 							overlap = true;
@@ -351,7 +352,7 @@ public class Zone {
 
 			}
 			if(!overlap) {
-				NonlivingEntity coverObject = new NonlivingEntity(newX, newY, 2.0f, 2.0f,
+				Cover coverObject = new Cover(newX, newY, 2.0f, 2.0f,
 					Assets.instance.object, "stickbundle");
 				coverObjects.add(coverObject);
 			}
@@ -378,7 +379,7 @@ public class Zone {
 		return objects;
 	}
 
-	public ArrayList<NonlivingEntity> getCoverObjects() {
+	public ArrayList<Cover> getCoverObjects() {
 		return coverObjects;
 	}
 
