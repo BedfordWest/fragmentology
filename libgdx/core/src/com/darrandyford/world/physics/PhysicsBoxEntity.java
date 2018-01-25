@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.darrandyford.entities.AbstractGameEntity;
 import com.darrandyford.utils.Constants;
+import com.sun.org.apache.xerces.internal.impl.dv.dtd.ENTITYDatatypeValidator;
 
 public class PhysicsBoxEntity implements PhysicsEntity {
 
@@ -42,8 +43,8 @@ public class PhysicsBoxEntity implements PhysicsEntity {
 		FixtureDef fixtureDef = new FixtureDef();
 		fixtureDef.shape = polygonShape;
 		fixtureDef.restitution = 0f;
-		fixtureDef.filter.categoryBits = Constants.CATEGORY_PLAYER;
-		fixtureDef.filter.maskBits = Constants.MASK_PLAYER;
+		fixtureDef.filter.categoryBits = entity.getCollisionCategory();
+		fixtureDef.filter.maskBits = entity.getCollisionMask();
 		entity.getBody().createFixture(fixtureDef);
 		entity.getBody().setUserData(entity);
 		polygonShape.dispose();

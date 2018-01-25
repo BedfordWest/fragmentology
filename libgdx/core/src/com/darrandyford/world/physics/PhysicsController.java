@@ -244,7 +244,7 @@ public class PhysicsController {
 		}
 		updateEnemyPhysics(deltaTime);
 	}
-	
+
 
 	/**
 	 * Update enemy physics
