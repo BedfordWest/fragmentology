@@ -34,7 +34,7 @@ public class WorldController {
 	private InputController inputController;
 	private Zone zone;
 	private Player player;
-	private com.darrandyford.world.physics.PhysicsController physicsController;
+	private PhysicsController physicsController;
 	private Array<Body> bodies = new Array<Body>();
 	private ArrayList<AbstractGameEntity> scheduledForRemoval = new ArrayList<AbstractGameEntity>();
 
@@ -91,7 +91,7 @@ public class WorldController {
 	 * Initialize the physics system
 	 */
 	private void initPhysics() {
-		this.physicsController = new com.darrandyford.world.physics.PhysicsController(this);
+		this.physicsController = new PhysicsController(this);
 	}
 
 	/**
