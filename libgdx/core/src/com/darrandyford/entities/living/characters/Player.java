@@ -27,6 +27,7 @@ public class Player extends LivingEntity {
 	 */
 	private void init () {
 		this.cover = false;
+		this.entityType = "player";
 	}
 
 	/**

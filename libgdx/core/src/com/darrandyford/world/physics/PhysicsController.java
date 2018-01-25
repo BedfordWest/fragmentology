@@ -30,6 +30,7 @@ public class PhysicsController {
 	private RayHandler rayHandler;
 	private WorldListener worldListener;
 	private static final String TAG = PhysicsController.class.getName();
+	private ArrayList<PhysicsEntity> physicsEntities = new ArrayList<PhysicsEntity>();
 
 	/**
 	 * Constructor
@@ -61,27 +62,8 @@ public class PhysicsController {
 	 * Initialize player physics
 	 */
 	private void initPlayerPhysics() {
-		player = worldController.getPlayer();
-		BodyDef bodyDef = new BodyDef();
-		bodyDef.type = BodyDef.BodyType.DynamicBody;
-		bodyDef.position.set(player.getPosition());
-		player.setBody(b2world.createBody(bodyDef));
-		PolygonShape polygonShape = new PolygonShape();
-		polygonShape.setAsBox(
-			player.getDimension().x / 2.0f,
-			player.getDimension().y / 2.0f,
-			new Vector2(0.0f,0.0f),
-			0
-		);
-		FixtureDef fixtureDef = new FixtureDef();
-		fixtureDef.shape = polygonShape;
-		fixtureDef.restitution = 0f;
-		fixtureDef.filter.categoryBits = Constants.CATEGORY_PLAYER;
-		fixtureDef.filter.maskBits = Constants.MASK_PLAYER;
-		player.getBody().createFixture(fixtureDef);
-		player.getBody().setUserData(player);
-		player.getBody().setSleepingAllowed(false);
-		polygonShape.dispose();
+		PlayerPhysicsEntity playerPhysicsEntity = new PlayerPhysicsEntity(this, worldController.getPlayer());
+		playerPhysicsEntity.initPhysics();
 	}
 
 	/**
@@ -257,23 +239,12 @@ public class PhysicsController {
 	 * @param deltaTime time elapsed since last cycle (in ms)
 	 */
 	public void updatePhysics(float deltaTime) {
-		updatePlayerPhysics(deltaTime);
+		for(PhysicsEntity physicsEntity:physicsEntities) {
+			physicsEntity.updatePhysics(deltaTime);
+		}
 		updateEnemyPhysics(deltaTime);
 	}
-
-	/**
-	 * Update player physics
-	 * @param deltaTime time elapsed since last cycle (in ms)
-	 */
-	public void updatePlayerPhysics(float deltaTime) {
-		Vector2 moveSpeed = player.getMoveSpeed();
-		player.getBody()
-			.setLinearVelocity(moveSpeed);
-		if(!(moveSpeed.x == 0.0f && moveSpeed.y == 0.0f)) {
-			player.setMoving(true);
-		}
-		else player.setMoving(false);
-	}
+	
 
 	/**
 	 * Update enemy physics
@@ -328,5 +299,11 @@ public class PhysicsController {
 
 	public RayHandler getRayHandler() {
 		return rayHandler;
+	}
+
+
+	// Setters
+	public void addPhysicsEntity(PhysicsEntity entity) {
+		this.physicsEntities.add(entity);
 	}
 }

@@ -30,7 +30,7 @@ public abstract class AbstractGameEntity {
 	protected Body body;
 	protected boolean isMoving;
 	protected WorldController worldController;
-	private String entityType;
+	protected String entityType;
 
 	/**
 	 * Constructor - we'll want to default these values for all subclasses
