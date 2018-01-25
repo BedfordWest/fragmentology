@@ -6,21 +6,21 @@ filter: Nearest,Nearest
 repeat: none
 CH_BASIC_01_1632_SD
   rotate: false
-  xy: 171, 53
+  xy: 205, 87
   size: 16, 32
   orig: 16, 32
   offset: 0, 0
   index: -1
 CH_BASIC_01_1632_SL
   rotate: false
-  xy: 205, 87
+  xy: 171, 19
   size: 16, 32
   orig: 16, 32
   offset: 0, 0
   index: -1
 CH_BASIC_01_1632_SU
   rotate: false
-  xy: 171, 19
+  xy: 205, 53
   size: 16, 32
   orig: 16, 32
   offset: 0, 0
@@ -34,14 +34,14 @@ EN_BLOB_01_16_S
   index: -1
 EN_BLOB_01_16_SL
   rotate: false
-  xy: 189, 69
+  xy: 223, 103
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 EN_BLOB_01_16_SU
   rotate: false
-  xy: 223, 103
+  xy: 189, 35
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -55,7 +55,7 @@ EN_BLOB_TRANS_01_16_SL
   index: -1
 EN_BLOB_TRANS_01_16_SU
   rotate: false
-  xy: 189, 51
+  xy: 223, 85
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -95,16 +95,23 @@ HO_PLACEHOLDER_01_32_X
   orig: 32, 32
   offset: 0, 0
   index: -1
+HO_ROCKPILE_01_32_x
+  rotate: false
+  xy: 35, 53
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 IT_PLACEHOLDER_01_16_X
   rotate: false
-  xy: 189, 33
+  xy: 223, 67
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 IT_PLACEHOLDER_01_32_X
   rotate: false
-  xy: 35, 53
+  xy: 69, 87
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -125,63 +132,63 @@ SO_PLACEHOLDER_01_16_X
   index: -1
 SO_PLACEHOLDER_01_32_X
   rotate: false
-  xy: 69, 87
+  xy: 35, 19
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 SO_STICKBUNDLE_01_32_X
   rotate: false
-  xy: 35, 19
+  xy: 69, 53
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 palette_ramps
   rotate: false
-  xy: 137, 19
+  xy: 171, 53
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 TR_ASSORTED_01_32_X
   rotate: false
-  xy: 69, 53
+  xy: 103, 87
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 TR_DIRTROCKS_01_32_X
   rotate: false
-  xy: 103, 87
+  xy: 69, 19
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 TR_DIRTROCKS_V2_01_32_X
   rotate: false
-  xy: 69, 19
+  xy: 103, 53
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 TR_DIRTROCKS_V3_01_32_X
   rotate: false
-  xy: 103, 53
+  xy: 137, 87
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 TR_DIRTROCKS_V4_01_32_X
   rotate: false
-  xy: 137, 87
+  xy: 103, 19
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 TR_EMPTY_01_32_X
   rotate: false
-  xy: 103, 19
+  xy: 137, 53
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
@@ -195,14 +202,14 @@ TR_PLACEHOLDER_01_16_X
   index: -1
 TR_PLACEHOLDER_01_32_X
   rotate: false
-  xy: 137, 53
+  xy: 171, 87
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 TR_SPECKS_01_32_X
   rotate: false
-  xy: 171, 87
+  xy: 137, 19
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
