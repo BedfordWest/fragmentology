@@ -159,10 +159,8 @@ public class WorldController {
 	}
 
 	public void playerOutOfLOS(Enemy enemy) {
-		if(!player.getCover()) {
-			enemy.setAlertState(Enemy.AlertState.ALERT);
-			enemy.setAlertCurrent(0.0f);
-		}
+		enemy.setAlertState(Enemy.AlertState.ALERT);
+		enemy.setAlertCurrent(0.0f);
 	}
 
 	/**
