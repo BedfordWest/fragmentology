@@ -30,6 +30,7 @@ public abstract class AbstractGameEntity {
 	protected Body body;
 	protected boolean isMoving;
 	protected WorldController worldController;
+	private String entityType;
 
 	/**
 	 * Constructor - we'll want to default these values for all subclasses
@@ -47,6 +48,7 @@ public abstract class AbstractGameEntity {
 		acceleration = new Vector2(0,0);
 		moveSpeed = new Vector2(0,0);
 		moveRate = 5.0f;
+		entityType = "abstract";
 	}
 
 	/**
@@ -108,6 +110,13 @@ public abstract class AbstractGameEntity {
 		contactPoints.add(new Vector2(position.x + dimension.x/2, position.y + dimension.y));
 		contactPoints.add(new Vector2(position.x + dimension.x, position.y + dimension.y/2));
 		return contactPoints;
+	}
+	public short getCollisionCategory() {
+		return Constants.collisionMap.get(entityType).getCollisionCategory();
+	}
+
+	public short getCollisionMask() {
+		return Constants.collisionMap.get(entityType).getCollisionMask();
 	}
 
 	public WorldController getWorldController() {

@@ -1,4 +1,4 @@
-package com.darrandyford.world;
+package com.darrandyford.world.physics;
 
 import box2dLight.ConeLight;
 import box2dLight.Light;
@@ -14,6 +14,8 @@ import com.darrandyford.entities.nonliving.Item;
 import com.darrandyford.entities.nonliving.Cover;
 import com.darrandyford.entities.nonliving.NonlivingEntity;
 import com.darrandyford.utils.Constants;
+import com.darrandyford.world.WorldController;
+import com.darrandyford.world.WorldListener;
 
 import java.util.ArrayList;
 
