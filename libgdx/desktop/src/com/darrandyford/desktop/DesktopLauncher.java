@@ -3,8 +3,8 @@ package com.darrandyford.desktop;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.badlogic.gdx.tools.texturepacker.TexturePacker;
-import com.darrandyford.DarrAndyFord;
-import com.darrandyford.utils.Constants;
+import main.java.com.darrandyford.DarrAndyFord;
+import main.java.com.darrandyford.utils.Constants;
 
 public class DesktopLauncher {
 	private static boolean rebuildAtlas = true;
