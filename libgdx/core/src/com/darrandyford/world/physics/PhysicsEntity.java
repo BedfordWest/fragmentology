@@ -2,5 +2,5 @@ package com.darrandyford.world.physics;
 
 public interface PhysicsEntity {
 	void initPhysics();
-	void updatePhysics();
+	void updatePhysics(float deltaTime);
 }

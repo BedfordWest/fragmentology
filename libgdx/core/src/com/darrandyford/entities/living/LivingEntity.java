@@ -28,6 +28,7 @@ public class LivingEntity extends AbstractGameEntity {
 	 * Initialize the player. Should be facing right by default. The origin should be in the middle of the player.
 	 */
 	private void init () {
+		this.entityType = "living";
 	}
 
 	/**

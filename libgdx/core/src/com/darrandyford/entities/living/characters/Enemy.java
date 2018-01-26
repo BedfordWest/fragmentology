@@ -45,6 +45,7 @@ public class Enemy extends LivingEntity {
 		moveRate = 2.0f;
 		chaseRate = 6.0f;
 		this.enemyLight = new EnemyLight(this);
+		this.entityType = "enemy";
 	}
 
 	public void update(float deltaTime) {

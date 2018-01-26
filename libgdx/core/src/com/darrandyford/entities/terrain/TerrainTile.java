@@ -19,6 +19,7 @@ public class TerrainTile extends AbstractGameEntity {
 	                    Assets.AssetGenericNonLiving asset) {
 		super(positionX, positionY, dimensionX, dimensionY);
 		isSolid = false;
+		this.entityType = "terraintile";
 	}
 
 	public void update (float deltaTime) {
