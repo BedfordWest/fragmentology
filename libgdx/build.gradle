@@ -10,14 +10,14 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:2.3.0'
         classpath 'com.mobidevelop.robovm:robovm-gradle-plugin:2.3.1'
-        
-
+        classpath 'org.junit.platform:junit-platform-gradle-plugin:1.0.3'
     }
 }
 
 allprojects {
     apply plugin: "eclipse"
     apply plugin: "idea"
+
 
     version = '1.0'
     ext {
@@ -39,6 +39,7 @@ allprojects {
 
 project(":desktop") {
     apply plugin: "java"
+    apply plugin: "org.junit.platform.gradle.plugin"
 
 
     dependencies {
@@ -50,7 +51,6 @@ project(":desktop") {
         compile "com.badlogicgames.gdx:gdx-controllers-platform:$gdxVersion:natives-desktop"
         compile "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
-        
     }
 }
 
@@ -106,6 +106,12 @@ project(":ios") {
 
 project(":core") {
     apply plugin: "java"
+    apply plugin: "org.junit.platform.gradle.plugin"
+
+    sourceSets {
+        main { java.srcDirs = ['src/main/java'] }
+        test { java.srcDirs = ['src/test/java'] }
+    }
 
 
     dependencies {
@@ -115,10 +121,16 @@ project(":core") {
         compile "com.badlogicgames.gdx:gdx-controllers:$gdxVersion"
         compile "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
         compile "com.badlogicgames.box2dlights:box2dlights:$box2DLightsVersion"
-        
+        testCompile(
+                'org.junit.jupiter:junit-jupiter-api:5.0.3'
+        )
+        testRuntime(
+                'org.junit.jupiter:junit-jupiter-engine:5.0.3'
+        )
     }
 }
 
 tasks.eclipse.doLast {
     delete ".project"
 }
+
