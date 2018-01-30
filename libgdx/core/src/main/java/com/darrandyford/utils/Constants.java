@@ -114,4 +114,13 @@ public class Constants {
 	public static final float DIRECTION_UP = 90.0f;
 	public static final float DIRECTION_DOWN = 270.0f;
 
+	public static final float DIRECTION_UP_MIN = DIRECTION_UP - 45.0f;
+	public static final float DIRECTION_UP_MAX = DIRECTION_UP + 45.0f;
+	public static final float DIRECTION_RIGHT_MIN= DIRECTION_RIGHT - 45.0f;
+	public static final float DIRECTION_RIGHT_MAX = DIRECTION_RIGHT + 45.0f;
+	public static final float DIRECTION_DOWN_MIN = ;
+	public static final float DIRECTION_DOWN_MAX = 315.0f;
+	public static final float DIRECTION_LEFT_MIN = 135.0f;
+	public static final float DIRECTION_LEFT_MAX = 225.0f;
+
 }

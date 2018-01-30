@@ -36,15 +36,6 @@ public class LivingEntity extends AbstractGameEntity {
 	@Override
 	public void render (SpriteBatch batch) {
 
-		float directionUpMin = 45.0f;
-		float directionUpMax = 135.0f;
-		float directionRightMin = 315.0f;
-		float directionRightMax = 45.0f;
-		float directionDownMin = 225.0f;
-		float directionDownMax = 315.0f;
-		float directionLeftMin = 135.0f;
-		float directionLeftMax = 225.0f;
-
 		if ((this.direction > directionUpMin) &&
 			(this.direction <= directionUpMax))
 		{
