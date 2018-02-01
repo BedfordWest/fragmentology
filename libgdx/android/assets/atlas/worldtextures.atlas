@@ -60,6 +60,13 @@ EN_BLOB_TRANS_01_16_SU
   orig: 16, 16
   offset: 0, 0
   index: -1
+EN_GOBLIN_01_16_SD
+  rotate: false
+  xy: 37, 1
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
 HO_BASICBRICKWALL_01_32_X
   rotate: false
   xy: 1, 87
@@ -83,7 +90,7 @@ HO_CAVEWALL_01_32_X
   index: -1
 HO_PLACEHOLDER_01_16_X
   rotate: false
-  xy: 37, 1
+  xy: 223, 67
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -104,7 +111,7 @@ HO_ROCKPILE_01_32_x
   index: -1
 IT_PLACEHOLDER_01_16_X
   rotate: false
-  xy: 223, 67
+  xy: 55, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -118,14 +125,14 @@ IT_PLACEHOLDER_01_32_X
   index: -1
 IT_STICK_01_16_X
   rotate: false
-  xy: 55, 1
+  xy: 73, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
   index: -1
 SO_PLACEHOLDER_01_16_X
   rotate: false
-  xy: 73, 1
+  xy: 91, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
@@ -195,7 +202,7 @@ TR_EMPTY_01_32_X
   index: -1
 TR_PLACEHOLDER_01_16_X
   rotate: false
-  xy: 91, 1
+  xy: 109, 1
   size: 16, 16
   orig: 16, 16
   offset: 0, 0
